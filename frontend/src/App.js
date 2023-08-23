@@ -1,10 +1,11 @@
-
+import Dashboard from "./Dashboard/dashboard";
+//import Login from "./login";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Welcome to JMS</h1>
+        <Dashboard/>
       </header>
     </div>
   );
