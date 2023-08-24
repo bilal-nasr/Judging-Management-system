@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+
 import {
   Paper,
   Avatar,
@@ -21,9 +23,27 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // You can handle form submission here, e.g., send a request to your server.
+    try {
+        // Create a data object with the username and password
+        const data = {
+          username: Username,
+          password: password,
+        };
+  
+        // Send a POST request to the server
+        const response = await axios.post("/api/login", data);
+  
+        // Handle the response from the server here
+        console.log("Server response:", response.data);
+  
+        // You can also redirect the user or perform other actions based on the response
+      } catch (error) {
+        // Handle errors here
+        console.error("Error:", error);
+      }
   };
 
   return (
