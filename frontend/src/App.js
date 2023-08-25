@@ -1,12 +1,14 @@
-import Dashboard from "./Dashboard/dashboard";
-//import Login from "./login";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Login from "./login"; // Your Login component
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Dashboard/>
-      </header>
+    <div>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        {/* Define other routes as needed */}
+      </Routes>
     </div>
   );
 }

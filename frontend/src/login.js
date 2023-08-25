@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 import {
   Paper,
   Avatar,
@@ -10,6 +10,7 @@ import {
   
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { Alert } from "@mui/material";
 
 const Login = () => {
   const [Username, setUsername] = useState("");
@@ -34,7 +35,7 @@ const Login = () => {
         };
   
         // Send a POST request to the server
-        const response = await axios.post("/api/login", data);
+        const response = await axios.post("http://localhost:3006/api/login", data);
   
         // Handle the response from the server here
         console.log("Server response:", response.data);
@@ -45,6 +46,22 @@ const Login = () => {
         console.error("Error:", error);
       }
   };
+
+//   const navigate = useNavigate();  
+//   const [error, setError] = useState("");
+
+//   const checklogin = async(req,res) => {
+//     try {
+//         const response = await axios.post("http://localhost:3006/api/login");
+//         if (response.data.success) {
+//           navigate("./Dashboard/dashboard");
+//         } else {
+//           setError(response.data.message || "Login failed.");
+//         }
+//       } catch (error) {
+//         setError("Error logging in: " + error.message);
+//       }
+//   }
 
   return (
     <div
@@ -90,6 +107,9 @@ const Login = () => {
            Login
           </Button>
         </form>
+        <Alert severity="error" style={{ marginTop: "16px" }}>
+                
+        </Alert>
       </Paper>
     </div>
   );
