@@ -42,7 +42,8 @@ const Login = () => {
                 // Handle the response from the server here
                 console.log("Server response:", response.data);
                 if (response.data.success) {
-                    navigate("./dashboard");
+                    console.log(response.data.name)
+                    navigate(`./dashboard?name=${response.data.name}`);
                 } else {
                     setError(response.data.message || "Login failed.");
                 }

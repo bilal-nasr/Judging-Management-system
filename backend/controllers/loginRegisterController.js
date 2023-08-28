@@ -2,15 +2,18 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const dbUser = require("../model/getDbData")
 
+
 exports.login = async (req, res) => {
     const { name, password } = req.body;
+    const SECRET_KEY = "your_secret_key";
     try {
         console.log("hello")
         const users = await dbUser(`SELECT * FROM users WHERE name = "${name}" `);
         const user = users[0];
         console.log(user)
         if (user && user.password == password){
-            res.send({ success: true});
+            const token = jwt.sign({ id: user.id }, SECRET_KEY);
+            res.send({ success: true, token,name: user.name});
         }
         else {
             res.status(400).send({ success: false, message: "Invalid credentials." });
@@ -30,3 +33,4 @@ exports.login = async (req, res) => {
     }
 
 }
+

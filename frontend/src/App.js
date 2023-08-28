@@ -6,10 +6,9 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route exact path="/" element={<Login />} />
+        <Route exact path="/dashboard" element={<Dashboard />} />
         {/* Define other routes as needed */}
-        
       </Routes>
     </div>
   );
