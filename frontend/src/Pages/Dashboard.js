@@ -14,8 +14,8 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 //import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from './ListItems';
-import BasicPopover, { Popover } from '../Dashboard/popover';
+import { mainListItems, secondaryListItems } from '../Components/DasboardComponents/ListItems';
+import BasicPopover from '../Components/DasboardComponents/BasicPopover';
 import { useLocation } from "react-router-dom";
 
 // function Copyright(props) {
@@ -123,7 +123,7 @@ export default function Dashboard() {
                         >
                             {name}
                         </Typography>
-                        <BasicPopover name= {name} />
+                        <BasicPopover name={name} />
                     </Toolbar>
                 </AppBar>
                 <Drawer variant="permanent" open={open}>
