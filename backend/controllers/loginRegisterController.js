@@ -1,11 +1,13 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const dbUser = require("../model/getDbData")
+const dotenv = require("dotenv")
 
+dotenv.config()
 
 exports.login = async (req, res) => {
     const { username, password } = req.body;
-    const SECRET_KEY = "your_secret_key";
+    const SECRET_KEY = process.env.SECRET_KEY;
     try {
         console.log("from login controller")
         const users = await dbUser(`SELECT * FROM users WHERE username = "${username}" `);
