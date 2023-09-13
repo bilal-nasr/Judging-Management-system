@@ -81,11 +81,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
+
 export default function Dashboard() {
     const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const name = searchParams.get("name");
-    console.log(name);
+    console.log(location);
+    const { name,role } = location.state;
+    console.log(name, role);
 
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
@@ -143,9 +144,8 @@ export default function Dashboard() {
                     <List component="nav">
                         {mainListItems}
                         <Divider sx={{ my: 1 }} />
-                        {secondaryListItems}
-                        {/* dont forger to edit after finishing the backend */}
-                        {/* ({user.role=="superAdmin"} && {secondaryListItems}) */}
+
+                        {(role==="S"&& secondaryListItems)}
 
                     </List>
                 </Drawer>

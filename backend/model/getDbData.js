@@ -6,8 +6,11 @@ async function getDBData(query){
         // Example: const name = req.query.name;
     
         // If you want to fetch all data from the "users" table, you can use a simple SELECT query like this:
+        console.log("from getdb data")
+        console.log(query)
         const connection = await dbConnect.getConnection();
         const [rows] = await connection.execute(query);
+        console.log(rows)
         return rows;
       } catch (error) {
         console.error("Error fetching data:", error);

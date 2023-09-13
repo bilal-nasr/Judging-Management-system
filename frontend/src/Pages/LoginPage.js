@@ -18,14 +18,14 @@ const LoginPage = () => {
 
   useEffect(()=>{
     if(Auth.isUserAuthenticated())
-        navigate("/home")
+        navigate("/dashboard")
   },[navigate]);
 
   // todo here
   const handleLogin = async () => {
     try {
       // Make a request to your authentication API
-      const response = await api.post("/users/signin", { 
+      const response = await api.post("/users/login", { 
         username,
         password,
       });
@@ -33,15 +33,18 @@ const LoginPage = () => {
   
       // Assuming your API returns a token upon successful login
       const  token = response.data.token;
+      const  name  = response.data.name;
+      const role = response.data.role;
   
       // Store the token in your authentication context or local storage
       Auth.authenticateUser(token);
   
       // Redirect the user to a protected route
-      navigate("/dashboard"); // Change "/dashboard" to your desired protected route
+      navigate("/dashboard",{ state: { name,role } }); // Change "/dashboard" to your desired protected route
     } catch (error) {
       // Handle login error
-      setError("Invalid username or password. Please try again.");
+      console.log(error)
+      setError(`Invalid login ${error}`);
     }
   };
   

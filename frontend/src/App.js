@@ -28,7 +28,6 @@ function PrivateRoute({ children }) {
 function App() {
   return (
     <Router>
-        <LoginPage/>
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route

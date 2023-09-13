@@ -5,9 +5,12 @@ import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { MenuItem, MenuList } from '@mui/material';
+import Auth from '../../Auth';
+import { useNavigate } from 'react-router-dom';
 
 export default function BasicPopover(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const navigate = useNavigate()
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -18,7 +21,8 @@ export default function BasicPopover(props) {
     };
 
     const handleSignOut = () => {
-
+        Auth.deAuthenticateUser()
+        navigate("/login")
     }
 
     const open = Boolean(anchorEl);
@@ -52,7 +56,7 @@ export default function BasicPopover(props) {
                     }}
                 >
 
-                    <MenuItem onClick={handleSignOut}>
+                    <MenuItem>
                         <Typography sx={{ p: 2 }}>{props.name}</Typography>
                     </MenuItem>
                     <MenuItem onClick={handleSignOut}>
