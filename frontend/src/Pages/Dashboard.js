@@ -85,8 +85,10 @@ const defaultTheme = createTheme();
 export default function Dashboard() {
     const location = useLocation();
     console.log(location);
-    const { name,role } = location.state;
-    console.log(name, role);
+    const  data  = location.state;
+    const role = data.role;
+    const name = data.name;
+    console.log(name);
 
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
