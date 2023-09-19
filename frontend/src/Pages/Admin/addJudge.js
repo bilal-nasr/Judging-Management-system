@@ -5,10 +5,9 @@ import Button from '@mui/material-next/Button';
 const addJudge = ()=>{
     return(
         <>
-            
-            <TextField label="Username" color="secondary" focused />
-            <TextField label="Name" color="secondary" focused />
-            <TextField label="Role" color="secondary" focused />
+            <TextField label="Username" focused />
+            <TextField label="Name" focused />
+            <TextField label="Role"  focused />
             <Button variant="Add">Text</Button>
             <Button variant="Cancel">Text</Button>
         </>
