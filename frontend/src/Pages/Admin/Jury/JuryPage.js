@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AddJudge from "../AddJudge";
-import TableDataViewer from "../TableDataViewer";
+import TableDataViewer from "../Tables/JuryTableDataViewer";
 import api from "../../../api";
 
 export default function JuryPage() {
