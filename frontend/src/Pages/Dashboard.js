@@ -18,6 +18,7 @@ import { MainListItems, SecondaryListItems } from '../Components/DasboardCompone
 import BasicPopover from '../Components/DasboardComponents/BasicPopover';
 import { useLocation } from "react-router-dom";
 import JuryPage from './Admin/Jury/JuryPage';
+import StartupPage from './Admin/Startups/StartupsPage';
 
 // function Copyright(props) {
 //   return (
@@ -178,7 +179,7 @@ export default function Dashboard() {
                                 case 0:
                                     return <h1>0</h1>;
                                 case 1:
-                                    return <h1>1</h1>;
+                                    return <StartupPage/>;
                                 case 2:
                                     return <h1>2</h1>;
                                 case 3:

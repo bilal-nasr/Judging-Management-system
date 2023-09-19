@@ -2,16 +2,17 @@ import React, { useState, useEffect } from "react";
 import AddJudge from "../Addstartups";
 import TableDataViewer from "../Tables/StartupTableDataViewer";
 import api from "../../../api";
+import AddStartups from "../addStartup";
 
 export default function StartupPage() {
   const [dataGot, setDataGot] = useState(false);
   const [data, setData] = useState([]);
 
-  const getJuries = async () => {
+  const getAllStartup = async () => {
     try {
-      const juryData = await api.get("/jury/getAllJuries");
+      const StartupData = await api.get("/Startup/getAllStartup");
       setDataGot(true);
-      setData(juryData.data.data);
+      setData(StartupData.data.data);
     } catch (err) {
       // Handle errors
     }
@@ -19,7 +20,7 @@ export default function StartupPage() {
 
   // Use useEffect to call getJuries when the component is first mounted
   useEffect(() => {
-    getJuries();
+    getAllStartup();
   }, []); // The empty dependency array makes this run once on component mount
 
   useEffect(()=>{
@@ -28,7 +29,7 @@ export default function StartupPage() {
 
   return (
     <>
-      <AddJudge />
+      <AddStartups />
       <br />
       
       {dataGot ? (
