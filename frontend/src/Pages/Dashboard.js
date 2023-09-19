@@ -182,9 +182,9 @@ export default function Dashboard() {
                                 case 2:
                                     return <h1>2</h1>;
                                 case 3:
-                                    return <h1>3</h1>;
-                                case 4:
                                     return <JuryPage />;
+                                case 4:
+                                    return <h1>4</h1>;
                                 default:
                                     return null; // Render nothing for other cases
                             }
