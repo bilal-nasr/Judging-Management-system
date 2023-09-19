@@ -34,7 +34,9 @@ export default function StartupPage() {
       
       {dataGot ? (
         <TableDataViewer data={data} />
-      ) : (
+      ) :
+      
+      (
         <p>Loading data...</p>
       )}
     </>
