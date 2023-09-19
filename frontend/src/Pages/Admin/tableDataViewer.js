@@ -11,14 +11,6 @@ import Paper from '@mui/material/Paper';
 import TableSortLabel from '@mui/material/TableSortLabel';
 
 
-function createData(username, name, role) {
-  return {
-    username,
-    name,
-    role,
-  };
-}
-
 let rows = [
 ];
 
@@ -53,7 +45,7 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
+            align={headCell.numeric ? 'right' : 'center'}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
@@ -83,8 +75,8 @@ export default function TableDataViewer(props) {
   const [orderBy, setOrderBy] = React.useState('calories');
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  console.log(props.data)
-
+  rows = props.data
+    console.log(rows)
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -130,17 +122,11 @@ export default function TableDataViewer(props) {
             />
             <TableBody >
               {visibleRows.map((row, index) => (
-                <TableRow key={row.name} sx={{ cursor: 'pointer' }}>
-                  <TableCell
-                    component="th"
-                    scope="row"
-                    padding="none"
-                  >
-                    {row.name}
+                <TableRow key={row.JudgeId} sx={{ cursor: 'pointer' }}>
+                  <TableCell align="center">{row.UserUsername}
                   </TableCell>
-                  <TableCell align="right">{row.username}</TableCell>
-                  <TableCell align="right">{row.name}</TableCell>
-                  <TableCell align="right">{row.role}</TableCell>
+                  <TableCell align="center">{row.UserName}</TableCell>
+                  <TableCell align="center">{row.UserRole}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
