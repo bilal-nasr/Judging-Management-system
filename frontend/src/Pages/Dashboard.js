@@ -14,9 +14,10 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 //import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from '../Components/DasboardComponents/ListItems';
+import { MainListItems, SecondaryListItems } from '../Components/DasboardComponents/ListItems';
 import BasicPopover from '../Components/DasboardComponents/BasicPopover';
 import { useLocation } from "react-router-dom";
+import JuryPage from './Admin/Jury/JuryPage';
 
 // function Copyright(props) {
 //   return (
@@ -85,12 +86,19 @@ const defaultTheme = createTheme();
 export default function Dashboard() {
     const location = useLocation();
     console.log(location);
-    const  data  = location.state;
+    const data = location.state;
     const role = data.role;
     const name = data.name;
     console.log(name);
 
     const [open, setOpen] = React.useState(true);
+    const [clickedIndex, setClickedIndex] = React.useState(0)
+
+    const handleItemClicked = (index) => {
+        console.log(index)
+        setClickedIndex(index)
+    }
+
     const toggleDrawer = () => {
         setOpen(!open);
     };
@@ -144,10 +152,10 @@ export default function Dashboard() {
                     </Toolbar>
                     <Divider />
                     <List component="nav">
-                        {mainListItems}
+                        <MainListItems onItemClick={handleItemClicked} />
                         <Divider sx={{ my: 1 }} />
 
-                        {(role==="S"&& secondaryListItems)}
+                        {(role === "S" && <SecondaryListItems />)}
 
                     </List>
                 </Drawer>
@@ -164,6 +172,24 @@ export default function Dashboard() {
                     }}
                 >
                     <Toolbar />
+                    {
+                        (() => {
+                            switch (clickedIndex) {
+                                case 0:
+                                    return <h1>0</h1>;
+                                case 1:
+                                    return <h1>1</h1>;
+                                case 2:
+                                    return <h1>2</h1>;
+                                case 3:
+                                    return <JuryPage />;
+                                case 4:
+                                    return <h1>4</h1>;
+                                default:
+                                    return null; // Render nothing for other cases
+                            }
+                        })()
+                    }
                 </Box>
             </Box>
         </ThemeProvider>

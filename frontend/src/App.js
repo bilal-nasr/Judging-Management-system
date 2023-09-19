@@ -13,7 +13,7 @@ import Auth from "./Auth";
 
 function PrivateRoute({ children }) {
     const navigate = useNavigate();
-  
+    //Auth.deAuthenticateUser()
     // Check if the user is authenticated
     if (!Auth.isUserAuthenticated()) { // Correct method name here
       // If not authenticated, redirect to the login page

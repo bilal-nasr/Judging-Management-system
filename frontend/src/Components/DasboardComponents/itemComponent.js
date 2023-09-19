@@ -9,22 +9,28 @@ import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
+
 const icons = {
-    DashboardIcon : <DashboardIcon/>,
-    PeopleIcon: <PeopleIcon/>,
-    BarChartIcon : <BarChartIcon/>,
-    AssignmentIndIcon : <AssignmentIndIcon/>,
-    LayersIcon : <LayersIcon/>,
-    AdminPanelSettingsIcon: <AdminPanelSettingsIcon/>
+    DashboardIcon: <DashboardIcon />,
+    PeopleIcon: <PeopleIcon />,
+    BarChartIcon: <BarChartIcon />,
+    AssignmentIndIcon: <AssignmentIndIcon />,
+    LayersIcon: <LayersIcon />,
+    AdminPanelSettingsIcon: <AdminPanelSettingsIcon />
 }
 
+
 export default function ItemComponent(props) {
-  return (
-    <>
-      <ListItemButton>
-        <ListItemIcon> {icons[props.icon]}</ListItemIcon>
-        <ListItemText primary={props.name} />
-      </ListItemButton>
-    </>
-  );
+    const listItemHandler = (index)=>{
+        props.onItemClick(index)
+    }
+
+    return (
+        <>
+            <ListItemButton key={props.index} onClick={()=>listItemHandler(props.index)}>
+                <ListItemIcon> {icons[props.icon]}</ListItemIcon>
+                <ListItemText primary={props.name} />
+            </ListItemButton>
+        </>
+    );
 }
