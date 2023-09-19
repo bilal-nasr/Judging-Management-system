@@ -14,8 +14,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { IconButton } from '@mui/material';
 
 
-let rows = [
-];
+let rows = [];
 
 const headCells = [
     {
