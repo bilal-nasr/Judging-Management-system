@@ -4,6 +4,7 @@ const router = express.Router()
 const loginRegisterController = require("../controllers/loginRegisterController")
 const JuryController = require("../controllers/JuryController")
 const StartupContoller = require ("../controllers/StartupController")
+const TrainerController = require("../controllers/TrainerController")
 
 
 //--------------------login Routes-----------------
@@ -15,7 +16,7 @@ router.post("/users/login",loginRegisterController.login);
 
 router.get("/jury/getAllJuries", JuryController.getAllJuries)
 router.get("/jury/getJury", JuryController.getJury)
-router.create("/jury/createJury",JuryController.createJury)
+router.post("/jury/createJury",JuryController.createJury)
 router.put("/jury/updateJury",JuryController.updateJury)
 router.delete("/jury/deleteJury",JuryController.deleteJury)
 

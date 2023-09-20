@@ -11,14 +11,24 @@ exports.getAllJuries = async (req, res) => {
         console.log(error)
     }
 }
-exports.getJury = async(req,res)=>{
+exports.getJury = async (req, res) => {
     try {
-        const data =await dbJury(`select * from JudgeView WHERE Jury_id=${id}`) 
-       
-    } catch () {
-        
+      const { id } = req.params; // Assuming the jury ID is part of the URL parameters
+  
+      // Use parameterized queries to prevent SQL injection
+      const data = await dbJury(`SELECT * FROM JudgeView WHERE Jury_id = ?`, [id]);
+  
+      if (data.length === 0) {
+        res.status(404).json({ success: false, message: "Jury not found" });
+      } else {
+        res.json({ success: true, data: data[0] }); // Assuming you want to return the first result if multiple records match
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, message: "Internal server error" });
     }
-}
+  };
+  
 
 exports.createJury = async (req, res) => {
     try {
