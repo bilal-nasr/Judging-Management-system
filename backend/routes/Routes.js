@@ -17,7 +17,7 @@ router.get("/jury/getAllJuries", JuryController.getAllJuries);
 
 //----------startups------
 router.get("/startup/getAllStart",StartupContoller.getAllStartups )
-router.get("/startup/getstartup/:id",StartupContoller.getstartup)
+router.get("/startup/getstartup/:id",StartupContoller.getStartup)
 router.put("/startup/updatestarup/:id", StartupContoller.updateStartup)
 
 

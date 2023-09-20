@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TableDataViewer from "../Tables/StartupTableDataViewer";
 import api from "../../../api";
-import AddStartups from "./addStartup";
+import AddStartups from "./AddStartup";
 
 export default function StartupPage() {
   const [dataGot, setDataGot] = useState(false);
@@ -27,7 +27,7 @@ export default function StartupPage() {
   },[dataGot])
 
   return (
-    <>
+    <div style={{marginTop:"20px"}}>
       <AddStartups />
       <br />
       
@@ -38,6 +38,6 @@ export default function StartupPage() {
       (
         <p>Loading data...</p>
       )}
-    </>
+    </div>
   );
 }

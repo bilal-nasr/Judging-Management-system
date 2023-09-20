@@ -1,185 +1,41 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import TablePagination from '@mui/material/TablePagination';
-import Paper from '@mui/material/Paper';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import { IconButton } from '@mui/material';
+import React, { useState, useEffect } from "react";
+import AddTrainer from "./AddTrainer";
+import TableDataViewer from "../Tables/TrainerTableDataViewer";
+import api from "../../../api";
 
+export default function JuryPage() {
+  const [dataGot, setDataGot] = useState(false);
+  const [data, setData] = useState([]);
 
-let rows = [];
-
-const headCells = [
-    {
-        id: 'name',
-        numeric: false,
-        label: 'name',
-    },
-    {
-        id: 'description',
-        numeric: false,
-        label: 'description',
-    },
-    {
-        id: 'bootcamp',
-        numeric: false,
-        label: 'bootcamp',
-    },
-    {},
-];
-
-function EnhancedTableHead(props) {
-    const { order, orderBy, onRequestSort } = props;
-
-    const createSortHandler = (property) => (event) => {
-        onRequestSort(event, property);
-    };
-
-    return (
-        <TableHead >
-            <TableRow >
-                {headCells.map((headCell) => (
-                    <TableCell
-                        key={headCell.id}
-                        align={headCell.numeric ? 'right' : 'center'}
-                    >
-
-                        <TableSortLabel
-                            active={orderBy === headCell.id}
-                            direction={orderBy === headCell.id ? order : 'asc'}
-                            onClick={createSortHandler(headCell.id)}
-                        >
-                            {headCell.label}
-                            {orderBy === headCell.id ? (
-                                <span
-                                    style={{
-                                        display: 'none',
-                                    }}
-                                >
-                                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                                </span>
-                            ) : null}
-                        </TableSortLabel>
-                    </TableCell>
-                ))}
-            </TableRow>
-        </TableHead>
-    )
-}
-
-export default function TableDataViewer(props) {
-    const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('name');
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
-    rows = props.data
-    console.log(rows)
-    const handleRequestSort = (event, property) => {
-        const isAsc = orderBy === property && order === 'asc';
-        setOrder(isAsc ? 'desc' : 'asc');
-        setOrderBy(property);
-    };
-
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
-
-    const visibleRows = React.useMemo(() => {
-        const comparator = (a, b) => {
-            if (order === 'asc') {
-                if (a[orderBy] < b[orderBy]) return -1;
-                if (a[orderBy] > b[orderBy]) return 1;
-                return 0;
-            } else {
-                if (a[orderBy] > b[orderBy]) return -1;
-                if (a[orderBy] < b[orderBy]) return 1;
-                return 0;
-            }
-        };
-
-        return [...rows].sort(comparator).slice(
-            page * rowsPerPage,
-            page * rowsPerPage + rowsPerPage
-        );
-    }, [order, orderBy, page, rowsPerPage]);
-
-
-    //----------------Delete and update functions---------------
-
-    const handleDelete = async (id) => {
-        try {
-
-        } catch (error) {
-
-        }
+  const getJuries = async () => {
+    try {
+      const data = await api.get("/jury/getAllTrainers");
+      setDataGot(true);
+      setData(data.data.data);
+    } catch (err) {
+      // Handle errors
     }
+  };
 
-    const handleUpdate = async (id) => {
-        try {
+  // Use useEffect to call getJuries when the component is first mounted
+  useEffect(() => {
+    getJuries();
+  }, []); // The empty dependency array makes this run once on component mount
 
-        } catch (error) {
+  useEffect(()=>{
+    console.log(dataGot)
+  },[dataGot])
 
-        }
-    }
-
-    return (
-        <Box sx={{ width: '100%', marginLeft: '10px', marginRight: '20px', display: "table" }} >
-            <Paper sx={{ width: '100%', mb: 2 }}>
-                <TableContainer>
-                    <Table
-                        sx={{ minWidth: 750 }}
-                        aria-labelledby="tableTitle"
-                        size="medium"
-                    >
-                        <EnhancedTableHead
-                            order={order}
-                            orderBy={orderBy}
-                            onRequestSort={handleRequestSort}
-                        />
-                        <TableBody >
-                            {visibleRows.map((row, index) => (
-                                <TableRow key={row.TrainerId} sx={{ cursor: 'pointer' }}>
-                                    <TableCell align="center">{row.UserUsername}
-                                    </TableCell>
-                                    <TableCell align="center">{row.UserName}</TableCell>
-                                    <TableCell align="center">{row.UserRole}</TableCell>
-                                    <TableCell align="center">
-                                        <IconButton aria-label="Edit" onClick={() => handleUpdate(row.TrainerId)}>
-                                            <EditIcon />
-                                        </IconButton>
-                                        <IconButton aria-label="delete" onClick={() => handleDelete(row.TrainerId)}>
-                                            <DeleteIcon />
-                                        </IconButton>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <TablePagination
-                    rowsPerPageOptions={[5, 10, 25]}
-                    component="div"
-                    count={rows.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-            </Paper>
-        </Box>
-    );
+  return (
+    <div style={{marginTop:"20px"}}>
+      <AddTrainer />
+      <br />
+      
+      {dataGot ? (
+        <TableDataViewer data={data} />
+      ) : (
+        <p>Loading data...</p>
+      )}
+    </div>
+  );
 }
-
-

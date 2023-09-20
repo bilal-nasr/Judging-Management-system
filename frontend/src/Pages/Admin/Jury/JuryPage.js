@@ -27,7 +27,7 @@ export default function JuryPage() {
   },[dataGot])
 
   return (
-    <>
+    <div style={{marginTop:"20px"}}>
       <AddJudge />
       <br />
       
@@ -36,6 +36,6 @@ export default function JuryPage() {
       ) : (
         <p>Loading data...</p>
       )}
-    </>
+    </div>
   );
 }

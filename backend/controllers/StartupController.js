@@ -66,9 +66,7 @@ exports.createStartup=async (req,res)=>{
     const {name, description} = req.body;
     try {
         
-    } catch (
-        
-    ) {
+    } catch (err) {
         
     }
 }
