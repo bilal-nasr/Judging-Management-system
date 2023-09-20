@@ -13,12 +13,27 @@ router.post("/users/login",loginRegisterController.login);
 
 //-------------------Data Routes--------------------
 
-router.get("/jury/getAllJuries", JuryController.getAllJuries);
+router.get("/jury/getAllJuries", JuryController.getAllJuries)
+router.get("/jury/getJury", JuryController.getJury)
+router.create("/jury/createJury",JuryController.createJury)
+router.put("/jury/updateJury",JuryController.updateJury)
+router.delete("/jury/deleteJury",JuryController.deleteJury)
+
+
 
 //----------startups------
 router.get("/startup/getAllStart",StartupContoller.getAllStartups )
-router.get("/startup/getstartup/:id",StartupContoller.getStartup)
-router.put("/startup/updatestarup/:id", StartupContoller.updateStartup)
+router.get("/startup/getStartup/:id",StartupContoller.getStartup)
+router.put("/startup/updateStarup/:id", StartupContoller.updateStartup)
+router.delete("/startup/deleteStartup/:id", StartupContoller.deleteStartup)
+
+
+
+//-----------------trainers----------
+router.get("/trainers/getAllTrainers", TrainerController.getAllTrainers)
+router.get("/trainers/getTrainer/:id", TrainerController.getTrainer)
+router.put("/trainers/updateTrainer/:id", TrainerController.updateTrainer)
+router.delete("/trainers/deleteTrainer/:id",TrainerController.deleteTrainer)
 
 
 module.exports = router
