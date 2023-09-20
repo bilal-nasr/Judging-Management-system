@@ -1,11 +1,13 @@
 const mysql = require("mysql2/promise");
 const dotenv = require("dotenv")
 
+dotenv.config()
+
 global.pool = mysql.createPool({
-  host: "127.0.0.1",
-  user: "root",
-  database: "jms",
-  password: "Bilal@2711",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASS,
   port: "3306",
 });
 

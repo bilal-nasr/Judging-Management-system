@@ -14,6 +14,7 @@ ON
     j.users_userId = u.userId;
 
 
+
 CREATE VIEW StartupsWithBootcamps AS
 SELECT
     s.startupId AS StartupId,
