@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AddJudge from "../AddJudge";
+import AddJudge from "./AddJudge";
 import TableDataViewer from "../Tables/JuryTableDataViewer";
 import api from "../../../api";
 

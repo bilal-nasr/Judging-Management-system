@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import AddJudge from "../Addstartups";
 import TableDataViewer from "../Tables/StartupTableDataViewer";
 import api from "../../../api";
-import AddStartups from "../addStartup";
+import AddStartups from "./addStartup";
 
 export default function StartupPage() {
   const [dataGot, setDataGot] = useState(false);
