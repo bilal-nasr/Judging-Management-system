@@ -89,5 +89,3 @@ exports.deleteJury = async (req, res) => {
 };
 
 
-
-

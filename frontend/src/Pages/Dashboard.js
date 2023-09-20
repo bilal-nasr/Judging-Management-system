@@ -19,7 +19,8 @@ import BasicPopover from '../Components/DasboardComponents/BasicPopover';
 import { useLocation } from "react-router-dom";
 import JuryPage from './Admin/Jury/JuryPage';
 import StartupPage from './Admin/Startups/StartupsPage';
-import TrainersPage from './Admin/Trainers/TrainersPage'
+import TrainersPage from './Admin/Trainers/TrainersPage';
+import BootcampPage from './Admin/Bootcamps/BootcampPage'
 
 // function Copyright(props) {
 //   return (
@@ -178,7 +179,7 @@ export default function Dashboard() {
                         (() => {
                             switch (clickedIndex) {
                                 case 0:
-                                    return <h1>0</h1>;
+                                    return <BootcampPage/>;
                                 case 1:
                                     return <StartupPage/>;
                                 case 2:
