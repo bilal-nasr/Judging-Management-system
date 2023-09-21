@@ -15,7 +15,7 @@ router.post("/users/login",loginRegisterController.login);
 //-------------------Data Routes--------------------
 
 router.get("/jury/getAllJuries", JuryController.getAllJuries)
-router.get("/jury/getJury", JuryController.getJury)
+router.get("/jury/getJury/:id", JuryController.getJury)
 router.post("/jury/createJury",JuryController.createJury)
 router.put("/jury/updateJury/:id",JuryController.updateJury)
 router.delete("/jury/deleteJury/:id",JuryController.deleteJury)

@@ -13,31 +13,32 @@ exports.getAllJuries = async (req, res) => {
 }
 exports.getJury = async (req, res) => {
     try {
-      const { id } = req.params; // Assuming the jury ID is part of the URL parameters
-  
-      // Use parameterized queries to prevent SQL injection
-      const data = await dbJury(`SELECT * FROM JudgeView WHERE Jury_id = ?`, [id]);
-  
-      if (data.length === 0) {
-        res.status(404).json({ success: false, message: "Jury not found" });
-      } else {
-        res.json({ success: true, data: data[0] }); // Assuming you want to return the first result if multiple records match
-      }
+        const { id } = req.params; // Assuming the jury ID is part of the URL parameters
+
+        // Use parameterized queries to prevent SQL injection
+        const data = await dbJury(`SELECT * FROM JudgeView WHERE JudgeId = ${id}`);
+        if (data.length === 0) {
+            res.status(404).json({ success: false, message: "Jury not found" });
+        } else {
+            res.json({ success: true, data: data[0] }); // Assuming you want to return the first result if multiple records match
+        }
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ success: false, message: "Internal server error" });
+        console.error(error);
+        res.status(500).json({ success: false, message: "Internal server error" });
     }
-  };
-  
+};
+
 
 exports.createJury = async (req, res) => {
+
     try {
-        const { username,password, name} = req.body; // Assuming you have these properties in your request body
+        const { username,password, name,description} = req.body; // Assuming you have these properties in your request body
 
         // Insert a new jury into the database
-        const insertQuery = `INSERT INTO ( username,password, name) VALUES (?, ?, ?)`;
-        const result = await dbJury(insertQuery, [ username,password, name]);
-
+        //const insertQuery = ;
+        const result = await dbJury(`INSERT INTO  users (username,password,name,role) values ('${username}', '${password}',' ${name}',"J") `);
+        const userID = await dbJury(`select userId from users where username='${username}'`)
+        const jury = await dbJury(`Insert into jury (description, users_userId ) values('${description}',${userID[0].userId})`)
         if (result.affectedRows === 1) {
             res.json({ success: true, message: "Jury created successfully" });
         } else {
@@ -49,15 +50,15 @@ exports.createJury = async (req, res) => {
     }
 };
 
-
+//TODO: hash the pass
 exports.updateJury = async (req, res) => {
     try {
         const { id } = req.params; // Assuming you have the ID of the jury to update in the URL
-        const {  username,password, name } = req.body; // Assuming you have these properties in your request body
+        const { username, password, name } = req.body; // Assuming you have these properties in your request body
 
         // Update the jury in the database
-        const updateQuery = `UPDATE JudgeView SET UserName=?, password=?, name=? WHERE ID=?`;
-        const result = await dbJury(updateQuery, [ username,password, name]);
+        //const updateQuery = ;
+        const result = await dbJury(`UPDATE JudgeView SET UserName=${username}, password=${password}, name=${name} WHERE ID=?`);
 
         if (result.affectedRows === 1) {
             res.json({ success: true, message: "Jury updated successfully" });
@@ -74,8 +75,8 @@ exports.deleteJury = async (req, res) => {
         const { id } = req.params; // Assuming you have the ID of the jury to delete in the URL
 
         // Delete the jury from the database
-        const deleteQuery = `DELETE FROM JudgeView WHERE ID=?`;
-        const result = await dbJury(deleteQuery, [id]);
+        //const deleteQuery 
+        const result = await dbJury(`DELETE FROM JudgeView WHERE ID=${id}`);
 
         if (result.affectedRows === 1) {
             res.json({ success: true, message: "Jury deleted successfully" });

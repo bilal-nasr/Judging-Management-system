@@ -11,7 +11,6 @@ async function getDBData(query){
         return rows;
       } catch (error) {
         console.error("Error fetching data:", error);
-        res.status(500).json({ success: false, message: "Error fetching data" });
       }
 }
 

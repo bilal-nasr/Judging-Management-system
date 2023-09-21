@@ -179,7 +179,8 @@ export default function Dashboard() {
                         (() => {
                             switch (clickedIndex) {
                                 case 0:
-                                    return <BootcampPage/>;
+                                    // return <BootcampPage/>;
+                                    return <h1>0</h1>
                                 case 1:
                                     return <StartupPage/>;
                                 case 2:
