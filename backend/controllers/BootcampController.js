@@ -16,7 +16,7 @@ exports.getBootcamp = async (req, res) => {
       const { id } = req.params; // Assuming the jury ID is part of the URL parameters
   
       // Use parameterized queries to prevent SQL injection
-      const data = await dbBootcamp(`SELECT * FROM Bootcamps WHERE Bootcamp_id = ${id}`);
+      const data = await dbBootcamp(`SELECT * FROM bootcamps WHERE bootcampId = ${id}`);
   
       if (data.length === 0) {
         res.status(404).json({ success: false, message: "bootcamp not found" });
@@ -32,10 +32,10 @@ exports.getBootcamp = async (req, res) => {
 
 exports.createBootcamp = async (req, res) => {
     try {
-        const {name} = req.body; // Assuming you have these properties in your request body
+        const {name,type,year} = req.body; // Assuming you have these properties in your request body
 
         // Insert a new jury into the database
-        const result = await dbBootcamp(`INSERT INTO bootcamps ( name) VALUES ( ${name})`);
+        const result = await dbBootcamp(`INSERT INTO bootcamps (name,TYPE,YEAR) VALUES ( ${name},${year},${YEAR})`);
 
         if (result.affectedRows === 1) {
             res.json({ success: true, message: "Bootcamp created successfully" });
@@ -52,11 +52,11 @@ exports.createBootcamp = async (req, res) => {
 exports.updateBootcamp = async (req, res) => {
     try {
         const { id } = req.params; // Assuming you have the ID of the jury to update in the URL
-        const {name } = req.body; // Assuming you have these properties in your request body
+        const {name,type,year } = req.body; // Assuming you have these properties in your request body
 
         // Update the jury in the database
         
-        const result = await dbBootcamp(`UPDATE BootcampView SET name=${name} WHERE ID=${id}`);
+        const result = await dbBootcamp(`UPDATE BootcampView SET name=${name},type=${type},year=${year} WHERE bootcampId=${id}`);
 
         if (result.affectedRows === 1) {
             res.json({ success: true, message: "Bootcamp updated successfully" });
@@ -74,7 +74,7 @@ exports.deleteBootcamp = async (req, res) => {
 
         // Delete the jury from the database
         
-        const result = await dbBootcamp(`DELETE FROM Bootcamps WHERE ID=${id}`);
+        const result = await dbBootcamp(`DELETE FROM bootcamps WHERE bootcampId=${id}`);
 
         if (result.affectedRows === 1) {
             res.json({ success: true, message: "Bootcamp deleted successfully" });

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AddBootcamp from "./AddBootcamp";
-import TableDataViewer from "../Tables/BtcampTableDataViewer";
+import TableDataViewer from "../Tables/BootcampTableDataViewer";
 import api from "../../../api";
 
 export default function BootcampPage() {
