@@ -39,7 +39,7 @@ exports.createJury = async (req, res) => {
         const result = await dbJury(`INSERT INTO  users (username,password,name,role) values ('${username}', '${password}',' ${name}',"J") `);
         const userID = await dbJury(`select userId from users where username='${username}'`)
         const jury = await dbJury(`Insert into jury (description, users_userId ) values('${description}',${userID[0].userId})`)
-        if (result.affectedRows === 1) {
+        if (result.affectedRows === 1 && jury.affectedRows===1) {
             res.json({ success: true, message: "Jury created successfully" });
         } else {
             res.json({ success: false, message: "Failed to create a jury" });
@@ -54,13 +54,12 @@ exports.createJury = async (req, res) => {
 exports.updateJury = async (req, res) => {
     try {
         const { id } = req.params; // Assuming you have the ID of the jury to update in the URL
-        const { username, password, name } = req.body; // Assuming you have these properties in your request body
-
+        const { username, password, name ,description} = req.body; // Assuming you have these properties in your request body
         // Update the jury in the database
         //const updateQuery = ;
-        const result = await dbJury(`UPDATE JudgeView SET UserName=${username}, password=${password}, name=${name} WHERE ID=?`);
-
-        if (result.affectedRows === 1) {
+        const result = await dbJury(`UPDATE users SET UserName='${username}', password='${password}', name='${name}' WHERE userId=${parseInt(id)}`);
+        const jury = await dbJury(`UPDATE jury SET description='${description}' WHERE users_userId=${parseInt(id)}`) 
+        if (result.affectedRows === 1 && jury.affectedRows===1) {
             res.json({ success: true, message: "Jury updated successfully" });
         } else {
             res.json({ success: false, message: "Failed to update the jury" });
@@ -76,7 +75,8 @@ exports.deleteJury = async (req, res) => {
 
         // Delete the jury from the database
         //const deleteQuery 
-        const result = await dbJury(`DELETE FROM JudgeView WHERE ID=${id}`);
+        const result = await dbJury(`DELETE FROM jury WHERE juryId = ${id}`);
+        
 
         if (result.affectedRows === 1) {
             res.json({ success: true, message: "Jury deleted successfully" });
