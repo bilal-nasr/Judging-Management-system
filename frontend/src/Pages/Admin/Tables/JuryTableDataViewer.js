@@ -28,7 +28,7 @@ const headCells = [
         label: 'Name',
     },
     {
-        id: 'UserRole',
+        id: 'Description',
         numeric: false,
         label: 'Role',
     },

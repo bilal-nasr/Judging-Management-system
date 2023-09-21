@@ -62,11 +62,11 @@ exports.deleteStartup = async (req, res) => {
 };
 
 
-exports.createStartup=async (req,res)=>{
-    const {name, description} = req.body;
+exports.createStartup = async (req, res) => {
+    const { name, description } = req.body;
     try {
-        
+
     } catch (err) {
-        
+
     }
 }
