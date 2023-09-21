@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { IconButton } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 
 
 let rows = [];
@@ -26,11 +26,6 @@ const headCells = [
         id: 'UserName',
         numeric: false,
         label: 'Name',
-    },
-    {
-        id: 'Description',
-        numeric: false,
-        label: 'Role',
     },
     {},
 ];
@@ -55,6 +50,7 @@ function EnhancedTableHead(props) {
                             active={orderBy === headCell.id}
                             direction={orderBy === headCell.id ? order : 'asc'}
                             onClick={createSortHandler(headCell.id)}
+                            style={{ fontFamily: 'Arial', fontSize: '16px', fontWeight: 'bold' }}
                         >
                             {headCell.label}
                             {orderBy === headCell.id ? (
@@ -136,7 +132,7 @@ export default function TableDataViewer(props) {
 
     return (
         <Box sx={{ width: '100%', marginLeft: '10px', marginRight: '20px', display: "table" }} >
-            <Paper sx={{ width: '100%', mb: 2 }}>
+            <Paper sx={{ width: '90%', mb: 2 }}>
                 <TableContainer>
                     <Table
                         sx={{ minWidth: 750 }}
@@ -154,15 +150,19 @@ export default function TableDataViewer(props) {
                                     <TableCell align="center">{row.UserUsername}
                                     </TableCell>
                                     <TableCell align="center">{row.UserName}</TableCell>
-                                    <TableCell align="center">{row.UserRole}</TableCell>
                                     <TableCell align="center">
+                                        <Button>
+                                            view profile
+                                        </Button>    
+                                    </TableCell>
+                                    {/* <TableCell align="center">
                                         <IconButton aria-label="Edit" onClick={()=>handleUpdate(row.JudgeId)}>
                                             <EditIcon />
                                         </IconButton>
                                         <IconButton aria-label="delete" onClick={()=>handleDelete(row.JudgeId)}>
                                             <DeleteIcon />
                                         </IconButton>
-                                    </TableCell>
+                                    </TableCell> */}
                                 </TableRow>
                             ))}
                         </TableBody>

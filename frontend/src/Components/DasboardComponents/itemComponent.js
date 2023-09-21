@@ -8,7 +8,7 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
-
+import BugReportIcon from '@mui/icons-material/BugReport';
 
 const icons = {
     DashboardIcon: <DashboardIcon />,
@@ -16,7 +16,8 @@ const icons = {
     BarChartIcon: <BarChartIcon />,
     AssignmentIndIcon: <AssignmentIndIcon />,
     LayersIcon: <LayersIcon />,
-    AdminPanelSettingsIcon: <AdminPanelSettingsIcon />
+    AdminPanelSettingsIcon: <AdminPanelSettingsIcon />,
+    BugReportIcon: <BugReportIcon/>
 }
 
 
