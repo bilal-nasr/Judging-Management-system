@@ -34,13 +34,13 @@ exports.getStartup = async (req, res) => {
 
 exports.updateStartup = async (req, res) => {
     try {
-    const id = req.params.id;
-    const { name , description} = req.body;
-    
-    const result= await startupdb (`UPDATE Startups SET name = '${name}', description = '${description}'
-            WHERE startupId = ${parseInt(id)}`);
+        const id = req.params.id;
+        const { name, description } = req.body;
 
-        res.json({ success: true, message: "Startup updated successfully" });
+        const result = await startupdb(`UPDATE startups SET name = '${name}', description = '${description}'
+            WHERE startupId = ${parseInt(id)}`);
+        if (result.affectedRows > 0)
+            res.json({ success: true, message: "Startup updated successfully" });
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: "Internal server error" });
@@ -58,11 +58,11 @@ exports.deleteStartup = async (req, res) => {
     }
 };
 
-//TODO:
+//TODO: add the bootcamp id which is the forenkey for the startup
 exports.createStartup = async (req, res) => {
-    
+
     try {
-        const {name,description} = req.body; // Assuming you have these properties in your request body
+        const { name, description } = req.body; // Assuming you have these properties in your request body
 
         // Insert a new jury into the database
         //const insertQuery = ;
