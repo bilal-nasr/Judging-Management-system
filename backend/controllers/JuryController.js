@@ -37,6 +37,7 @@ exports.createJury = async (req, res) => {
         //const insertQuery = ;
         const result = await dbJury(`INSERT INTO  users (username,password,name,role) values ('${username}', '${password}',' ${name}',"J") `);
         const userID = await dbJury(`select userId from users where username='${username}'`)
+        //hon jebet l id lal user la erja3 dakhlo bl juries bcz foreign key
         const jury = await dbJury(`Insert into jury (description, users_userId ) values('${description}',${userID[0].userId})`)
         if (result.affectedRows === 1 && jury.affectedRows===1) {
             res.json({ success: true, message: "Jury created successfully" });

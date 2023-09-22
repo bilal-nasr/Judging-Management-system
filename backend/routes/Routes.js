@@ -12,7 +12,7 @@ const TrainerController = require("../controllers/TrainerController")
 router.post("/users/login",loginRegisterController.login);
 
 
-//-------------------Data Routes--------------------
+//-------------------Data Routes-done with postman-------------------
 
 router.get("/jury/getAllJuries", JuryController.getAllJuries)
 router.get("/jury/getJury/:id", JuryController.getJury)
@@ -22,11 +22,13 @@ router.delete("/jury/deleteJury/:id",JuryController.deleteJury)
 
 
 
-//----------startups------
-router.get("/startup/getAllStart",StartupContoller.getAllStartups )
+//----------startups--done with postman----
+router.get("/startup/getAllStartups",StartupContoller.getAllStartups )
 router.get("/startup/getStartup/:id",StartupContoller.getStartup)
-router.put("/startup/updateStarup/:id", StartupContoller.updateStartup)
+router.post("/startup/createStartup",StartupContoller.createStartup)
+router.put("/startup/updateStartup/:id", StartupContoller.updateStartup)
 router.delete("/startup/deleteStartup/:id", StartupContoller.deleteStartup)
+
 
 
 
@@ -35,6 +37,7 @@ router.get("/trainers/getAllTrainers", TrainerController.getAllTrainers)
 router.get("/trainers/getTrainer/:id", TrainerController.getTrainer)
 router.put("/trainers/updateTrainer/:id", TrainerController.updateTrainer)
 router.delete("/trainers/deleteTrainer/:id",TrainerController.deleteTrainer)
+router.post("/trainers/createTrainer",TrainerController.createTrainer)
 
-
+//-------------------bootcamp-----------
 module.exports = router
