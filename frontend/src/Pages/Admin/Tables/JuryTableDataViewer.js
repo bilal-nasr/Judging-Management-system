@@ -39,7 +39,7 @@ function EnhancedTableHead(props) {
 
     return (
         <TableHead >
-            <TableRow >
+            <TableRow key={0}>
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
@@ -77,6 +77,7 @@ export default function TableDataViewer(props) {
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     rows = props.data
     console.log(rows)
+    console.log(rows.length)
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');

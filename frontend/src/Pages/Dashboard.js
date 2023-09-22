@@ -156,7 +156,7 @@ export default function Dashboard() {
                     </Toolbar>
                     <Divider />
                     <List component="nav">
-                        <MainListItems onItemClick={handleItemClicked} />
+                        <MainListItems onItemClick={handleItemClicked} selected={clickedIndex} />
                         <Divider sx={{ my: 1 }} />
 
                         {(role === "S" && <SecondaryListItems />)}

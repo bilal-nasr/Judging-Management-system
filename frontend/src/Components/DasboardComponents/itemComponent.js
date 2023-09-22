@@ -21,14 +21,19 @@ const icons = {
 }
 
 
-export default function ItemComponent(props) {
+export default function  ItemComponent(props) {
+
+    const itemStyle = {
+        backgroundColor: props.isSelected ? 'lightblue' : 'white', // Customize the background color
+      };
+
     const listItemHandler = (index)=>{
         props.onItemClick(index)
     }
 
     return (
         <>
-            <ListItemButton key={props.index} onClick={()=>listItemHandler(props.index)}>
+            <ListItemButton key={props.index} onClick={()=>listItemHandler(props.index)} sx={itemStyle}>
                 <ListItemIcon> {icons[props.icon]}</ListItemIcon>
                 <ListItemText primary={props.name} />
             </ListItemButton>

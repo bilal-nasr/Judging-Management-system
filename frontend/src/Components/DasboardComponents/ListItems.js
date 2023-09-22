@@ -2,15 +2,16 @@ import React from 'react';
 import ListSubheader from '@mui/material/ListSubheader';
 import ItemComponent from './itemComponent';
 
-export function MainListItems({ onItemClick }) {
+export function MainListItems({ onItemClick,selected }) {
+
   return (
     <React.Fragment>
-      <ItemComponent name="Bootcamps" icon="DashboardIcon" index={0} onItemClick={onItemClick} />
-      <ItemComponent name="Startups" icon="PeopleIcon" index={1} onItemClick={onItemClick} />
-      <ItemComponent name="trainers" icon="AssignmentIndIcon" index={2} onItemClick={onItemClick} />
-      <ItemComponent name="Juries" icon="BarChartIcon" index={3} onItemClick={onItemClick} />
-      <ItemComponent name="Events" icon="LayersIcon" index={4} onItemClick={onItemClick} />
-      <ItemComponent name="testing" icon="BugReportIcon" index={5} onItemClick={onItemClick} /> {/*for testing components*/ }
+      <ItemComponent name="Bootcamps" icon="DashboardIcon" index={0} onItemClick={onItemClick} isSelected={selected===0}/>
+      <ItemComponent name="Startups" icon="PeopleIcon" index={1} onItemClick={onItemClick} isSelected={selected===1}/>
+      <ItemComponent name="trainers" icon="AssignmentIndIcon" index={2} onItemClick={onItemClick} isSelected={selected===2}/>
+      <ItemComponent name="Juries" icon="BarChartIcon" index={3} onItemClick={onItemClick} isSelected={selected===3}/>
+      <ItemComponent name="Events" icon="LayersIcon" index={4} onItemClick={onItemClick} isSelected={selected===4}/>
+      <ItemComponent name="testing" icon="BugReportIcon" index={5} onItemClick={onItemClick} isSelected={selected===5}/> {/*for testing components*/ }
     </React.Fragment>
   );
 }
