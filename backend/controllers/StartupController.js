@@ -64,9 +64,9 @@ exports.createStartup = async (req, res) => {
     try {
         const { name, description,bootcampType } = req.body; 
         
-        const data = await startupdb(`select bootcampId from bootcamp where bootcamptype='${bootcampType}'`)
+        const data = await startupdb(`select bootcampId from bootcamps where bootcamptype='${bootcampType}'`)
         //hon jebet l id lal bootcamp isa bade erja3 dakhel l startup b hayda l bootcamp
-        if (data.length === 0) {
+        if (!data) {
             res.json({ success: false, message: "Bootcamp not found " });
             return;
         }
@@ -74,7 +74,7 @@ exports.createStartup = async (req, res) => {
         const result = await startupdb(`INSERT INTO  startups (name, description,bootcamps_bootcampId) values ('${name}','${description},${id}')`);
 
         if (result.affectedRows > 0) {
-            res.json({ success: true, message: "Jury created successfully" });
+            res.json({ success: true, message: "startup created successfully" });
         } else {
             res.json({ success: false, message: "Failed to create a jury" });
         }
