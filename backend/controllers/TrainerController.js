@@ -54,8 +54,8 @@ exports.updateTrainer = async (req, res) => {
 exports.deleteTrainer = async (req, res) => {
     const id = req.params.id;
     try {
-        await Trainersdb(`DELETE FROM instructors WHERE instructorId = ${id}`);
-        res.json({ success: true, message: "trainer deleted successfully" });
+        const response= await Trainersdb(`DELETE FROM instructors WHERE instructorsId = ${id}`);
+        
         if (response.affectedRows > 0)
             res.json({ success: true, message: "deleted" });
         else {
