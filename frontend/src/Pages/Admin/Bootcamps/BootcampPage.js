@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AddBootcamp from "./AddBootcamp";
+import AddBootcamp from "../Bootcamps/AddBootcamp";
 import TableDataViewer from "../Tables/BootcampTableDataViewer";
 import api from "../../../api";
 

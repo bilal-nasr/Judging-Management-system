@@ -91,7 +91,7 @@ exports.deleteTrainer = async (req, res) => {
 
 //TODO: after finishing test of bootcamps try this
 exports.createTrainer = async (req, res) => {
-    const { name, description, bootcampType, } = req.body;
+    const { name, description, bootcampType } = req.body;
     const currentDate = new Date();
     const year = currentDate.getFullYear();
 
