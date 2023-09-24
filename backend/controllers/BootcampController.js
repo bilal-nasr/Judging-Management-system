@@ -15,7 +15,6 @@ exports.getBootcamp = async (req, res) => {
     try {
         const {id} = req.params;
 
-
         const data = await dbBootcamp(`SELECT * FROM bootcamps WHERE bootcampId = ${id}`);
 
         if (!data) {
@@ -53,7 +52,7 @@ exports.updateBootcamp = async (req, res) => {
     try {
         const { id } = req.params;
         const { name, type, year } = req.body;
-        const result = await dbBootcamp(`UPDATE BootcampView SET name=${name},type=${type},year=${year} WHERE bootcampId=${id}`);
+        const result = await dbBootcamp(`UPDATE bootcamps SET name=${name},type=${type},year=${year} WHERE bootcampId=${id}`);
         res.json(result)
         if (result.affectedRows === 1) {
             res.json({ success: true, message: "Bootcamp updated successfully" });
