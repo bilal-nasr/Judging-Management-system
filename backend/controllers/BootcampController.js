@@ -34,7 +34,7 @@ exports.createBootcamp = async (req, res) => {
         const { name, type, year } = req.body;
 
 
-        const result = await dbBootcamp(`INSERT INTO bootcamps (name,TYPE,YEAR) VALUES ( ${name},${year},${YEAR})`);
+        const result = await dbBootcamp(`INSERT INTO bootcamps (name,type,year) VALUES ( '${name}','${type}',${year})`);
 
         if (result.affectedRows === 1) {
             res.json({ success: true, message: "Bootcamp created successfully" });
@@ -47,7 +47,7 @@ exports.createBootcamp = async (req, res) => {
     }
 };
 
-//TODO: on postman
+
 exports.updateBootcamp = async (req, res) => {
     try {
         const { id } = req.params;
