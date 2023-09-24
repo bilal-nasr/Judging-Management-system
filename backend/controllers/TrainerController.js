@@ -55,7 +55,7 @@ exports.deleteTrainer = async (req, res) => {
     const id = req.params.id;
     try {
         await Trainersdb(`DELETE FROM instructors WHERE instructorId = ${id}`);
-        res.json({ success: true, message: "trainers deleted successfully" });
+        res.json({ success: true, message: "trainer deleted successfully" });
         if (response.affectedRows > 0)
             res.json({ success: true, message: "deleted" });
         else {
@@ -68,23 +68,53 @@ exports.deleteTrainer = async (req, res) => {
 };
 
 
+// exports.createTrainer = async (req, res) => {
+//     const { name, description,bootcampType } = req.body;
+//     const currentDate= new Date();
+//     const year = currentDate.getFullYear();
+
+//     try {
+//         const data = await Trainersdb(`select bootcampId from bootcamps where type='${bootcampType}' and year=${year} `)
+//         //hon jebet l bootcamp id bena2an 3al type w year
+//         const id = parseInt(data[0].bootcampId);
+//         const Trainer = await Trainersdb(`Insert into instructors (name,description,bootcamps_bootcampId ) values('${name}', '${description}', ${id} )`)
+//         if (Trainer.affectedRows > 0)
+//             res.json({ success: true, message: "trainer is added" });
+//         else {
+//             res.json({ success: false, message: "failed to add trainer" });
+//         }
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({ success: false, message: "Internal server error" });
+//     }
+// }
+
+//TODO: after finishing test of bootcamps try this
 exports.createTrainer = async (req, res) => {
-    const { name, description,bootcampType } = req.body;
-    const currentDate= new Date();
+    const { name, description, bootcampType, } = req.body;
+    const currentDate = new Date();
     const year = currentDate.getFullYear();
 
     try {
+        // Get the bootcampId based on type and year
+       
         const data = await Trainersdb(`select bootcampId from bootcamps where type='${bootcampType}' and year=${year} `)
-        //hon jebet l bootcamp id bena2an 3al type w year
+        if (data.length === 0) {
+            res.json({ success: false, message: "Bootcamp not found for the specified type and year" });
+            return;
+        }
         const id = parseInt(data[0].bootcampId);
         const Trainer = await Trainersdb(`Insert into instructors (name,description,bootcamps_bootcampId ) values('${name}', '${description}', ${id} )`)
-        if (Trainer.affectedRows > 0)
-            res.json({ success: true, message: "trainer is added" });
-        else {
-            res.json({ success: false, message: "failed to add trainer" });
+
+
+        // Insert the trainer record
+        if (Trainer.affectedRows > 0) {
+            res.json({ success: true, message: "Trainer is added" });
+        } else {
+            res.json({ success: false, message: "Failed to add trainer" });
         }
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: "Internal server error" });
     }
-}
+};
