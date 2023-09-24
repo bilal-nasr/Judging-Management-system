@@ -94,20 +94,14 @@ exports.createTrainer = async (req, res) => {
     const { name, description, bootcampType } = req.body;
     const currentDate = new Date();
     const year = currentDate.getFullYear();
-
     try {
-        // Get the bootcampId based on type and year
-       
-        const data = await Trainersdb(`select bootcampId from bootcamps where type='${bootcampType}' and year=${year} `)
+       const data = await Trainersdb(`select bootcampId from bootcamps where type='${bootcampType}' and year=${year} `)
         if (data.length === 0) {
             res.json({ success: false, message: "Bootcamp not found for the specified type and year" });
             return;
         }
         const id = parseInt(data[0].bootcampId);
         const Trainer = await Trainersdb(`Insert into instructors (name,description,bootcamps_bootcampId ) values('${name}', '${description}', ${id} )`)
-
-
-        // Insert the trainer record
         if (Trainer.affectedRows > 0) {
             res.json({ success: true, message: "Trainer is added" });
         } else {

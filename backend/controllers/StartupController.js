@@ -62,11 +62,16 @@ exports.deleteStartup = async (req, res) => {
 exports.createStartup = async (req, res) => {
 
     try {
-        const { name, description } = req.body; // Assuming you have these properties in your request body
-
-        // Insert a new jury into the database
-        //const insertQuery = ;
-        const result = await startupdb(`INSERT INTO  startups (name, description) values ('${name}','${description}')`);
+        const { name, description,bootcampType } = req.body; 
+        
+        const data = await startupdb(`select bootcampId from bootcamp where bootcamptype='${bootcampType}'`)
+        //hon jebet l id lal bootcamp isa bade erja3 dakhel l startup b hayda l bootcamp
+        if (data.length === 0) {
+            res.json({ success: false, message: "Bootcamp not found " });
+            return;
+        }
+        const id = parseInt(data[0].bootcampId);
+        const result = await startupdb(`INSERT INTO  startups (name, description,bootcamps_bootcampId) values ('${name}','${description},${id}')`);
 
         if (result.affectedRows > 0) {
             res.json({ success: true, message: "Jury created successfully" });
@@ -78,4 +83,5 @@ exports.createStartup = async (req, res) => {
         res.status(500).json({ success: false, message: "Internal server error" });
     }
 }
+
 

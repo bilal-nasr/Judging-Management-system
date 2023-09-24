@@ -40,11 +40,11 @@ router.delete("/trainers/deleteTrainer/:id",TrainerController.deleteTrainer)
 router.post("/trainers/createTrainer",TrainerController.createTrainer)
 
 //-------------------bootcamp-----------
-router.get("/Bootcamp/getAll", TrainerController.getAllTrainers)
-router.get("/Bootcamp/get/:id", TrainerController.getTrainer)
-router.put("/Bootcamp/update/:id", TrainerController.updateTrainer)
-router.delete("/Bootcamp/delete/:id",TrainerController.deleteTrainer)
-router.post("/Bootcamp/create",TrainerController.createTrainer)
+router.get("/Bootcamp/getAllBootcamp", TrainerController.getAllTrainers)
+router.get("/Bootcamp/getBootcamp/:id", TrainerController.getTrainer)
+router.put("/Bootcamp/updateBootcamp/:id", TrainerController.updateTrainer)
+router.delete("/Bootcamp/deleteBootcamp/:id",TrainerController.deleteTrainer)
+router.post("/Bootcamp/createBootcamp",TrainerController.createTrainer)
 
 
 module.exports = router
