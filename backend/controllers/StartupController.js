@@ -64,14 +64,14 @@ exports.createStartup = async (req, res) => {
     try {
         const { name, description,bootcampType } = req.body; 
         
-        const data = await startupdb(`select bootcampId from bootcamps where bootcamptype='${bootcampType}'`)
+        const data = await startupdb(`select bootcampId from bootcamps where type='${bootcampType}'`)
         //hon jebet l id lal bootcamp isa bade erja3 dakhel l startup b hayda l bootcamp
         if (!data) {
             res.json({ success: false, message: "Bootcamp not found " });
             return;
         }
         const id = parseInt(data[0].bootcampId);
-        const result = await startupdb(`INSERT INTO  startups (name, description,bootcamps_bootcampId) values ('${name}','${description},${id}')`);
+        const result = await startupdb(`INSERT INTO  startups (name, description,bootcamps_bootcampId) values ('${name}','${description}',${id})`);
 
         if (result.affectedRows > 0) {
             res.json({ success: true, message: "startup created successfully" });
