@@ -5,7 +5,7 @@ const loginRegisterController = require("../controllers/loginRegisterController"
 const JuryController = require("../controllers/JuryController")
 const StartupContoller = require ("../controllers/StartupController")
 const TrainerController = require("../controllers/TrainerController")
-
+const BootcampController= require ("../controllers/BootcampController")
 
 //--------------------login Routes-----------------
 
@@ -40,11 +40,11 @@ router.delete("/trainers/deleteTrainer/:id",TrainerController.deleteTrainer)
 router.post("/trainers/createTrainer",TrainerController.createTrainer)
 
 //-------------------bootcamp-----------
-router.get("/Bootcamp/getAllBootcamp", TrainerController.getAllTrainers)
-router.get("/Bootcamp/getBootcamp/:id", TrainerController.getTrainer)
-router.put("/Bootcamp/updateBootcamp/:id", TrainerController.updateTrainer)
-router.delete("/Bootcamp/deleteBootcamp/:id",TrainerController.deleteTrainer)
-router.post("/Bootcamp/createBootcamp",TrainerController.createTrainer)
+router.get("/Bootcamp/getAllBootcamp", BootcampController.getAllBootcamp)
+router.get("/Bootcamp/getBootcamp/:id", BootcampController.getBootcamp)
+router.put("/Bootcamp/updateBootcamp/:id", BootcampControllerController.updateBootcamp)
+router.delete("/Bootcamp/deleteBootcamp/:id",BootcampController.deleteBootcamp)
+router.post("/Bootcamp/createBootcamp",BootcampController.createBootcamp)
 
 
 module.exports = router
