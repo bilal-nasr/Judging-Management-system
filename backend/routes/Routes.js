@@ -6,6 +6,7 @@ const JuryController = require("../controllers/JuryController")
 const StartupContoller = require ("../controllers/StartupController")
 const TrainerController = require("../controllers/TrainerController")
 const BootcampController= require ("../controllers/BootcampController")
+const EvaluationController= require("../controllers/EvaluationController")
 
 //--------------------login Routes-----------------
 
@@ -46,5 +47,7 @@ router.put("/Bootcamp/updateBootcamp/:id", BootcampController.updateBootcamp)
 router.delete("/Bootcamp/deleteBootcamp/:id",BootcampController.deleteBootcamp)
 router.post("/Bootcamp/createBootcamp",BootcampController.createBootcamp)
 
+//--------------------evaluataion----------
+router.post("/evaluation/addGrade",EvaluationController.AddJuryStartupGrade)
 
 module.exports = router

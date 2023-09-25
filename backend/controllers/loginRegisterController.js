@@ -15,6 +15,7 @@ exports.login = async (req, res) => {
         console.log(user)
         if (user && user.password == password){
             const token = jwt.sign({ id: user.id }, SECRET_KEY);
+            await dbUser(`update users set token='${token}' where username="${username}"`)
             res.send({ success: true, token,name: user.name, role: user.role});
         }
         else {

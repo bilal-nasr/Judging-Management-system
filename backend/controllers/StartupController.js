@@ -58,7 +58,7 @@ exports.deleteStartup = async (req, res) => {
     }
 };
 
-//TODO: add the bootcamp id which is the forenkey for the startup
+
 exports.createStartup = async (req, res) => {
 
     try {

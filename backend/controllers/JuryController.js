@@ -76,8 +76,6 @@ exports.deleteJury = async (req, res) => {
         // Delete the jury from the database
         //const deleteQuery 
         const result = await dbJury(`DELETE FROM jury WHERE juryId = ${id}`);
-        
-
         if (result.affectedRows === 1) {
             res.json({ success: true, message: "Jury deleted successfully" });
         } else {
