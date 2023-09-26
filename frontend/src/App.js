@@ -9,6 +9,7 @@ import {
 import LoginPage from "./Pages/LoginPage"; // Your Login component
 import Dashboard from "./Pages/Dashboard";
 import Auth from "./Auth";
+import ProfileViewer from "./Pages/Admin/ViewProfile/ProfileViewer";
 
 
 function PrivateRoute({ children }) {
@@ -29,6 +30,8 @@ function App() {
   return (
     <Router>
     <Routes>
+    <Route path="/profileviewer/:id" element={<ProfileViewer />} />
+
       <Route path="/login" element={<LoginPage />} />
       <Route
         path="/dashboard"
@@ -39,6 +42,7 @@ function App() {
         }
       />
       <Route path="*" element={<Navigate to="/login" replace />} />
+      {/* <Route path="ProfileViewer" element={ProfileViewer} /> */}
     </Routes>
   </Router>
   );
