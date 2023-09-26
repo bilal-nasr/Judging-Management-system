@@ -1,4 +1,4 @@
-const Trainersdb = require("../model/getDbData");
+const Trainersdb = require("../../model/getDbData");
 
 exports.getAllTrainers = async (req, res) => {
     try {

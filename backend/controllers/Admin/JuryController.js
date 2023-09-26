@@ -1,4 +1,4 @@
-const dbJury = require("../model/getDbData")
+const dbJury = require("../../model/getDbData")
 
 exports.getAllJuries = async (req, res) => {
     try {
@@ -34,7 +34,11 @@ exports.createJury = async (req, res) => {
         const { username,password, name,description} = req.body; // Assuming you have these properties in your request body
 
         // Insert a new jury into the database
-        //const insertQuery = ;
+        const checkUser = await dbJury(`select * from users where username='${username}'`)
+        if (checkUser.length>0){
+            //hon iza affectedrows akbar min zero y3ne fe user b hayda l name lenght la2an select *
+            res.json ({success:false,message :"user is already created "})
+        }
         const result = await dbJury(`INSERT INTO  users (username,password,name,role) values ('${username}', '${password}',' ${name}',"J") `);
         const userID = await dbJury(`select userId from users where username='${username}'`)
         //hon jebet l id lal user la erja3 dakhlo bl juries bcz foreign key

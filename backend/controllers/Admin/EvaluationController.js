@@ -1,6 +1,4 @@
-//TODO: add jury startup grade table , 
-//TODO: function to get the added grades of the jury and startup to add them to startup criteria
-const criteriadb = require("../model/getDbData")
+const criteriadb = require("../../model/getDbData")
 
 exports.AddJuryStartupGrade = async (req, res) => {
     const { grade, token, name } = req.body

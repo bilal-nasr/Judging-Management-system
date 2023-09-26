@@ -1,4 +1,4 @@
-const dbBootcamp = require("../model/getDbData")
+const dbBootcamp = require("../../model/getDbData")
 
 exports.getAllBootcamp = async (req, res) => {
     try {
@@ -13,7 +13,7 @@ exports.getAllBootcamp = async (req, res) => {
 }
 exports.getBootcamp = async (req, res) => {
     try {
-        const {id} = req.params;
+        const { id } = req.params;
 
         const data = await dbBootcamp(`SELECT * FROM bootcamps WHERE bootcampId = ${id}`);
 
@@ -65,7 +65,7 @@ exports.updateBootcamp = async (req, res) => {
 };
 exports.deleteBootcamp = async (req, res) => {
     try {
-        const {id} = req.params;
+        const { id } = req.params;
 
         const result = await dbBootcamp(`DELETE FROM bootcamps WHERE bootcampId = ${id}`);
 

@@ -1,4 +1,4 @@
-const startupdb = require("../model/getDbData");
+const startupdb = require("../../model/getDbData");
 
 exports.getAllStartups = async (req, res) => {
     try {
