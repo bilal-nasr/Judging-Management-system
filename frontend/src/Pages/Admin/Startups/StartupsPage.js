@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import TableDataViewer from "../Tables/StartupTableDataViewer";
 import api from "../../../api";
 import AddStartups from "./AddStartup";
+import { CircularProgress } from "@mui/material";
 
 export default function StartupPage() {
   const [dataGot, setDataGot] = useState(false);
@@ -26,7 +27,9 @@ export default function StartupPage() {
     console.log(dataGot)
   },[dataGot])
 
+  
   return (
+    
     <div style={{marginTop:"20px"}}>
       <AddStartups />
       <br />
@@ -36,7 +39,9 @@ export default function StartupPage() {
       ) :
       
       (
-        <p>Loading data...</p>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                    <CircularProgress sx={{ marginTop: "100px" }} />
+                </div>
       )}
     </div>
   );
