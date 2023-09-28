@@ -49,11 +49,15 @@ router.post("/Bootcamp/createBootcamp", BootcampController.createBootcamp)
 
 //--------------------evaluataion----------
 router.post("/evaluation/addGrade", EvaluationController.AddJuryStartupGrade)
+router.get("/evaluation/getAllCriteria",EvaluationController.getAllCriteria)
+router.post("/evaluation/createCriteria", EvaluationController.createCriteria)
+router.put("/evaluation/updateCriteria/:id",EvaluationController.updateCriteria)
+router.delete("/evaluation/deleteCriteria/:id",EvaluationController.deleteCriteria)
 
 //---------------admin------------
 router.post("/admin/createAdmin",SAdminController.createAdmin)
 router.get("/admin/getAllAdmin",SAdminController.getAllAdmins)
 router.get("/admin/getAdmin/:id", SAdminController.getAdmin)
 router.put("/admin/updateAdmin/:id",SAdminController.updateAdmin)
-
+router.delete("/admin/deleteAdmin/:id",SAdminController.deleteAdmin)
 module.exports = router

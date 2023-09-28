@@ -56,16 +56,16 @@ exports.updateAdmin = async (req, res) => {
     try {
         const { id } = req.params
         const { username, name, description, password } = req.body
-        
+
         const [data] = await SAdmindb(`select * from admin where adminId=${parseInt(id)}`)
-        
+
         if (!password) {
-            const user = SAdmindb(`update users set username='${username}', name='${name}' where userId=${data.user_id}`)
+            const user = await SAdmindb(`update users set username='${username}', name='${name}' where userId=${data.user_id}`)
 
             if (user.affectedRows < 1)
                 res.json({ success: false, message: "error update admin" })
 
-            const admin = SAdmindb(`update admin set description='${description}' where user_id=${data.user_id}`)
+            const admin = await SAdmindb(`update admin set description='${description}' where user_id=${data.user_id}`)
 
             if (admin.affectedRows < 1)
                 res.json({ success: false, message: "error update admin" })
@@ -75,11 +75,11 @@ exports.updateAdmin = async (req, res) => {
         }
         else {
 
-            const user = SAdmindb(`update users set username='${username}', name='${name}',password=${password} where userId=${id}`)
+            const user = await SAdmindb(`update users set username='${username}', name='${name}',password='${password}' where userId=${id}`)
             if (user.affectedRows < 1)
-                res.json({ success: false, message: "error update admin" })
+                res.json({ success: false, message: "error update user admin" })
 
-            const admin = SAdmindb(`update admin set description='${description}' where user_id=${id}`)
+            const admin = await SAdmindb(`update admin set description='${description}' where user_id=${data.user_id}`)
             if (admin.affectedRows < 1)
                 res.json({ success: false, message: "error update admin" })
 
@@ -88,6 +88,31 @@ exports.updateAdmin = async (req, res) => {
         }
 
     } catch (error) {
-
+        console.error(error)
+        res.status(500).json({ success: false, message: "Internal server error" });
     }
 }
+exports.deleteAdmin = async (req, res) => {
+    try {
+        const { id } = req.params
+        const [userId] = await SAdmindb(`select userId from admin_users_view where adminId =${parseInt(id)}`)
+        //hon hatayt parse la2an req.parms btjeble ye string w ana bade 7awlo la intiger
+        //hon hatayt [] kermel ma traji3le array bl id 
+        if (!userId) {
+            res.json({ success: false, message: "admin not found" })
+        }
+        const admin = await SAdmindb(`delete from users where userId= ${userId.userId}`)
+        //hon hatayna userId.userId le2an awal wehde heye object elle faw2 ana hatayta  w feya l key elle howe userId bl database table
+        if (admin.affectedRows < 1) {
+            res.json({ success: false, message: "deleting error" })
+        }
+        res.json({ success: true, message: "admin is deleted" })
+    }
+
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: "Internal server error" });
+    }
+}
+
+
