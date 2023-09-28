@@ -17,8 +17,10 @@ const AddStartups = () => {
     };
     return (
         <>
-            <TextField label="Name" focused />
-            <TextField label="Description" focused />
+        
+        <div style={{ margin: "0 8px" }}>
+        <TextField label="Name" sx={{ margin: "0 8px" }} focused />
+        
             {/* -------------------- */}
             <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                 <InputLabel id="demo-select-small-label">Bootcamps</InputLabel>
@@ -38,8 +40,9 @@ const AddStartups = () => {
                 </Select>
             </FormControl>
             {/* -------------------- */}
-            {/* <Button variant="Add">Text</Button>
-            <Button variant="Cancel">Text</Button> */}
+            <Button variant="Add" >ADD</Button >
+            
+            </div>
         </>
     )
 }

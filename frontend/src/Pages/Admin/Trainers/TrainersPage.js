@@ -10,9 +10,9 @@ export default function TrainerPage() {
 
   const getTrainer = async () => {
     try {
-      const data = await api.get("/Trainers/getAllTrainers");
+      const data = await api.get("/trainers/getAllTrainers");
       setDataGot(true);
-      setData(data.data.data);
+      setData(data?.data.data);
     } catch (err) {
       // Handle errors
     }
@@ -21,7 +21,7 @@ export default function TrainerPage() {
   // Use useEffect to call getJuries when the component is first mounted
   useEffect(() => {
     getTrainer();
-  }, []); // The empty dependency array makes this run once on component mount
+  }, [dataGot]); // The empty dependency array makes this run once on component mount
 
   useEffect(()=>{
     console.log(dataGot)

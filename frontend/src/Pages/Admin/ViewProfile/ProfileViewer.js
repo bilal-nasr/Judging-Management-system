@@ -11,11 +11,19 @@ import {
   TextField
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 export default function ProfileViewer() {
-  const { id } = useParams();
+  // const { id } = useParams();
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1); // This function will take you to the previous page
+  };
   return (
+    
     <Box
     sx={{
       display: 'grid',
@@ -25,7 +33,7 @@ export default function ProfileViewer() {
       
     }}
   >
-    <Paper sx={{ width: '50vw', height: '80vh' }}>
+    <Paper sx={{ width: '50vw', height: '80vh', display: 'grid' }}>
       {/* Place your content inside the Paper */}
       <Box
         sx={{
@@ -38,6 +46,9 @@ export default function ProfileViewer() {
             margin: 5
         }}
       >
+        <div style={{alignItems: "left"}}><Button onClick={goBack} >
+            <ArrowBackIcon />
+          </Button></div>
         {/* Your avatar */}
         <Avatar
           alt="Admin"

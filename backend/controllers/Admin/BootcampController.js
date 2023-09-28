@@ -2,7 +2,7 @@ const dbBootcamp = require("../../model/getDbData")
 
 exports.getAllBootcamp = async (req, res) => {
     try {
-        const data = await dbBootcamp(`select * from bootcamps'`)
+        const data = await dbBootcamp(`select * from bootcamps`)
         console.log(data)
         if (!data)
             res.json({ success: true, message: "no data found" })

@@ -30,7 +30,8 @@ function App() {
   return (
     <Router>
     <Routes>
-    <Route path="/profileviewer/:id" element={<ProfileViewer />} />
+    <Route path="/ProfileViewer/" element={<ProfileViewer />} />
+    {/* <Route path="/profileviewer/:id" element={<ProfileViewer />} /> */}
 
       <Route path="/login" element={<LoginPage />} />
       <Route

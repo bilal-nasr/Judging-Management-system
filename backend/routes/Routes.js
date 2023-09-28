@@ -41,7 +41,7 @@ router.delete("/trainers/deleteTrainer/:id", TrainerController.deleteTrainer)
 router.post("/trainers/createTrainer", TrainerController.createTrainer)
 
 //-------------------bootcamp-----------
-router.get("/Bootcamp/getAllBootcamp", BootcampController.getAllBootcamp)
+router.get("/Bootcamp/getAllBootcamps", BootcampController.getAllBootcamp)
 router.get("/Bootcamp/getBootcamp/:id", BootcampController.getBootcamp)
 router.put("/Bootcamp/updateBootcamp/:id", BootcampController.updateBootcamp)
 router.delete("/Bootcamp/deleteBootcamp/:id", BootcampController.deleteBootcamp)

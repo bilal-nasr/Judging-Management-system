@@ -4,6 +4,7 @@ import TableDataViewer from "../Tables/JuryTableDataViewer";
 import api from "../../../api";
 import CircularProgress from '@mui/material/CircularProgress';
 import { Link } from 'react-router-dom';
+import BackArrow from "../../../Components/BackArrow";
 
 
 export default function JuryPage() {
@@ -35,7 +36,7 @@ export default function JuryPage() {
             <div style={{ marginTop: "20px", marginLeft: "20px" }}>
                 <AddJudge />
             </div>
-
+            
             <br />
 
             {dataGot ? (

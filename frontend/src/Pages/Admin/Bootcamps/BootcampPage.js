@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AddBootcamp from "../Bootcamps/AddBootcamp";
 import TableDataViewer from "../Tables/BootcampsTableDataviewer";
 import api from "../../../api";
+import { CircularProgress } from "@mui/material";
 
 export default function BootcampPage() {
   const [dataGot, setDataGot] = useState(false);
@@ -34,7 +35,9 @@ export default function BootcampPage() {
       {dataGot ? (
         <TableDataViewer data={data} />
       ) : (
-        <p>Loading data...</p>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                    <CircularProgress sx={{ marginTop: "100px" }} />
+                </div>
       )}
     </div>
   );
