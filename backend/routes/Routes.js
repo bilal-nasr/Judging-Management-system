@@ -54,4 +54,6 @@ router.post("/evaluation/addGrade", EvaluationController.AddJuryStartupGrade)
 router.post("/admin/createAdmin",SAdminController.createAdmin)
 router.get("/admin/getAllAdmin",SAdminController.getAllAdmins)
 router.get("/admin/getAdmin/:id", SAdminController.getAdmin)
+router.put("/admin/updateAdmin/:id",SAdminController.updateAdmin)
+
 module.exports = router
