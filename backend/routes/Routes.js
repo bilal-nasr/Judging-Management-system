@@ -7,7 +7,7 @@ const StartupContoller = require("../controllers/Admin/StartupController")
 const TrainerController = require("../controllers/Admin/TrainerController")
 const BootcampController = require("../controllers/Admin/BootcampController")
 const EvaluationController = require("../controllers/Admin/EvaluationController")
-
+const SAdminController= require("../controllers/Admin/SAdminController")
 //--------------------login Routes-----------------
 
 router.post("/users/login", loginRegisterController.login);
@@ -50,4 +50,8 @@ router.post("/Bootcamp/createBootcamp", BootcampController.createBootcamp)
 //--------------------evaluataion----------
 router.post("/evaluation/addGrade", EvaluationController.AddJuryStartupGrade)
 
+//---------------admin------------
+router.post("/admin/createAdmin",SAdminController.createAdmin)
+router.get("/admin/getAllAdmin",SAdminController.getAllAdmins)
+router.get("/admin/getAdmin/:id", SAdminController.getAdmin)
 module.exports = router

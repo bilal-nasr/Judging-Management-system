@@ -36,7 +36,7 @@ exports.createJury = async (req, res) => {
         // Insert a new jury into the database
         const checkUser = await dbJury(`select * from users where username='${username}'`)
         if (checkUser.length>0){
-            //hon iza affectedrows akbar min zero y3ne fe user b hayda l name lenght la2an select *
+            //hon iza affectedrows akbar min zero y3ne fe user b hayda l name( lenght la2an select *)
             res.json ({success:false,message :"user is already created "})
         }
         const result = await dbJury(`INSERT INTO  users (username,password,name,role) values ('${username}', '${password}',' ${name}',"J") `);
