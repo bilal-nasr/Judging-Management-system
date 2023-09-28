@@ -20,7 +20,8 @@ import { useLocation } from "react-router-dom";
 import JuryPage from './Admin/Jury/JuryPage';
 import StartupPage from './Admin/Startups/StartupsPage';
 import TrainersPage from './Admin/Trainers/TrainersPage';
-import BootcampPage from './Admin/Bootcamps/BootcampPage'
+//import BootcampPage from './Admin/Bootcamps/BootcampPage';
+import ProfileViewer from './Admin/ViewProfile/ProfileViewer';
 
 // function Copyright(props) {
 //   return (
@@ -155,7 +156,7 @@ export default function Dashboard() {
                     </Toolbar>
                     <Divider />
                     <List component="nav">
-                        <MainListItems onItemClick={handleItemClicked} />
+                        <MainListItems onItemClick={handleItemClicked} selected={clickedIndex} />
                         <Divider sx={{ my: 1 }} />
 
                         {(role === "S" && <SecondaryListItems />)}
@@ -189,6 +190,8 @@ export default function Dashboard() {
                                     return <JuryPage />;
                                 case 4:
                                     return <h1>4</h1>;
+                                case 5:
+                                    return <ProfileViewer/>;
                                 default:
                                     return null; // Render nothing for other cases
                             }

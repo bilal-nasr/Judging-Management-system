@@ -38,8 +38,8 @@ const AddStartups = () => {
                 </Select>
             </FormControl>
             {/* -------------------- */}
-            <Button variant="Add">Text</Button>
-            <Button variant="Cancel">Text</Button>
+            {/* <Button variant="Add">Text</Button>
+            <Button variant="Cancel">Text</Button> */}
         </>
     )
 }

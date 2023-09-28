@@ -11,7 +11,11 @@ import Paper from '@mui/material/Paper';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { IconButton } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+
 
 
 let rows = [];
@@ -27,11 +31,6 @@ const headCells = [
         numeric: false,
         label: 'Name',
     },
-    {
-        id: 'Description',
-        numeric: false,
-        label: 'Role',
-    },
     {},
 ];
 
@@ -44,7 +43,7 @@ function EnhancedTableHead(props) {
 
     return (
         <TableHead >
-            <TableRow >
+            <TableRow key={0}>
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
@@ -55,6 +54,7 @@ function EnhancedTableHead(props) {
                             active={orderBy === headCell.id}
                             direction={orderBy === headCell.id ? order : 'asc'}
                             onClick={createSortHandler(headCell.id)}
+                            style={{ fontFamily: 'Arial', fontSize: '16px', fontWeight: 'bold' }}
                         >
                             {headCell.label}
                             {orderBy === headCell.id ? (
@@ -81,6 +81,7 @@ export default function TableDataViewer(props) {
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     rows = props.data
     console.log(rows)
+    console.log(rows.length)
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
@@ -133,10 +134,10 @@ export default function TableDataViewer(props) {
             
         }
     }
-
+    const navigate = useNavigate();
     return (
         <Box sx={{ width: '100%', marginLeft: '10px', marginRight: '20px', display: "table" }} >
-            <Paper sx={{ width: '100%', mb: 2 }}>
+            <Paper sx={{ width: '90%', mb: 2 }}>
                 <TableContainer>
                     <Table
                         sx={{ minWidth: 750 }}
@@ -154,15 +155,18 @@ export default function TableDataViewer(props) {
                                     <TableCell align="center">{row.UserUsername}
                                     </TableCell>
                                     <TableCell align="center">{row.UserName}</TableCell>
-                                    <TableCell align="center">{row.UserRole}</TableCell>
                                     <TableCell align="center">
+                                    <Button onClick={() => navigate(`/profileviewer/${row.JudgeId}`)}>Go to ProfileViewer</Button>
+
+                                    </TableCell>
+                                    {/* <TableCell align="center">
                                         <IconButton aria-label="Edit" onClick={()=>handleUpdate(row.JudgeId)}>
                                             <EditIcon />
                                         </IconButton>
                                         <IconButton aria-label="delete" onClick={()=>handleDelete(row.JudgeId)}>
                                             <DeleteIcon />
                                         </IconButton>
-                                    </TableCell>
+                                    </TableCell> */}
                                 </TableRow>
                             ))}
                         </TableBody>
