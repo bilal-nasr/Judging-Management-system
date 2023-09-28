@@ -51,4 +51,10 @@ exports.getAdmin= async (req,res)=>{
     }
 }
 
-exports.updateAdmin= async
+exports.updateAdmin= async (req,res)=>{
+    try {
+        
+    } catch (error) {
+        
+    }
+}
