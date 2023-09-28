@@ -12,6 +12,10 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Button, IconButton } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+
 
 
 let rows = [];
@@ -130,7 +134,7 @@ export default function TableDataViewer(props) {
             
         }
     }
-
+    const navigate = useNavigate();
     return (
         <Box sx={{ width: '100%', marginLeft: '10px', marginRight: '20px', display: "table" }} >
             <Paper sx={{ width: '90%', mb: 2 }}>
@@ -152,9 +156,8 @@ export default function TableDataViewer(props) {
                                     </TableCell>
                                     <TableCell align="center">{row.UserName}</TableCell>
                                     <TableCell align="center">
-                                        <Button>
-                                            view profile
-                                        </Button>    
+                                    <Button onClick={() => navigate(`/profileviewer/${row.JudgeId}`)}>Go to ProfileViewer</Button>
+
                                     </TableCell>
                                     {/* <TableCell align="center">
                                         <IconButton aria-label="Edit" onClick={()=>handleUpdate(row.JudgeId)}>

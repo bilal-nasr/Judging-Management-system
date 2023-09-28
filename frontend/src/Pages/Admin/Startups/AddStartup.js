@@ -18,14 +18,16 @@ const AddStartups = () => {
     };
 
     return (
+        
         <>
-
+            <div 
+            
+            style={{ margin: "0 8px" }}>
+                <TextField label="Name" sx={{ margin: "0 8px" }} focused />
+                <TextField label="Description" sx={{ margin: "0 8px" }} focused />
+            </div>
             <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                 <InputLabel id="demo-select-small-label">Bootcamps</InputLabel>
-
-                <TextField label="Startup Description" focused />
-
-
                 <Select
                     labelId="demo-select-small-label"
                     id="demo-select-small"
@@ -33,18 +35,16 @@ const AddStartups = () => {
                     label="bootcamp"
                     onChange={handleChange}
                 >
-                    <MenuItem value="Bootcamp">
+                    <MenuItem value="">
                         <em>None</em>
                     </MenuItem>
                     <MenuItem value="FSD">FSD</MenuItem>
                     <MenuItem value="UI/UX">UI/UX</MenuItem>
                     <MenuItem value="Ideal Lab">Ideal Lab</MenuItem>
                 </Select>
-                <Button variant="Add">Add</Button>
-                <Button variant="Cancel">update</Button>
             </FormControl>
-
-
+            <Button variant="Add">Add</Button>
+                <Button variant="Cancel">update</Button>
         </>
     )
 }
