@@ -88,12 +88,14 @@ const defaultTheme = createTheme();
 
 
 export default function Dashboard() {
+
     const location = useLocation();
-    console.log(location);
-    const data = location.state;
-    const role = data.role;
-    const name = data.name;
-    console.log(name);
+    const data = location?.state;
+    const role = localStorage?.getItem("role") || data?.role;
+    const name = localStorage?.getItem("username") || data?.name;
+
+
+
 
     const [open, setOpen] = React.useState(true);
     const [clickedIndex, setClickedIndex] = React.useState(0)
@@ -180,17 +182,17 @@ export default function Dashboard() {
                         (() => {
                             switch (clickedIndex) {
                                 case 0:
-                                    return <BootcampPage/>;
+                                    return <BootcampPage />;
                                 case 1:
-                                    return <StartupPage/>;
+                                    return <StartupPage />;
                                 case 2:
-                                    return <TrainersPage/>;
+                                    return <TrainersPage />;
                                 case 3:
                                     return <JuryPage />;
                                 case 4:
                                     return <h1>4</h1>;
                                 case 5:
-                                    return <ProfileViewer/>;
+                                    return <ProfileViewer />;
                                 default:
                                     return null; // Render nothing for other cases
                             }

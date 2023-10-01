@@ -10,7 +10,7 @@ export default function BootcampPage() {
 
   const getBootcamp = async () => {
     try {
-      const bootcampData = await api.get("/bootcamp/getAllBootcamps");
+      const bootcampData = await api.get("/Bootcamp/getAllBootcamp");
       setDataGot(true);
       setData(bootcampData.data.data);
     } catch (err) {
@@ -24,7 +24,7 @@ export default function BootcampPage() {
   }, []); // The empty dependency array makes this run once on component mount
 
   useEffect(()=>{
-    console.log(dataGot)
+    console.log("is data got: ",dataGot)
   },[dataGot])
 
   return (
