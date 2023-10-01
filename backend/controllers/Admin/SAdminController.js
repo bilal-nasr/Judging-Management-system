@@ -1,4 +1,6 @@
 const getDBData = require("../../model/getDbData"); // Import your getDBData function
+const bcrypt = require("bcryptjs");
+
 
 exports.createAdmin = async (req, res) => {
     try {

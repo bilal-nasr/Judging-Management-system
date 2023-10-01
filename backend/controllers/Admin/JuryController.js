@@ -1,4 +1,5 @@
 const  getDBData = require("../../model/getDbData");
+const bcrypt = require("bcryptjs");
 
 exports.getAllJuries = async (req, res) => {
     try {
@@ -43,9 +44,13 @@ exports.createJury = async (req, res) => {
             res.json({ success: false, message: "User is already created" });
             return;
         }
+        
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
+        
         const result = await getDBData(
             "INSERT INTO users (username, password, name, role) VALUES (?, ?, ?, 'J')",
-            [username, password, name]
+            [username, hashedPassword, name]
         );
         const userID = await getDBData(
             "SELECT userId FROM users WHERE username = ?",
