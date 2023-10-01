@@ -24,12 +24,16 @@ exports.login = async (req, res) => {
         if (passwordMatch) {
             const token = jwt.sign({ id: user.id }, SECRET_KEY);
             await dbUser(`UPDATE users SET token = ? WHERE username = ?`, [token, username]);
-            res.send({
-                success: true,
-                token,
+            const userData = {
                 name: user.name,
                 role: user.role,
                 username: user.username,
+            }
+            console.log("Userdata from cont : ", userData)
+            res.send({
+                success: true,
+                token,
+                userData
             });
         } else {
             res.status(400).send({ success: false, message: "Invalid credentials." });

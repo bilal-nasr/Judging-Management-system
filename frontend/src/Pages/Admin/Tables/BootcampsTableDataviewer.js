@@ -12,6 +12,8 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { IconButton } from '@mui/material';
+
+import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -34,7 +36,9 @@ const headCells = [
         // year is numeric cant be false
         label: 'Year',
     },
-    {},
+    {
+        id: "extra"
+    },
 ];
 
 function EnhancedTableHead(props) {
@@ -46,7 +50,7 @@ function EnhancedTableHead(props) {
 
     return (
         <TableHead >
-            <TableRow >
+            <TableRow key={1} >
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
@@ -135,7 +139,7 @@ export default function TableDataViewer(props) {
             
         }
     }
-
+    const navigate = useNavigate();
     return (
         <Box sx={{ width: '100%', marginLeft: '10px', marginRight: '20px', display: "table" }} >
             <Paper sx={{ width: '100%', mb: 2 }}>
@@ -149,22 +153,30 @@ export default function TableDataViewer(props) {
                             order={order}
                             orderBy={orderBy}
                             onRequestSort={handleRequestSort}
+
                         />
                         <TableBody >
                             {visibleRows.map((row, index) => (
-                                <TableRow key={row.JudgeId} sx={{ cursor: 'pointer' }}>
-                                    <TableCell align="center">{row.UserUsername}
+                                <TableRow key={row.bootcampId} sx={{ cursor: 'pointer' }}>
+                                    <TableCell align="center">{row.name}
                                     </TableCell>
-                                    <TableCell align="center">{row.UserName}</TableCell>
-                                    <TableCell align="center">{row.UserRole}</TableCell>
+                                    <TableCell align="center">{row.type}</TableCell>
+                                    <TableCell align="center">{row.year}</TableCell>
+
                                     <TableCell align="center">
+                                    <Button onClick={() => navigate(`/profileviewer/${row.bootcampId}`)}>Go to ProfileViewer</Button>
+
+                                    </TableCell>
+
+                                    {/* <TableCell align="center">
                                         <IconButton aria-label="Edit" onClick={()=>handleUpdate(row.bootcampId)}>
                                             <EditIcon />
                                         </IconButton>
                                         <IconButton aria-label="delete" onClick={()=>handleDelete(row.bootcampId)}>
                                             <DeleteIcon />
                                         </IconButton>
-                                    </TableCell>
+                                    </TableCell> */}
+                                    
                                 </TableRow>
                             ))}
                         </TableBody>

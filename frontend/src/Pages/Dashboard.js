@@ -91,8 +91,10 @@ export default function Dashboard() {
 
     const location = useLocation();
     const data = location?.state;
-    const role = localStorage?.getItem("role") || data?.role;
-    const name = localStorage?.getItem("username") || data?.name;
+
+    const user = JSON.parse(localStorage?.getItem("user"))
+    const role = user?.role || data?.userData.role;
+    const name = user?.name  || data?.userData.name;
 
 
 
