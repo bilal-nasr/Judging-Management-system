@@ -20,12 +20,10 @@ const AddStartups = () => {
     return (
         
         <>
-            <div 
-            
-            style={{ margin: "0 8px" }}>
-                <TextField label="Name" sx={{ margin: "0 8px" }} focused />
-                <TextField label="Description" sx={{ margin: "0 8px" }} focused />
-            </div>
+            <div style={{ margin: "0 8px" }}>
+        <TextField label="Name" sx={{ margin: "0 8px" }} focused />
+        <TextField label="Description" sx={{ margin: "0 8px" }} focused />
+            {/* -------------------- */}
             <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                 <InputLabel id="demo-select-small-label">Bootcamps</InputLabel>
                 <Select
@@ -43,6 +41,10 @@ const AddStartups = () => {
                     <MenuItem value="Ideal Lab">Ideal Lab</MenuItem>
                 </Select>
             </FormControl>
+            {/* -------------------- */}
+            {/* <Button variant="Add">Text</Button>
+            <Button variant="Cancel">Text</Button> */}
+            </div>
             <Button variant="Add">Add</Button>
                 <Button variant="Cancel">update</Button>
         </>

@@ -12,6 +12,8 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { IconButton } from '@mui/material';
+import { Navigate } from 'react-router-dom';
+import {Button} from '@mui/material';
 
 
 let rows = [];
@@ -22,11 +24,7 @@ const headCells = [
         numeric: false,
         label: 'name',
     },
-    {
-        id: 'description',
-        numeric: false,
-        label: 'description',
-    },
+   
     {
         id: 'bootcamp',
         numeric: false,
@@ -150,19 +148,17 @@ export default function TableDataViewer(props) {
                         />
                         <TableBody >
                             {visibleRows.map((row, index) => (
-                                <TableRow key={row.TrainerId} sx={{ cursor: 'pointer' }}>
-                                    <TableCell align="center">{row.UserUsername}
+                                <TableRow key={ row.instructorsId } sx={{ cursor: 'pointer' }}>
+                                    <TableCell align="center">{row.instructor_name}
                                     </TableCell>
-                                    <TableCell align="center">{row.UserName}</TableCell>
-                                    <TableCell align="center">{row.UserRole}</TableCell>
+                                    {/* <TableCell align="center">{row.instructor_description}</TableCell> */}
+                                    <TableCell align="center">{row.bootcamp_name}</TableCell>
+                                    
                                     <TableCell align="center">
-                                        <IconButton aria-label="Edit" onClick={() => handleUpdate(row.TrainerId)}>
-                                            <EditIcon />
-                                        </IconButton>
-                                        <IconButton aria-label="delete" onClick={() => handleDelete(row.TrainerId)}>
-                                            <DeleteIcon />
-                                        </IconButton>
+                                    <Button onClick={() => Navigate (`/profileviewer/${row.JudgeId}`)}>Go to ProfileViewer</Button>
+
                                     </TableCell>
+                                    
                                 </TableRow>
                             ))}
                         </TableBody>

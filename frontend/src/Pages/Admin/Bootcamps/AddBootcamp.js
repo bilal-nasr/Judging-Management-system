@@ -13,12 +13,15 @@ const AddBootcamp = ()=>{
         return currentDate.getFullYear();
       }
     return(
-        <>
-            <TextField label="name" focused />
-            <TextField label="type" focused />
-            <TextField label="year"  focused disabled/>
-            <Button variant="Add">Add</Button>
-            <Button variant="Cancel">Cancel</Button>
+        <><div style={{ margin: "0 8px" }}>
+        <TextField label="Username" sx={{ margin: "0 8px" }} focused />
+        <TextField label="Name" sx={{ margin: "0 8px" }} focused />
+        <TextField label="year" sx={{ margin: "0 8px" }} focused />
+    </div>
+    <div style={{  margin: "8px" }}>
+        <Button>ADD</Button>
+        <Button>Update</Button>
+    </div>
         </>
     )
 }
