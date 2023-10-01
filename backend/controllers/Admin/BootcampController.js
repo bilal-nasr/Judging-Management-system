@@ -15,9 +15,9 @@ exports.getBootcamp = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const data = await dbBootcamp(`SELECT * FROM bootcamps WHERE bootcampId = ${id}`);
+        const data = await dbBootcamp(`SELECT * FROM bootcamps WHERE bootcampId = ?`,[id]);
 
-        if (!data) {
+        if (data.length === 0) {
             res.json({ success: false, message: "bootcamp not found" });
         } else {
             res.json({ success: true, data: data[0] });
@@ -34,7 +34,7 @@ exports.createBootcamp = async (req, res) => {
         const { name, type, year } = req.body;
 
 
-        const result = await dbBootcamp(`INSERT INTO bootcamps (name,type,year) VALUES ( '${name}','${type}',${year})`);
+        const result = await dbBootcamp(`INSERT INTO bootcamps (name,type,year) VALUES ( ?,?,?)`,[name,type,year]);
 
         if (result.affectedRows === 1) {
             res.json({ success: true, message: "Bootcamp created successfully" });
@@ -52,7 +52,7 @@ exports.updateBootcamp = async (req, res) => {
     try {
         const { id } = req.params;
         const { name, type, year } = req.body;
-        const result = await dbBootcamp(`UPDATE bootcamps SET name='${name}',type='${type}',year=${year} WHERE bootcampId=${id}`);
+        const result = await dbBootcamp(`UPDATE bootcamps SET name=?,type=?,year=? WHERE bootcampId=?`,[name,type,year,id]);
         if (result.affectedRows === 1) {
             res.json({ success: true, message: "Bootcamp updated successfully" });
         } else {
@@ -67,7 +67,7 @@ exports.deleteBootcamp = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const result = await dbBootcamp(`DELETE FROM bootcamps WHERE bootcampId = ${id}`);
+        const result = await dbBootcamp(`DELETE FROM bootcamps WHERE bootcampId = ?`,[id]);
 
         if (result.affectedRows === 1) {
             res.json({ success: true, message: "Bootcamp deleted successfully" });

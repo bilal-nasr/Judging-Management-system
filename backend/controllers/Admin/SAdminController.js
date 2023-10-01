@@ -1,118 +1,128 @@
-const SAdmindb = require("../../model/getDbData")
+const getDBData = require("../../model/getDbData"); // Import your getDBData function
 
 exports.createAdmin = async (req, res) => {
     try {
-        const { username, password, name, description } = req.body
-        //hon bade shoof iza 3nde l user bl awal ta iza ken fe bhal name ma ydakhlo
-        const userCheck = await SAdmindb(`select * from users where username='${username}'`)//hon he checked iza ken mawjood
-        if (userCheck.length > 0) {
-            //hon iza length akbar min zero y3ne fe user b hayda l name , hon ma hatayt length la2an mshselect *
-            res.json({ success: false, message: "user is already created " })
+        const { username, password, name, description } = req.body;
+        // Check if the username is already taken
+        const [existingUser] = await getDBData("SELECT * FROM users WHERE username=?", [username]);
+
+        if (existingUser) {
+            return res.json({ success: false, message: "User is already created" });
         }
-        const data = await SAdmindb(`insert into users (username, password, name, role) values('${username}', '${password}','${name}','A') `)
-        if (data.length > 0) {
-            res.json({ success: false, message: "error adding user " })
+
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Insert the new user into the database
+        const userQuery = "INSERT INTO users (username, password, name, role) VALUES (?, ?, ?, 'A')";
+        const userResult = await getDBData(userQuery, [username, hashedPassword, name]);
+
+        if (userResult.affectedRows !== 1) {
+            return res.json({ success: false, message: "Error adding user" });
         }
-        const [id] = await SAdmindb(`select userId from users where username='${username}'`)
-        const admin = await SAdmindb(`insert into admin (description, user_id ) values ('${description}', ${id.userId})`)
-        if (admin.affectedRows > 0) {
-            res.json({ success: true, message: "admin is created successfully" })
+
+        // Get the inserted user's ID
+        const [id] = await getDBData("SELECT LAST_INSERT_ID() as id");
+
+        // Insert admin information
+        const adminQuery = "INSERT INTO admin (description, user_id) VALUES (?, ?)";
+        const adminResult = await getDBData(adminQuery, [description, id.id]);
+
+        if (adminResult.affectedRows !== 1) {
+            return res.json({ success: false, message: "Error adding admin" });
         }
+
+        res.json({ success: true, message: "Admin is created successfully" });
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: "Internal server error" });
     }
 };
 
-
 exports.getAllAdmins = async (req, res) => {
     try {
-        const data = await SAdmindb(`select * from admin_users_view`)//hon lal view la2an user w admin
-        if (!data)
-            res.json({ success: false, message: "no data found" })
-        res.json({ success: true, data });
+        const adminData = await getDBData("SELECT * FROM admin_users_view");
+        res.json({ success: true, data: adminData });
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: "Internal server error" });
     }
-}
+};
 
 exports.getAdmin = async (req, res) => {
     try {
-        const { id } = req.params//hon akalte kaf 3laya la2an 3emle copy paste bilal:"n9ebre ktebeyon"
-        //hon getting the id from the link (url) from frontend
-        const [data] = await SAdmindb(`select * from admin_users_view where adminId=${id}`)
-        //hon mnhot star la2an badna njeeb all columns of the this admin 
-        res.json(data.adminId)
+        const { id } = req.params;
+        const [adminData] = await getDBData("SELECT * FROM admin_users_view WHERE adminId=?", [id]);
 
+        if (!adminData) {
+            return res.status(404).json({ success: false, message: "Admin not found" });
+        }
+
+        res.json({ success: true, data: adminData });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ success: false, message: "internal server error" });
+        res.status(500).json({ success: false, message: "Internal server error" });
     }
-}
-// hon bade 3ayet lal id mnl url or link , hon mnhot bl req.body l name description username bas l password iza ma bade 
-//a3melo update ma bdakhel she fa bade ello ino iza ma dakhalt she ma tekheda 3al database
+};
+
 exports.updateAdmin = async (req, res) => {
     try {
-        const { id } = req.params
-        const { username, name, description, password } = req.body
+        const { id } = req.params;
+        const { username, name, description, password } = req.body;
 
-        const [data] = await SAdmindb(`select * from admin where adminId=${parseInt(id)}`)
+        const [adminData] = await getDBData("SELECT * FROM admin WHERE adminId=?", [id]);
 
-        if (!password) {
-            const user = await SAdmindb(`update users set username='${username}', name='${name}' where userId=${data.user_id}`)
-
-            if (user.affectedRows < 1)
-                res.json({ success: false, message: "error update admin" })
-
-            const admin = await SAdmindb(`update admin set description='${description}' where user_id=${data.user_id}`)
-
-            if (admin.affectedRows < 1)
-                res.json({ success: false, message: "error update admin" })
-
-            res.json({ success: true, message: "admin updated" })
-
-        }
-        else {
-
-            const user = await SAdmindb(`update users set username='${username}', name='${name}',password='${password}' where userId=${id}`)
-            if (user.affectedRows < 1)
-                res.json({ success: false, message: "error update user admin" })
-
-            const admin = await SAdmindb(`update admin set description='${description}' where user_id=${data.user_id}`)
-            if (admin.affectedRows < 1)
-                res.json({ success: false, message: "error update admin" })
-
-            res.json({ success: true, message: "admin updated" })
-
+        if (!adminData) {
+            return res.status(404).json({ success: false, message: "Admin not found" });
         }
 
+        const updateUserQuery = "UPDATE users SET username=?, name=? WHERE userId=?";
+        const userResult = await getDBData(updateUserQuery, [username, name, adminData.user_id]);
+
+        if (userResult.affectedRows < 1) {
+            return res.json({ success: false, message: "Error updating admin user" });
+        }
+
+        if (password) {
+            // Hash and update the password if provided
+            const hashedPassword = await bcrypt.hash(password, 10);
+            const updatePasswordQuery = "UPDATE users SET password=? WHERE userId=?";
+            await getDBData(updatePasswordQuery, [hashedPassword, adminData.user_id]);
+        }
+
+        const updateAdminQuery = "UPDATE admin SET description=? WHERE user_id=?";
+        const adminResult = await getDBData(updateAdminQuery, [description, adminData.user_id]);
+
+        if (adminResult.affectedRows < 1) {
+            return res.json({ success: false, message: "Error updating admin" });
+        }
+
+        res.json({ success: true, message: "Admin updated successfully" });
     } catch (error) {
-        console.error(error)
-        res.status(500).json({ success: false, message: "Internal server error" });
-    }
-}
-exports.deleteAdmin = async (req, res) => {
-    try {
-        const { id } = req.params
-        const [userId] = await SAdmindb(`select userId from admin_users_view where adminId =${parseInt(id)}`)
-        //hon hatayt parse la2an req.parms btjeble ye string w ana bade 7awlo la intiger
-        //hon hatayt [] kermel ma traji3le array bl id 
-        if (!userId) {
-            res.json({ success: false, message: "admin not found" })
-        }
-        const admin = await SAdmindb(`delete from users where userId= ${userId.userId}`)
-        //hon hatayna userId.userId le2an awal wehde heye object elle faw2 ana hatayta  w feya l key elle howe userId bl database table
-        if (admin.affectedRows < 1) {
-            res.json({ success: false, message: "deleting error" })
-        }
-        res.json({ success: true, message: "admin is deleted" })
-    }
-
-    catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: "Internal server error" });
     }
-}
+};
 
+exports.deleteAdmin = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const [adminData] = await getDBData("SELECT user_id FROM admin WHERE adminId=?", [id]);
 
+        if (!adminData) {
+            return res.status(404).json({ success: false, message: "Admin not found" });
+        }
+
+        const deleteUserQuery = "DELETE FROM users WHERE userId=?";
+        const userResult = await getDBData(deleteUserQuery, [adminData.user_id]);
+
+        if (userResult.affectedRows < 1) {
+            return res.json({ success: false, message: "Error deleting admin user" });
+        }
+
+        res.json({ success: true, message: "Admin deleted successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: "Internal server error" });
+    }
+};

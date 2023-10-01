@@ -12,6 +12,7 @@ const SAdminController= require("../controllers/Admin/SAdminController")
 
 router.post("/users/login", loginRegisterController.login);
 router.post("/users/getTokenAndRole",loginRegisterController.getTokenAndRole)
+router.post("/users/signup", loginRegisterController.signup);
 
 
 //-------------------Data Routes jury-done with postman-------------------
