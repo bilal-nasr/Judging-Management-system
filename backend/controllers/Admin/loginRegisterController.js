@@ -13,10 +13,10 @@ exports.login = async (req, res) => {
         const users = await dbUser(`SELECT * FROM users WHERE username = "${username}" `);
         const user = users[0];
         console.log(user)
-        if (user && user.password == password){
+        if (user && user.password == password) {
             const token = jwt.sign({ id: user.id }, SECRET_KEY);
             await dbUser(`update users set token='${token}' where username="${username}"`)
-            res.send({ success: true, token,name: user.name, role: user.role});
+            res.send({ success: true, token, name: user.name, role: user.role, username: user.username });
         }
         else {
             res.status(400).send({ success: false, message: "Invalid credentials." });
@@ -29,7 +29,7 @@ exports.login = async (req, res) => {
         //   res.status(400).send({ success: false, message: "Invalid credentials." });
         // }
 
-       
+
 
     } catch (error) {
         res.status(400).send({ success: false, message: "Error logging in." });
@@ -37,3 +37,16 @@ exports.login = async (req, res) => {
 
 }
 
+
+exports.getTokenAndRole = async (req, res) => {
+    try {
+        const { username } = req.body
+        const response = await dbUser(`select token,role from users where username = '${username}'`)
+        if (response.length === 0)
+            res.status(404).json({ message: 'User not found' });
+        res.json(response[0]);
+    } catch (error) {
+        console.error('Error in getTokenAndRole:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}

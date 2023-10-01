@@ -23,7 +23,7 @@ export default function BootcampPage() {
   }, []); // The empty dependency array makes this run once on component mount
 
   useEffect(()=>{
-    console.log(dataGot)
+    console.log("is data got: ",dataGot)
   },[dataGot])
 
   return (

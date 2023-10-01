@@ -21,8 +21,9 @@ export default function BasicPopover(props) {
     };
 
     const handleSignOut = () => {
-        Auth.deAuthenticateUser()
+        Auth.deAuthenticate()
         navigate("/login")
+        return;
     }
 
     const open = Boolean(anchorEl);
