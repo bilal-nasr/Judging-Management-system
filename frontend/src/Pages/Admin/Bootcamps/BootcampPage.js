@@ -10,7 +10,7 @@ export default function BootcampPage() {
 
   const getBootcamp = async () => {
     try {
-      const bootcampData = await api.get("/Bootcamp/getAllBootcamp");
+      const bootcampData = await api.get("/Bootcamp/getAllBootcamps");
       setDataGot(true);
       setData(bootcampData.data.data);
     } catch (err) {

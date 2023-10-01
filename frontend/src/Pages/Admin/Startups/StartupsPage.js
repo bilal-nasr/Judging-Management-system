@@ -10,7 +10,7 @@ export default function StartupPage() {
 
   const getAllStartup = async () => {
     try {
-      const StartupData = await api.get("/startup/getAllStartup");
+      const StartupData = await api.get("/startup/getAllStartups");
       setDataGot(true);
       setData(StartupData.data.data);
     } catch (err) {

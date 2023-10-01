@@ -4,7 +4,7 @@ import TableDataViewer from "../Tables/JuryTableDataViewer";
 import api from "../../../api";
 import CircularProgress from '@mui/material/CircularProgress';
 import { Link } from 'react-router-dom';
-import BackArrow from "../../../Components/BackArrow";
+//import BackArrow from "../../../Components/BackArrow"
 
 
 export default function JuryPage() {
