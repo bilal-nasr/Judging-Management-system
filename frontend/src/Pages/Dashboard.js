@@ -94,7 +94,7 @@ export default function Dashboard() {
 
     const user = JSON.parse(localStorage?.getItem("user"))
     const role = user?.role || data?.userData.role;
-    const name = user?.name  || data?.userData.name;
+    const name = user?.name || data?.userData.name;
 
 
 
@@ -159,13 +159,14 @@ export default function Dashboard() {
                         </IconButton>
                     </Toolbar>
                     <Divider />
-                    <List component="nav">
+                    {(role === "S" || role === "A") && <List component="nav">
                         <MainListItems onItemClick={handleItemClicked} selected={clickedIndex} />
                         <Divider sx={{ my: 1 }} />
 
                         {(role === "S" && <SecondaryListItems />)}
 
-                    </List>
+                    </List>}
+
                 </Drawer>
                 <Box
                     component="main"
@@ -180,7 +181,8 @@ export default function Dashboard() {
                     }}
                 >
                     <Toolbar />
-                    {
+
+                    { (role === "S" || role === "A") && 
                         (() => {
                             switch (clickedIndex) {
                                 case 0:
