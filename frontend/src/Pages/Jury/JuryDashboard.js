@@ -1,28 +1,14 @@
-import * as React from 'react';
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import MuiDrawer from '@mui/material/Drawer';
-import Box from '@mui/material/Box';
 import MuiAppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-//import Badge from '@mui/material/Badge';
-//import Link from '@mui/material/Link';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-//import NotificationsIcon from '@mui/icons-material/Notifications';
-import { MainListItems, SecondaryListItems } from '../../Components/DasboardComponents/ListItems';
-import BasicPopover from '../../Components/DasboardComponents/BasicPopover';
+import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
+import * as React from 'react';
 import { useLocation } from "react-router-dom";
-import JuryPage from '../Admin/Jury/JuryPage';
-import StartupPage from '../Admin/Startups/StartupsPage';
-import TrainersPage from '../Admin/Trainers/TrainersPage';
-import BootcampPage from '../Admin/Bootcamps/BootcampPage';
-import ProfileViewer from '../Admin/ViewProfile/ProfileViewer';
-
+import BasicPopover from '../../Components/DasboardComponents/BasicPopover';
+import Cards from '../../Components/JuryDashboardComponent/Cards'
+import Grid from '@mui/material/Unstable_Grid2';
 // function Copyright(props) {
 //   return (
 //     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -36,53 +22,8 @@ import ProfileViewer from '../Admin/ViewProfile/ProfileViewer';
 //   );
 // }
 
-const drawerWidth = 240;
 
-
-const AppBar = styled(MuiAppBar, {
-    shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-    }),
-    ...(open && {
-        marginLeft: drawerWidth,
-        width: `calc(100% - ${drawerWidth}px)`,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    }),
-}));
-
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-    ({ theme, open }) => ({
-        '& .MuiDrawer-paper': {
-            position: 'relative',
-            whiteSpace: 'nowrap',
-            width: drawerWidth,
-            transition: theme.transitions.create('width', {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.enteringScreen,
-            }),
-            boxSizing: 'border-box',
-            ...(!open && {
-                overflowX: 'hidden',
-                transition: theme.transitions.create('width', {
-                    easing: theme.transitions.easing.sharp,
-                    duration: theme.transitions.duration.leavingScreen,
-                }),
-                width: theme.spacing(7),
-                [theme.breakpoints.up('sm')]: {
-                    width: theme.spacing(9),
-                },
-            }),
-        },
-    }),
-);
-
+const AppBar = styled(MuiAppBar)();
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
@@ -93,46 +34,15 @@ export default function Dashboard() {
     const data = location?.state;
 
     const user = JSON.parse(localStorage?.getItem("user"))
-    const role = user?.role || data?.userData.role;
     const name = user?.name || data?.userData.name;
-
-
-
-
-    const [open, setOpen] = React.useState(true);
-    const [clickedIndex, setClickedIndex] = React.useState(0)
-
-    const handleItemClicked = (index) => {
-        console.log(index)
-        setClickedIndex(index)
-    }
-
-    const toggleDrawer = () => {
-        setOpen(!open);
-    };
 
     return (
         <ThemeProvider theme={defaultTheme}>
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', }}>
                 <CssBaseline />
-                <AppBar position="absolute" open={open}>
-                    <Toolbar
-                        sx={{
-                            pr: '24px', // keep right padding when drawer closed
-                        }}
-                    >
-                        <IconButton
-                            edge="start"
-                            color="inherit"
-                            aria-label="open drawer"
-                            onClick={toggleDrawer}
-                            sx={{
-                                marginRight: '36px',
-                                ...(open && { display: 'none' }),
-                            }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
+                <AppBar position="absolute">
+                    <Toolbar sx={{ backgroundColor: "#00dcaf" }}>
+
                         <Typography
                             component="h1"
                             variant="h6"
@@ -145,29 +55,6 @@ export default function Dashboard() {
                         <BasicPopover name={name} />
                     </Toolbar>
                 </AppBar>
-                <Drawer variant="permanent" open={open}>
-                    <Toolbar
-                        sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'flex-end',
-                            px: [1],
-                        }}
-                    >
-                        <IconButton onClick={toggleDrawer}>
-                            <ChevronLeftIcon />
-                        </IconButton>
-                    </Toolbar>
-                    <Divider />
-                    {(role === "S" || role === "A") && <List component="nav">
-                        <MainListItems onItemClick={handleItemClicked} selected={clickedIndex} />
-                        <Divider sx={{ my: 1 }} />
-
-                        {(role === "S" && <SecondaryListItems />)}
-
-                    </List>}
-
-                </Drawer>
                 <Box
                     component="main"
                     sx={{
@@ -177,31 +64,27 @@ export default function Dashboard() {
                                 : theme.palette.grey[900],
                         flexGrow: 1,
                         height: '100vh',
-                        overflow: 'auto',
+                        overflow: "auto"
                     }}
                 >
                     <Toolbar />
+                    <div style={{ overflow: "hidden" }}>
+                        <Typography variant="h3" marginTop="40px" marginLeft="40px">Welcome to this bootcamp</Typography>
 
-                    { (role === "S" || role === "A") && 
-                        (() => {
-                            switch (clickedIndex) {
-                                case 0:
-                                    return <BootcampPage />;
-                                case 1:
-                                    return <StartupPage />;
-                                case 2:
-                                    return <TrainersPage />;
-                                case 3:
-                                    return <JuryPage />;
-                                case 4:
-                                    return <h1>4</h1>;
-                                case 5:
-                                    return <ProfileViewer />;
-                                default:
-                                    return null; // Render nothing for other cases
-                            }
-                        })()
-                    }
+                        <Box sx={{ flexGrow: 1, marginLeft: "40px", marginTop: "50px" }}>
+  <Grid container spacing={2}>
+    {Array.from(Array(20)).map((_, index) => (
+      <Grid item xs={12} sm={6} md={3} key={index}>
+        <Cards />
+      </Grid>
+    ))}
+  </Grid>
+</Box>
+
+
+
+                    </div>
+
                 </Box>
             </Box>
         </ThemeProvider>

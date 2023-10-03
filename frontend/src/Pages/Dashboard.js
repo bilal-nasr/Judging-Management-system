@@ -22,6 +22,7 @@ import StartupPage from './Admin/Startups/StartupsPage';
 import TrainersPage from './Admin/Trainers/TrainersPage';
 import BootcampPage from './Admin/Bootcamps/BootcampPage';
 import ProfileViewer from './Admin/ViewProfile/ProfileViewer';
+import JuryDashboard from './Jury/JuryDashboard'
 
 // function Copyright(props) {
 //   return (
@@ -110,7 +111,9 @@ export default function Dashboard() {
     const toggleDrawer = () => {
         setOpen(!open);
     };
-
+    if(role==="J")
+    return <JuryDashboard/>
+        
     return (
         <ThemeProvider theme={defaultTheme}>
             <Box sx={{ display: 'flex' }}>
@@ -163,7 +166,7 @@ export default function Dashboard() {
                         <MainListItems onItemClick={handleItemClicked} selected={clickedIndex} />
                         <Divider sx={{ my: 1 }} />
 
-                        {(role === "S" && <SecondaryListItems />)}
+                        {(role === "S" && <SecondaryListItems onItemClick={handleItemClicked} selected={clickedIndex}/>)}
 
                     </List>}
 
@@ -202,10 +205,9 @@ export default function Dashboard() {
                                 default:
                                     return null; // Render nothing for other cases
                             }
-                        })()
+                        })
                     }
                 </Box>
             </Box>
         </ThemeProvider>
-    );
-}
+    )};

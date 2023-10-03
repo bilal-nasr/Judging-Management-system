@@ -11,18 +11,21 @@ export function MainListItems({ onItemClick,selected }) {
       <ItemComponent name="trainers" icon="AssignmentIndIcon" index={2} onItemClick={onItemClick} isSelected={selected===2}/>
       <ItemComponent name="Juries" icon="BarChartIcon" index={3} onItemClick={onItemClick} isSelected={selected===3}/>
       <ItemComponent name="Events" icon="LayersIcon" index={4} onItemClick={onItemClick} isSelected={selected===4}/>
-      <ItemComponent name="testing" icon="BugReportIcon" index={5} onItemClick={onItemClick} isSelected={selected===5}/> {/*for testing components*/ }
+      <ItemComponent name="Testing" icon="BugReportIcon" index={5} onItemClick={onItemClick} isSelected={selected===5}/> {/*for testing components*/ }
     </React.Fragment>
   );
 }
 
-export function SecondaryListItems() {
+export function SecondaryListItems({ onItemClick,selected}) {
   return (
     <React.Fragment>
       <ListSubheader component="div" inset>
         For super Admin
       </ListSubheader>
-      <ItemComponent name="Admin" icon="AdminPanelSettingsIcon" />
+      <ItemComponent name="Admin" icon="AdminPanelSettingsIcon" index={6} onItemClick={onItemClick} isSelected={selected===6}/>
+      
+      {/* for admin on toolbar */}
     </React.Fragment>
   );
 }
+  
