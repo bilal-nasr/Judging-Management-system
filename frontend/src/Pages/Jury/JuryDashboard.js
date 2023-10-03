@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 import BasicPopover from '../../Components/DasboardComponents/BasicPopover';
 import Cards from '../../Components/JuryDashboardComponent/Cards'
 import Grid from '@mui/material/Unstable_Grid2';
+
 // function Copyright(props) {
 //   return (
 //     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -35,6 +36,16 @@ export default function Dashboard() {
 
     const user = JSON.parse(localStorage?.getItem("user"))
     const name = user?.name || data?.userData.name;
+
+    const [dataGot,setDataGot] = React.useState(false)
+
+    const getStartups = async () => {
+        try {
+            
+        } catch (error) {
+            
+        }
+    }
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -72,16 +83,14 @@ export default function Dashboard() {
                         <Typography variant="h3" marginTop="40px" marginLeft="40px">Welcome to this bootcamp</Typography>
 
                         <Box sx={{ flexGrow: 1, marginLeft: "40px", marginTop: "50px" }}>
-  <Grid container spacing={2}>
-    {Array.from(Array(20)).map((_, index) => (
-      <Grid item xs={12} sm={6} md={3} key={index}>
-        <Cards />
-      </Grid>
-    ))}
-  </Grid>
-</Box>
-
-
+                            <Grid container spacing={2}>
+                                {Array.from(Array(20)).map((_, index) => (
+                                    <Grid item xs={12} sm={6} md={3} key={index}>
+                                            <Cards />
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        </Box>
 
                     </div>
 
