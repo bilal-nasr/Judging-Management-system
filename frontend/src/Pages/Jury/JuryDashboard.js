@@ -14,14 +14,14 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 //import NotificationsIcon from '@mui/icons-material/Notifications';
-import { MainListItems, SecondaryListItems } from '../Components/DasboardComponents/ListItems';
-import BasicPopover from '../Components/DasboardComponents/BasicPopover';
+import { MainListItems, SecondaryListItems } from '../../Components/DasboardComponents/ListItems';
+import BasicPopover from '../../Components/DasboardComponents/BasicPopover';
 import { useLocation } from "react-router-dom";
-import JuryPage from './Admin/Jury/JuryPage';
-import StartupPage from './Admin/Startups/StartupsPage';
-import TrainersPage from './Admin/Trainers/TrainersPage';
-import BootcampPage from './Admin/Bootcamps/BootcampPage';
-import ProfileViewer from './Admin/ViewProfile/ProfileViewer';
+import JuryPage from '../Admin/Jury/JuryPage';
+import StartupPage from '../Admin/Startups/StartupsPage';
+import TrainersPage from '../Admin/Trainers/TrainersPage';
+import BootcampPage from '../Admin/Bootcamps/BootcampPage';
+import ProfileViewer from '../Admin/ViewProfile/ProfileViewer';
 
 // function Copyright(props) {
 //   return (
@@ -197,8 +197,6 @@ export default function Dashboard() {
                                     return <h1>4</h1>;
                                 case 5:
                                     return <ProfileViewer />;
-                                case 6:
-                                    return <h1>7</h1>
                                 default:
                                     return null; // Render nothing for other cases
                             }

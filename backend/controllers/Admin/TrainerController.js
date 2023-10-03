@@ -14,7 +14,7 @@ exports.getAllTrainers = async (req, res) => {
         console.error(error);
         res.status(500).json({ success: false, message: "Internal server error" });
     }
-};
+}; 
 
 exports.getTrainer = async (req, res) => {
     const id = req.params.id;
