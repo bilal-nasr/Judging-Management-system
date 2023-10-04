@@ -35,7 +35,7 @@ exports.getJury = async (req, res) => {
 
 exports.createJury = async (req, res) => {
     try {
-        const { username, password, name, description } = req.body;
+        const { username, password, name, description,bootcamptype } = req.body;
         const checkUser = await getDBData(
             "SELECT * FROM users WHERE username = ?",
             [username]
@@ -60,11 +60,16 @@ exports.createJury = async (req, res) => {
             "INSERT INTO jury (description, users_userId) VALUES (?, ?)",
             [description, userID[0].userId]
         );
+
+        //TODO: select 
+
+
         if (result.affectedRows === 1 && jury.affectedRows === 1) {
             res.json({ success: true, message: "Jury created successfully" });
         } else {
             res.json({ success: false, message: "Failed to create a jury" });
         }
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: "Internal server error" });
@@ -111,3 +116,4 @@ exports.deleteJury = async (req, res) => {
         res.status(500).json({ success: false, message: "Internal server error" });
     }
 };
+ 

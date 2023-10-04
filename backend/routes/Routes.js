@@ -48,6 +48,7 @@ router.get("/Bootcamp/getBootcamp/:id", BootcampController.getBootcamp)
 router.put("/Bootcamp/updateBootcamp/:id", BootcampController.updateBootcamp)
 router.delete("/Bootcamp/deleteBootcamp/:id", BootcampController.deleteBootcamp)
 router.post("/Bootcamp/createBootcamp", BootcampController.createBootcamp)
+router.get("/Bootcamp/getBootJury/:id",BootcampController.getBootJury)
 
 //--------------------evaluataion----------
 router.post("/evaluation/addGrade", EvaluationController.AddJuryStartupGrade)
