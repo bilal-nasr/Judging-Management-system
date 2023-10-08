@@ -118,10 +118,11 @@ export default function Dashboard() {
         <ThemeProvider theme={defaultTheme}>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
-                <AppBar position="absolute" open={open}>
+                <AppBar position="absolute" open={open} >
                     <Toolbar
                         sx={{
                             pr: '24px', // keep right padding when drawer closed
+                            // backgroundColor:"#00D084"
                         }}
                     >
                         <IconButton
@@ -155,6 +156,7 @@ export default function Dashboard() {
                             alignItems: 'center',
                             justifyContent: 'flex-end',
                             px: [1],
+                     
                         }}
                     >
                         <IconButton onClick={toggleDrawer}>
@@ -164,7 +166,7 @@ export default function Dashboard() {
                     <Divider />
                     {(role === "S" || role === "A") && <List component="nav">
                         <MainListItems onItemClick={handleItemClicked} selected={clickedIndex} />
-                        <Divider sx={{ my: 1 }} />
+                        <Divider sx={{ my: 1}} />
 
                         {(role === "S" && <SecondaryListItems onItemClick={handleItemClicked} selected={clickedIndex}/>)}
 
