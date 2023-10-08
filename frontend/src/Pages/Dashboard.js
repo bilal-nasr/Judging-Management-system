@@ -23,6 +23,7 @@ import TrainersPage from './Admin/Trainers/TrainersPage';
 import BootcampPage from './Admin/Bootcamps/BootcampPage';
 import ProfileViewer from './Admin/ViewProfile/ProfileViewer';
 import JuryDashboard from './Jury/JuryDashboard'
+import StarupEvaluation from './Jury/StartupEvaluation'
 
 // function Copyright(props) {
 //   return (
@@ -200,7 +201,7 @@ export default function Dashboard() {
                             case 4:
                                 return <h1>4</h1>;
                             case 5:
-                                return <ProfileViewer />;
+                                return <StarupEvaluation />;
                             case 6:
                                 return <h1>7</h1>;
                             default:
