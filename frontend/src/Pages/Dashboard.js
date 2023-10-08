@@ -111,9 +111,9 @@ export default function Dashboard() {
     const toggleDrawer = () => {
         setOpen(!open);
     };
-    if(role==="J")
-    return <JuryDashboard/>
-        
+    if (role === "J")
+        return <JuryDashboard />
+
     return (
         <ThemeProvider theme={defaultTheme}>
             <Box sx={{ display: 'flex' }}>
@@ -156,7 +156,7 @@ export default function Dashboard() {
                             alignItems: 'center',
                             justifyContent: 'flex-end',
                             px: [1],
-                     
+
                         }}
                     >
                         <IconButton onClick={toggleDrawer}>
@@ -164,13 +164,13 @@ export default function Dashboard() {
                         </IconButton>
                     </Toolbar>
                     <Divider />
-                    {(role === "S" || role === "A") && <List component="nav">
+                    <List component="nav">
                         <MainListItems onItemClick={handleItemClicked} selected={clickedIndex} />
-                        <Divider sx={{ my: 1}} />
+                        <Divider sx={{ my: 1 }} />
 
-                        {(role === "S" && <SecondaryListItems onItemClick={handleItemClicked} selected={clickedIndex}/>)}
+                        {(role === "S" && <SecondaryListItems onItemClick={handleItemClicked} selected={clickedIndex} />)}
 
-                    </List>}
+                    </List>
 
                 </Drawer>
                 <Box
@@ -187,29 +187,28 @@ export default function Dashboard() {
                 >
                     <Toolbar />
 
-                    { (role === "S" || role === "A") && 
-                        (() => {
-                            switch (clickedIndex) {
-                                case 0:
-                                    return <BootcampPage />;
-                                case 1:
-                                    return <StartupPage />;
-                                case 2:
-                                    return <TrainersPage />;
-                                case 3:
-                                    return <JuryPage />;
-                                case 4:
-                                    return <h1>4</h1>;
-                                case 5:
-                                    return <ProfileViewer />;
-                                case 6:
-                                    return <h1>7</h1>
-                                default:
-                                    return null; // Render nothing for other cases
-                            }
-                        })
-                    }
+                    {(() => {
+                        switch (clickedIndex) {
+                            case 0:
+                                return <BootcampPage />;
+                            case 1:
+                                return <StartupPage />;
+                            case 2:
+                                return <TrainersPage />;
+                            case 3:
+                                return <JuryPage />;
+                            case 4:
+                                return <h1>4</h1>;
+                            case 5:
+                                return <ProfileViewer />;
+                            case 6:
+                                return <h1>7</h1>;
+                            default:
+                                return null; // Render nothing for other cases
+                        }
+                    })()}
                 </Box>
             </Box>
         </ThemeProvider>
-    )};
+    )
+};
