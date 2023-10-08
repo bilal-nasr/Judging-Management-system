@@ -33,7 +33,7 @@ export default function JuryPage() {
     return (
         
         <div style={{ marginTop: "20px" }}>
-            <div style={{ marginTop: "20px", marginLeft: "20px" }}>
+            <div style={{ marginTop: "20px", marginLeft: "20px", }}>
                 <AddJudge />
             </div>
             

@@ -8,11 +8,11 @@ const addJudge = () => {
             <div style={{ margin: "0 8px" }}>
                 <TextField label="Username" sx={{ margin: "0 8px" }} focused />
                 <TextField label="Name" sx={{ margin: "0 8px" }} focused />
-                <TextField label="Role" sx={{ margin: "0 8px" }} focused />
+                <TextField label="password" sx={{ margin: "0 8px" }} focused />
             </div>
             <div style={{  margin: "8px" }}>
-                <Button>ADD</Button>
-                <Button>Update</Button>
+            <Button variant="contained">ADD</Button>
+                
             </div>
         </>
 

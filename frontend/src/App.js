@@ -27,7 +27,7 @@ function App() {
     <Router>
       <Routes>
         <Route
-          path="/profileviewer/:id"
+          path="/profileviewer/:role/:id"
           element={<PrivateRoute element={<ProfileViewer />} />}
         />
 

@@ -137,6 +137,7 @@ export default function TableDataViewer(props) {
         }
     }
     const navigate = useNavigate();
+    const role = "J"
     return (
         <Box sx={{ width: '100%', marginLeft: '10px', marginRight: '20px', display: "table" }} >
             <Paper sx={{ width: '90%', mb: 2 }}>
@@ -158,7 +159,7 @@ export default function TableDataViewer(props) {
                                     </TableCell>
                                     <TableCell align="center">{row.UserName}</TableCell>
                                     <TableCell align="center">
-                                    <Button onClick={() => navigate(`/profileviewer/${row.JudgeId}`)}>Go to ProfileViewer</Button>
+                                    <Button onClick={() => navigate(`/profileviewer/${role}/${row.JudgeId}`)}>Go to ProfileViewer</Button>
 
                                     </TableCell>
                                     {/* <TableCell align="center">

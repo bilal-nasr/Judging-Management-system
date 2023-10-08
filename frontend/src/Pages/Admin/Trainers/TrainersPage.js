@@ -28,8 +28,10 @@ export default function TrainerPage() {
   },[dataGot])
 
   return (
-    <div style={{marginTop:"20px"}}>
+    <div style={{marginTop:"20px",marginLeft: "20px", marginRight:"60px"}}>
+      <div style={{ marginTop: "20px"}}>
       <AddTrainer />
+      </div>
       <br />
       
       {dataGot ? (

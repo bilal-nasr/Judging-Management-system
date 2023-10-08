@@ -28,9 +28,13 @@ export default function BootcampPage() {
   },[dataGot])
 
   return (
-    <div style={{marginTop:"20px"}}>
+    
+    <div style={{marginTop:"20px",marginLeft: "20px", marginRight:"60px"}}>
+    
+      <div style={{ marginTop: "20px"}}>
       <AddBootcamp />
-      <br />
+      </div>
+      <br/>
       
       {dataGot ? (
         <TableDataViewer data={data} />
@@ -39,6 +43,8 @@ export default function BootcampPage() {
                     <CircularProgress sx={{ marginTop: "100px" }} />
                 </div>
       )}
+      
     </div>
+    
   );
 }

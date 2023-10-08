@@ -23,26 +23,26 @@ export default function StartupPage() {
     getAllStartup();
   }, []); // The empty dependency array makes this run once on component mount
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(dataGot)
-  },[dataGot])
+  }, [dataGot])
 
-  
+
   return (
-    
-    <div style={{marginTop:"20px"}}>
-      <AddStartups />
-      <br />
+    <div style={{ marginTop: "20px", marginLeft: "20px", marginRight: "60px" }}>
+      <div style={{ marginTop: "20px" }}>
+        <AddStartups />
+        </div>
+        <br />
+
+        {dataGot ? (
+          <TableDataViewer data={data} />
+        ) : (
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+              <CircularProgress sx={{ marginTop: "100px" }} />
+            </div>
+          )}
       
-      {dataGot ? (
-        <TableDataViewer data={data} />
-      ) :
-      
-      (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                    <CircularProgress sx={{ marginTop: "100px" }} />
-                </div>
-      )}
     </div>
   );
 }
