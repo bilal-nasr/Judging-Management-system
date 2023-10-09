@@ -32,7 +32,7 @@ exports.getJury = async (req, res) => {
         res.status(500).json({ success: false, message: "Internal server error" });
     }
 };
-
+//TODO: test after 
 exports.createJury = async (req, res) => {
     try {
         const { username, password, name, description,bootcamptype } = req.body;

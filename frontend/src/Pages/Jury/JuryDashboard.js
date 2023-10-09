@@ -41,7 +41,7 @@ export default function Dashboard() {
     try {
       const { username } = localStorage.getItem(user.username); // hon la2an l usernam msayav bl local storage as an object fa lahek bade 7ot lal get item user.username
       //hon 3melt import lal api la2an ma b3mel access 3al database
-      const bootcamp = api.get();
+      const bootcamp = api.getbootstartup();
     } catch (error) {}
   };
 
@@ -95,4 +95,5 @@ export default function Dashboard() {
       </Box>
     </ThemeProvider>
   );
+  //
 }
