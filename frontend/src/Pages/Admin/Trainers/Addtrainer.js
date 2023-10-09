@@ -63,16 +63,27 @@ const StyledTextareaAutosize = styled(TextareaAutosize)(
 );
 
 const AddStartups = () => {
-  const [BootcampName, setBootcampName] = React.useState('');
+  const [bootcamp, setBootcamp] = React.useState('');
+  const [name, setName] = React.useState('');
+  const [description,setDescription] = React.useState('')
 
-  const handleChange = (event) => {
-    setBootcampName(event.target.value);
-  };
+
+  React.useEffect(()=>{
+    console.log(bootcamp)
+  },[bootcamp])
+
+  const sendTrainer = async ()=>{
+    try {
+        
+    } catch (error) {
+        
+    }
+  }
   
   return (
     <>
       <div style={{ margin: "0 8px" }}>
-        <MUITextField label="Name" sx={{ margin: "0 8px" }} focused />
+        <MUITextField label="Name" sx={{ margin: "0 8px" }} focused onChange={(e)=>setName(e.target.value)}/>
         
         <StyledTextareaAutosize
           aria-label="Description"
@@ -82,15 +93,16 @@ const AddStartups = () => {
             margin: "0 8px",
             background: 'inherit', // Set background to match TextField
           }}
+          onChange={(e)=>setDescription(e.target.value)}
         />
         <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
           <InputLabel id="demo-select-small-label">Bootcamps</InputLabel>
           <Select
             labelId="demo-select-small-label"
             id="demo-select-small"
-            value={BootcampName}
+            value={bootcamp}
             label="bootcamp"
-            onChange={handleChange}
+            onChange={(e)=>setBootcamp(e.target.value)}
           >
             <MenuItem value="">
               <em>None</em>
@@ -101,7 +113,7 @@ const AddStartups = () => {
           </Select>
         </FormControl>
         <br />
-        <Button variant="contained">ADD</Button>
+        <Button variant="contained" onClick={sendTrainer}>ADD</Button>
       </div>
     </>
   );
