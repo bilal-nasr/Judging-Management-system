@@ -199,11 +199,9 @@ export default function Dashboard() {
                             case 3:
                                 return <JuryPage />;
                             case 4:
-                                return <h1>4</h1>;
+                                return <ProfileViewer />;
                             case 5:
-                                return <StarupEvaluation />;
-                            case 6:
-                                return <h1>7</h1>;
+                                return <h1>5</h1>;
                             default:
                                 return null; // Render nothing for other cases
                         }

@@ -30,7 +30,7 @@ export default function TrainerPage() {
   return (
     <div style={{marginTop:"20px",marginLeft: "20px", marginRight:"60px"}}>
       <div style={{ marginTop: "20px"}}>
-      <AddTrainer />
+      <AddTrainer onDataRefresh={getTrainer} />
       </div>
       <br />
       

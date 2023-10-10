@@ -32,7 +32,7 @@ exports.getJury = async (req, res) => {
         res.status(500).json({ success: false, message: "Internal server error" });
     }
 };
-
+//TODO: test after 
 exports.createJury = async (req, res) => {
     try {
         const { username, password, name, description,bootcamptype } = req.body;
@@ -62,9 +62,13 @@ exports.createJury = async (req, res) => {
         );
 
         //TODO: select 
+        const [juryID]= await getDBData(`select juryId from jury where users_userId=?`,[userID[0].userId])
+        const [bootcampId]= await getDBData(`select bootcampId from bootcamps where type=?`,[bootcamptype])
+
+        const juryBootcamp= await getDBData("insert into jury_has_bootcamps (jury_juryId, bootcamps_bootcampId) values (?,?)",[juryID.juryId, bootcampId.bootcampId])
 
 
-        if (result.affectedRows === 1 && jury.affectedRows === 1) {
+        if (juryBootcamp.affectedRows===1) {
             res.json({ success: true, message: "Jury created successfully" });
         } else {
             res.json({ success: false, message: "Failed to create a jury" });
