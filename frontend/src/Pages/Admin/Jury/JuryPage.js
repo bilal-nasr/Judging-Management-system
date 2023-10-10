@@ -34,7 +34,7 @@ export default function JuryPage() {
         
         <div style={{ marginTop: "20px" }}>
             <div style={{ marginTop: "20px", marginLeft: "20px", }}>
-                <AddJudge />
+                <AddJudge onDataRefresh={getJuries} />
             </div>
             
             <br />

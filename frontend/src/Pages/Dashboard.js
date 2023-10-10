@@ -197,11 +197,10 @@ export default function Dashboard() {
                                 return <TrainersPage />;
                             case 3:
                                 return <JuryPage />;
+                           
                             case 4:
-                                return <h1>4</h1>;
-                            case 5:
                                 return <ProfileViewer />;
-                            case 6:
+                            case 5:
                                 return <h1>7</h1>;
                             default:
                                 return null; // Render nothing for other cases

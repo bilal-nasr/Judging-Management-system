@@ -32,7 +32,7 @@ export default function BootcampPage() {
         <div style={{ marginTop: "20px", marginLeft: "20px", marginRight: "60px" }}>
 
             <div style={{ marginTop: "20px" }}>
-                <AddBootcamp />
+                <AddBootcamp onDataRefresh={getBootcamp}/>
             </div>
             <br />
 

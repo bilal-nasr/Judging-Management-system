@@ -9,7 +9,7 @@ import {
   TextField,
 } from "@mui/material/";
 import { styled } from "@mui/system";
-
+import api from "../../../api";
 const blue = {
   100: "#DAECFF",
   200: "#b6daff",
@@ -62,22 +62,38 @@ const StyledTextareaAutosize = styled(TextareaAutosize)(
   `
 );
 
-const AddStartups = () => {
+const AddStartups = ({onDataRefresh}) => {
   const [StartupName, setStartupName] = React.useState('');
   const [BootcampName, setBootcampName] = React.useState('select');
+const [description, setDescription]=React.useState("");
 
-  const handleChange = (event) => {
-    setStartupName(event.target.value);
-  };
+const sendStartup = async()=>{
+ const response= await api.post("/startup/createStartup",{
+  name:StartupName,
+   description: description,
+    bootcampType: BootcampName
+ })
+ if(response.data.success){
+  console.log("startup added")
+  await onDataRefresh();
+  setStartupName("")
+  setBootcampName("")
+  setDescription("")
+ }else{
 
+ }
+ 
+}
   return (
     <>
       <div style={{ margin: "0 8px" }}>
-        <TextField label="Name" sx={{ margin: "0 8px" }} focused />
+        <TextField label="Name" sx={{ margin: "0 8px" }} value={StartupName} onChange={(e)=>setStartupName(e.target.value)} focused />
         
         <StyledTextareaAutosize
           aria-label="Description"
           placeholder="Description"
+          value={description} 
+          onChange={(e)=>setDescription(e.target.value)}
           minRows={3}
           sx={{
             margin: "0 8px",
@@ -92,7 +108,7 @@ const AddStartups = () => {
             id="demo-select-small"
             value={BootcampName}
             label="bootcamp"
-            onChange={handleChange}
+            onChange={(e)=>setBootcampName(e.target.value)}
           >
             <MenuItem value="">
               <em>None</em>
@@ -105,7 +121,7 @@ const AddStartups = () => {
       </div>
 
       <div style={{ margin: "8px" }}>
-        <Button variant="contained">ADD</Button>
+        <Button variant="contained" onClick={sendStartup}>ADD</Button>
       </div>
     </>
   );

@@ -31,7 +31,7 @@ export default function StartupPage() {
   return (
     <div style={{ marginTop: "20px", marginLeft: "20px", marginRight: "60px" }}>
       <div style={{ marginTop: "20px" }}>
-        <AddStartups />
+        <AddStartups onDataRefresh={getAllStartup}/>
         </div>
         <br />
 

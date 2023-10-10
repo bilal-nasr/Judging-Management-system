@@ -9,6 +9,7 @@ import {
   TextField as MUITextField, // Rename TextField alias to avoid conflicts
 } from "@mui/material/";
 import { styled } from "@mui/system";
+import api from "../../../api";
 
 const blue = {
   100: "#DAECFF",
@@ -62,10 +63,12 @@ const StyledTextareaAutosize = styled(TextareaAutosize)(
   `
 );
 
-const AddStartups = () => {
+
+const AddTrainer = ({onDataRefresh}) => {
   const [bootcamp, setBootcamp] = React.useState('');
   const [name, setName] = React.useState('');
   const [description,setDescription] = React.useState('')
+  
 
 
   React.useEffect(()=>{
@@ -74,7 +77,19 @@ const AddStartups = () => {
 
   const sendTrainer = async ()=>{
     try {
-        
+        const response = await api.post("/trainers/createTrainer",{
+          name:name, 
+          description:description, 
+          bootcampType:bootcamp
+        })
+        if(response.data.success){
+          console.log("Trainer created")
+          onDataRefresh();
+          setBootcamp("")
+          setName("")
+          setDescription("")
+        }
+        else{console.log("failed to create Trainer")}
     } catch (error) {
         
     }
@@ -83,7 +98,7 @@ const AddStartups = () => {
   return (
     <>
       <div style={{ margin: "0 8px" }}>
-        <MUITextField label="Name" sx={{ margin: "0 8px" }} focused onChange={(e)=>setName(e.target.value)}/>
+        <MUITextField label="Name" sx={{ margin: "0 8px" }} focused value={name} onChange={(e)=>setName(e.target.value)}/>
         
         <StyledTextareaAutosize
           aria-label="Description"
@@ -94,6 +109,7 @@ const AddStartups = () => {
             background: 'inherit', // Set background to match TextField
           }}
           onChange={(e)=>setDescription(e.target.value)}
+          value={description}
         />
         <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
           <InputLabel id="demo-select-small-label">Bootcamps</InputLabel>
@@ -119,4 +135,4 @@ const AddStartups = () => {
   );
 };
 
-export default AddStartups;
+export default AddTrainer;

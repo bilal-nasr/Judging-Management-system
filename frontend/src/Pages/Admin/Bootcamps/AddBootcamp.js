@@ -6,7 +6,7 @@ import api from '../../../api';
 
 
 
-const AddBootcamp = () => {
+const AddBootcamp = ({onDataRefresh}) => {
     const [currentYear, setCurrentYear] = useState();
     const [name,setName] = useState('')
     const [type,setType] = useState('')
@@ -34,6 +34,9 @@ const AddBootcamp = () => {
             })
             if(response.data.success){
                 console.log("bootcamp created")
+                onDataRefresh()
+                setName("")
+                setType("")
             }
             else{
                 console.log("failed")
@@ -47,9 +50,9 @@ const AddBootcamp = () => {
         <>
         
         <div style={{ margin: "0 8px" }}>
-            <TextField label="name" sx={{ margin: "0 8px" }} onChange={(e)=>setName(e.target.value)} focused />
+            <TextField label="name" sx={{ margin: "0 8px" }} value={name} onChange={(e)=>setName(e.target.value)} focused />
 
-            <TextField label="type" sx={{ margin: "0 8px" }} onChange={(e)=>setType(e.target.value)} focused />
+            <TextField label="type" sx={{ margin: "0 8px" }} value={type} onChange={(e)=>setType(e.target.value)} focused />
 
             <TextField
                 label="Year"
