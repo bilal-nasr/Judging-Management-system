@@ -23,6 +23,7 @@ import TrainersPage from './Admin/Trainers/TrainersPage';
 import BootcampPage from './Admin/Bootcamps/BootcampPage';
 import ProfileViewer from './Admin/ViewProfile/ProfileViewer';
 import JuryDashboard from './Jury/JuryDashboard'
+import StarupEvaluation from './Jury/StartupEvaluation'
 
 // function Copyright(props) {
 //   return (
