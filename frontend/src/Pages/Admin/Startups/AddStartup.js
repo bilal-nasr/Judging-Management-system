@@ -64,20 +64,20 @@ const StyledTextareaAutosize = styled(TextareaAutosize)(
 
 const AddStartups = ({onDataRefresh}) => {
   const [StartupName, setStartupName] = React.useState('');
-  const [BootcampName, setBootcampName] = React.useState('select');
+  const [Bootcamp, setBootcamp] = React.useState('');
 const [description, setDescription]=React.useState("");
 
 const sendStartup = async()=>{
  const response= await api.post("/startup/createStartup",{
   name:StartupName,
    description: description,
-    bootcampType: BootcampName
+    bootcampType: Bootcamp
  })
  if(response.data.success){
   console.log("startup added")
   await onDataRefresh();
   setStartupName("")
-  setBootcampName("")
+  setBootcamp("")
   setDescription("")
  }else{
 
@@ -106,9 +106,9 @@ const sendStartup = async()=>{
           <Select
             labelId="demo-select-small-label"
             id="demo-select-small"
-            value={BootcampName}
+            value={Bootcamp}
             label="bootcamp"
-            onChange={(e)=>setBootcampName(e.target.value)}
+            onChange={(e) => setBootcamp(e.target.value)} // Update the selected value
           >
             <MenuItem value="">
               <em>None</em>

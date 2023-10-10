@@ -10,10 +10,26 @@ export default function StartupPage() {
 
   const getAllStartup = async () => {
     try {
-      const StartupData = await api.get("/startup/getAllStartups");
+      const startupData = await api.get("/startup/getAllStartups");
+      const startups = startupData.data.data;
+
+      // Use Promise.all to wait for all promises to resolve
+      const modifiedStartups = await Promise.all(
+        startups.map(async (startup) => {
+          const getBootcamp = await api.get(`/Bootcamp/getBootcamp/${startup.bootcamps_bootcampId}`);
+          const bootcampType = getBootcamp.data.data.type;
+          // Add a new key 'bootcampType' with the value from the API response
+          return { ...startup, bootcampType };
+        })
+      );
+
+      console.log(modifiedStartups);
+      // Set the modified array in the state
+      setData(modifiedStartups);
+
+      // Set dataGot to true
       setDataGot(true);
-      setData(StartupData.data.data);
-    } catch (err) {
+    } catch (error) {
       // Handle errors
     }
   };
@@ -24,25 +40,29 @@ export default function StartupPage() {
   }, []); // The empty dependency array makes this run once on component mount
 
   useEffect(() => {
-    console.log(dataGot)
-  }, [dataGot])
-
+    console.log(dataGot);
+  }, [dataGot]);
 
   return (
     <div style={{ marginTop: "20px", marginLeft: "20px", marginRight: "60px" }}>
       <div style={{ marginTop: "20px" }}>
-        <AddStartups onDataRefresh={getAllStartup}/>
-        </div>
-        <br />
+        <AddStartups onDataRefresh={getAllStartup} />
+      </div>
+      <br />
 
-        {dataGot ? (
-          <TableDataViewer data={data} />
-        ) : (
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <CircularProgress sx={{ marginTop: "100px" }} />
-            </div>
-          )}
-      
+      {dataGot ? (
+        <TableDataViewer data={data} />
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CircularProgress sx={{ marginTop: "100px" }} />
+        </div>
+      )}
     </div>
   );
 }

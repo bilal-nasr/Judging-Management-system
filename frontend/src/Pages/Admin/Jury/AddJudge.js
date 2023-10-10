@@ -93,7 +93,7 @@ const AddJudge = ({onDataRefresh}) => {
         console.log("jury created")
         onDataRefresh()
         setUserName("")
-        setUserName("")
+        setName("")
         setPassword("")
         setBootcamp("")
         setDescription("")
@@ -109,18 +109,21 @@ const AddJudge = ({onDataRefresh}) => {
           label="Username"
           sx={{ margin: "0 8px" }}
           onChange={(e) => setUserName(e.target.value)}
+          value= {UserName}
           focused
         />
         <TextField
           label="Name"
           sx={{ margin: "0 8px" }}
           onChange={(e) => setName(e.target.value)}
+          value={Name}
           focused
         />
         <TextField
           label="password"
           sx={{ margin: "0 8px" }}
           onChange={(e) => setPassword(e.target.value)}
+          value={Password}
           focused
         />
 
