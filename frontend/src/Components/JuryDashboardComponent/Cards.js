@@ -4,7 +4,9 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import studentIcon from '../../assets/JuryDashboard/StudentIcon.png'
+import studentIcon from '../../assets/JuryDashboard/StudentIcon.png';
+import { useNavigate } from 'react-router-dom'
+
 
 const cardStyle = {
     maxWidth: 320,
@@ -29,6 +31,7 @@ const contentStyle = {
 
 const MyCard = (props) => {
     const [isHovered, setIsHovered] = useState(false);
+    const navigate = useNavigate();
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -39,7 +42,9 @@ const MyCard = (props) => {
     };
 
     const handleClick = (id) => {
-        console.log(id)
+        const user = JSON.parse(localStorage.getItem("user"))
+        const jUname = user.username
+        navigate(`/startup/${jUname}/${id}`)
     }
 
     return (
