@@ -119,23 +119,6 @@ export default function TableDataViewer(props) {
     }, [order, orderBy, page, rowsPerPage]);
 
 
-    //----------------Delete and update functions---------------
-
-    const handleDelete = async (id)=>{
-        try {
-        
-        } catch (error) {
-            
-        }
-    }
-
-    const handleUpdate= async (id)=>{
-        try {
-        
-        } catch (error) {
-            
-        }
-    }
     const navigate = useNavigate();
     const role = "J"
     return (

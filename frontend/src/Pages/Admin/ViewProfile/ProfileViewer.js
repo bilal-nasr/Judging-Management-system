@@ -9,6 +9,7 @@ import {
     Avatar,
     TextField,
     TextareaAutosize,
+    InputLabel
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -95,7 +96,11 @@ export default function ProfileViewer() {
         try {
             if (role === "J") {
                 response = await api.get(`/jury/getJury/${id}`)
-                console.log(response)
+                const judge = response.data.data
+                console.log(judge)
+                setUsername(judge.UserUsername)
+                setName(judge.UserName)
+                setDescription(judge.JudgeDescription)
             }
             else if (role === "S") {
                 response = await api.get(`/startup/getStartup/${id}`)
@@ -107,6 +112,50 @@ export default function ProfileViewer() {
             }
         } catch (error) {
 
+        }
+    }
+
+    
+    const handleDelete = async (id)=>{
+
+        let response;
+        try {
+            if (role === "J") {
+                response = await api.delete(`/jury/deleteJury/${id}`)
+                if(response.data.success){
+                    console.log("Jury was deleted")
+                    navigate(-1)
+                }
+            }
+            else if (role === "S") {
+                response = await api.delete(`/startup/deleteStartup/${id}`)
+            } else if (role === "T") {
+                response = await api.delete(`/trainers/deleteTrainer/${id}`)
+            }
+            else if (role === "A") {
+                response = await api.delete(`/admin/deleteAdmin/${id}`)
+            }
+        } catch (error) {
+            
+        }
+    }
+
+    const handleUpdate= async (id)=>{
+        let response;
+        try {
+            if (role === "J") {
+                response = await api.put(`/jury/updateJury/${id}`)
+            }
+            else if (role === "S") {
+                response = await api.put(`/startup/updateStartup/${id}`)
+            } else if (role === "T") {
+                response = await api.put(`/trainers/updateTrainer/${id}`)
+            }
+            else if (role === "A") {
+                response = await api.put(`/admin/updateAdmin/${id}`)
+            }
+        } catch (error) {
+            
         }
     }
 
@@ -123,10 +172,9 @@ export default function ProfileViewer() {
                 justifyContent: 'center',
                 alignItems: 'center',
                 marginTop: '20px',
-
             }}
         >
-            <Paper sx={{ width: '50vw', height: '100vh', display: 'grid', marginTop:'30px' }}>
+            <Paper sx={{ width: '50vw', height: '100vh', display: 'grid', }}>
                 {/* Place your content inside the Paper */}
                 <Box
                     sx={{
@@ -136,7 +184,6 @@ export default function ProfileViewer() {
                         justifyContent: '', // You can set this to 'center' or 'flex-start' as needed
                         height: '100%',
                         padding: 5,
-                        margin: 5,
                         maxWidth: '45vw',
                         overflow: 'hidden', // Add this to enable scrolling when content overflows
                         boxSizing: 'border-box', // Add this to include padding in the width and height
@@ -165,12 +212,12 @@ export default function ProfileViewer() {
                     >
                         <PersonIcon fontSize="large" />
                     </Avatar>
-
                     <TextField
                         required
                         placeholder="username"
                         onChange={(e) => setUsername(e.target.value)}
                         value={username}
+                        label = "username"
                     />
                     <br />
                     {(role === "J" || role === "A") &&
@@ -179,6 +226,7 @@ export default function ProfileViewer() {
                             placeholder="password"
                             onChange={(e) => setPassword(e.target.value)}
                             value={password}
+                            label = "password"
                         />
                     }
                     <br />
@@ -187,6 +235,7 @@ export default function ProfileViewer() {
                         placeholder="name"
                         onChange={(e) => setName(e.target.value)}
                         value={name}
+                        label = "name"
                     />
                     <br />
                     <StyledTextareaAutosize
@@ -201,8 +250,8 @@ export default function ProfileViewer() {
                     />
                     <br />
                     <div style={{ display: 'flex', gap: '10px' }}>
-                        <Button>Update</Button>
-                        <Button startIcon={<DeleteIcon />}>
+                        <Button onClick={()=>handleUpdate(id)}>Update</Button>
+                        <Button onClick={()=>handleDelete(id)} startIcon={<DeleteIcon />}>
                             Delete
                         </Button>
                     </div>

@@ -106,11 +106,22 @@ exports.updateJury = async (req, res) => {
 exports.deleteJury = async (req, res) => {
     try {
         const { id } = req.params;
-        const result = await getDBData(
-            "DELETE FROM jury WHERE users_userId = ?",
+
+        const [userId] = await getDBData("select users_userId from jury where juryId=?",[id])
+        const result2 = await getDBData(
+            "DELETE FROM jury_has_bootcamps WHERE jury_juryId= ?",
             [id]
         );
-        if (result.affectedRows === 1) {
+        const result = await getDBData(
+            "DELETE FROM jury WHERE users_userId = ?",
+            [userId.users_userId]
+        );
+        
+        const userResult = await getDBData(
+            "DELETE FROM users WHERE userId = ?",
+            [userId.users_userId]
+        );
+        if (result2.affectedRows === 1 && result.affectedRows === 1 && userResult.affectedRows === 1) {
             res.json({ success: true, message: "Jury deleted successfully" });
         } else {
             res.json({ success: false, message: "Failed to delete the jury" });
