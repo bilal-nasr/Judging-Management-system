@@ -12,7 +12,7 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { IconButton } from '@mui/material';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {Button} from '@mui/material';
 
 
@@ -113,25 +113,7 @@ export default function TableDataViewer(props) {
         );
     }, [order, orderBy, page, rowsPerPage]);
 
-
-    //----------------Delete and update functions---------------
-
-    const handleDelete = async (id) => {
-        try {
-
-        } catch (error) {
-
-        }
-    }
-
-    const handleUpdate = async (id) => {
-        try {
-
-        } catch (error) {
-
-        }
-    }
-
+    const navigate = useNavigate();
     return (
         <Box sx={{ width: '100%', marginLeft: '10px', marginRight: '20px', display: "table" }} >
             <Paper sx={{ width: '100%', mb: 2 }}>
@@ -155,7 +137,7 @@ export default function TableDataViewer(props) {
                                     <TableCell align="center">{row.bootcamp_name}</TableCell>
                                     
                                     <TableCell align="center">
-                                    <Button onClick={() => Navigate (`/profileviewer/${row.JudgeId}`)}>Go to ProfileViewer</Button>
+                                    <Button onClick={() => navigate (`/profileviewer/T/${row.instructorsId}`)}>Go to ProfileViewer</Button>
 
                                     </TableCell>
                                     

@@ -84,6 +84,8 @@ exports.updateJury = async (req, res) => {
     try {
         const { id } = req.params;
         const { username, password, name, description } = req.body;
+
+        
         const result = await getDBData(
             "UPDATE users SET username = ?, password = ?, name = ? WHERE userId = ?",
             [username, password, name, id]
