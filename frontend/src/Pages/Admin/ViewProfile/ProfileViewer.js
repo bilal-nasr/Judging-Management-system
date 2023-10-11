@@ -110,6 +110,10 @@ export default function ProfileViewer() {
                 setDescription(startup?.description)
             } else if (role === "T") {
                 response = await api.get(`/trainers/getTrainer/${id}`)
+                const trainer = response.data.data
+                console.log(trainer)
+                setName(trainer?.instructor_name);
+                setDescription(trainer?.instructor_description)
             }
             else if (role === "A") {
                 response = await api.get(`/admin/getAdmin/${id}`)
@@ -139,6 +143,10 @@ export default function ProfileViewer() {
                 }
             } else if (role === "T") {
                 response = await api.delete(`/trainers/deleteTrainer/${id}`)
+                if (response.data.success) {
+                    console.log("trainer was deleted")
+                    navigate(-1)
+                }
             }
             else if (role === "A") {
                 response = await api.delete(`/admin/deleteAdmin/${id}`)
