@@ -160,15 +160,49 @@ export default function ProfileViewer() {
         let response;
         try {
             if (role === "J") {
-                response = await api.put(`/jury/updateJury/${id}`)
+                response = await api.put(`/jury/updateJury/${id}`,{
+                    username: username,
+                    password: password,
+                    name : name,
+                    description:description
+                })
+                console.log(response.data)
+                if(response.data.success){
+                    console.log(response.data.message)
+                    getData()
+                }
             }
             else if (role === "S") {
-                response = await api.put(`/startup/updateStartup/${id}`)
+                response = await api.put(`/startup/updateStartup/${id}`,{
+                    name : name,
+                    description:description
+                })
+                console.log(response.data)
+                if(response.data.success){
+                    console.log(response.data.message)
+                    getData()
+                }
             } else if (role === "T") {
-                response = await api.put(`/trainers/updateTrainer/${id}`)
+                response = await api.put(`/trainers/updateTrainer/${id}`,{
+                    name : name,
+                    description:description
+                })
+                if(response.data.success){
+                    console.log(response.data.message)
+                    getData()
+                }
             }
             else if (role === "A") {
-                response = await api.put(`/admin/updateAdmin/${id}`)
+                response = await api.put(`/admin/updateAdmin/${id}`,{
+                    username: username,
+                    password: password,
+                    name : name,
+                    description:description
+                })
+                if(response.data.success){
+                    console.log(response.data.message)
+                    getData()
+                }
             }
         } catch (error) {
 

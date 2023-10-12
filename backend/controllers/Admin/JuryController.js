@@ -85,15 +85,26 @@ exports.updateJury = async (req, res) => {
         const { id } = req.params;
         const { username, password, name, description } = req.body;
 
-        
-        const result = await getDBData(
-            "UPDATE users SET username = ?, password = ?, name = ? WHERE userId = ?",
-            [username, password, name, id]
-        );
+        const [userId] = await getDBData("select users_userId from jury where juryId = ? ",[id])
+        let result;
+        if(password == ""){
+             result = await getDBData(
+                "UPDATE users SET username = ?, name = ? WHERE userId = ?",
+                [username, name, userId.users_userId]
+            );
+        }
+        else{
+            const hashedPassword = await bcrypt.hash(password, 10);
+             result = await getDBData(
+                "UPDATE users SET username = ?, password = ?, name = ? WHERE userId = ?",
+                [username, hashedPassword, name, userId.users_userId]
+            );
+        }
         const jury = await getDBData(
             "UPDATE jury SET description = ? WHERE users_userId = ?",
-            [description, id]
+            [description, userId.users_userId]
         );
+
         if (result.affectedRows === 1 && jury.affectedRows === 1) {
             res.json({ success: true, message: "Jury updated successfully" });
         } else {
