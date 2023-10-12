@@ -21,11 +21,6 @@ const headCells = [
     label: "Name",
   },
   {
-    id: "Description",
-    numeric: false,
-    label: "Description",
-  },
-  {
     id: "Bootcamp",
     numeric: false,
     label: "Bootcamp",
@@ -36,41 +31,43 @@ const headCells = [
 ];
 
 function EnhancedTableHead(props) {
-  const { order, orderBy, onRequestSort } = props;
+    const { order, orderBy, onRequestSort } = props;
 
-  const createSortHandler = (property) => (event) => {
-    onRequestSort(event, property);
-  };
+    const createSortHandler = (property) => (event) => {
+        onRequestSort(event, property);
+    };
 
-  return (
-    <TableHead>
-      <TableRow>
-        {headCells.map((headCell) => (
-          <TableCell
-            key={headCell.id}
-            align={headCell.numeric ? "right" : "center"}
-          >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : "asc"}
-              onClick={createSortHandler(headCell.id)}
-            >
-              {headCell.label}
-              {orderBy === headCell.id ? (
-                <span
-                  style={{
-                    display: "none",
-                  }}
-                >
-                  {order === "desc" ? "sorted descending" : "sorted ascending"}
-                </span>
-              ) : null}
-            </TableSortLabel>
-          </TableCell>
-        ))}
-      </TableRow>
-    </TableHead>
-  );
+    return (
+        <TableHead >
+            <TableRow key={0}>
+                {headCells.map((headCell) => (
+                    <TableCell
+                        key={headCell.id}
+                        align={headCell.numeric ? 'right' : 'center'}
+                    >
+
+                        <TableSortLabel
+                            active={orderBy === headCell.id}
+                            direction={orderBy === headCell.id ? order : 'asc'}
+                            onClick={createSortHandler(headCell.id)}
+                            style={{ fontFamily: 'Arial', fontSize: '16px', fontWeight: 'bold' }}
+                        >
+                            {headCell.label}
+                            {orderBy === headCell.id ? (
+                                <span
+                                    style={{
+                                        display: 'none',
+                                    }}
+                                >
+                                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                                </span>
+                            ) : null}
+                        </TableSortLabel>
+                    </TableCell>
+                ))}
+            </TableRow>
+        </TableHead>
+    )
 }
 
 export default function TableDataViewer(props) {
@@ -141,7 +138,6 @@ export default function TableDataViewer(props) {
               {visibleRows.map((row, index) => (
                 <TableRow key={row.startupId} sx={{ cursor: "pointer" }}>
                   <TableCell align="center">{row.name}</TableCell>
-                  <TableCell align="center">{row.description}</TableCell>
                   <TableCell align="center">{row.bootcampType}</TableCell>
                   <TableCell align="center">
                     {/* <IconButton aria-label="Edit" onClick={()=>handleUpdate(row.starupId)}>

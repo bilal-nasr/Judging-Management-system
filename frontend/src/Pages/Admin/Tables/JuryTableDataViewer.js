@@ -12,9 +12,6 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
-
-
 let rows = [];
 
 const headCells = [

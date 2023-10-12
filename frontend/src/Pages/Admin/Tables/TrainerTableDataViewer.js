@@ -39,7 +39,7 @@ function EnhancedTableHead(props) {
 
     return (
         <TableHead >
-            <TableRow >
+            <TableRow key={0}>
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
@@ -50,6 +50,7 @@ function EnhancedTableHead(props) {
                             active={orderBy === headCell.id}
                             direction={orderBy === headCell.id ? order : 'asc'}
                             onClick={createSortHandler(headCell.id)}
+                            style={{ fontFamily: 'Arial', fontSize: '16px', fontWeight: 'bold' }}
                         >
                             {headCell.label}
                             {orderBy === headCell.id ? (
@@ -68,7 +69,6 @@ function EnhancedTableHead(props) {
         </TableHead>
     )
 }
-
 export default function TableDataViewer(props) {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('name');
