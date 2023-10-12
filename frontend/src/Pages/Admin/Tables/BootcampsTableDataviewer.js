@@ -160,7 +160,7 @@ export default function TableDataViewer(props) {
                   <TableCell align="center">{row.year}</TableCell>
 
                   <TableCell align="center">
-                    <button onClick={() => navigate(`/StartupBootcampViewer`)}>
+                    <button onClick={() => navigate(`/StartupBootcampViewer/`)}>
                       Go to BootcampPage
                     </button>
                   </TableCell>
