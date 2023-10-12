@@ -13,7 +13,7 @@ import TableSortLabel from "@mui/material/TableSortLabel";
 // import EditIcon from "@mui/icons-material/Edit";
 // import { IconButton } from "@mui/material";
 
-// import { Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 let rows = [];
@@ -120,15 +120,6 @@ export default function TableDataViewer(props) {
 
   //----------------Delete and update functions---------------
 
-  const handleDelete = async (id) => {
-    try {
-    } catch (error) {}
-  };
-
-  const handleUpdate = async (id) => {
-    try {
-    } catch (error) {}
-  };
   const navigate = useNavigate();
 
   return (
@@ -160,9 +151,9 @@ export default function TableDataViewer(props) {
                   <TableCell align="center">{row.year}</TableCell>
 
                   <TableCell align="center">
-                    <button onClick={() => navigate(`/StartupBootcampViewer/`)}>
+                    <Button onClick={() => navigate(`/StartupBootcampViewer/${row.bootcampId}`)}>
                       Go to BootcampPage
-                    </button>
+                    </Button>
                   </TableCell>
 
                   {/* <TableCell align="center">
