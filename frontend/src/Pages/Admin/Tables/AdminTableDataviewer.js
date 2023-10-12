@@ -12,6 +12,9 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
+
+
 let rows = [];
 
 const headCells = [
@@ -26,7 +29,7 @@ const headCells = [
         label: 'Name',
     },
     {
-        id:"extra"
+        id: "extra"
     },
 ];
 
@@ -114,7 +117,7 @@ export default function TableDataViewer(props) {
 
 
     const navigate = useNavigate();
-    const role = "J"
+    const role = "A"
     return (
         <Box sx={{ width: '100%', marginLeft: '10px', marginRight: '20px', display: "table" }} >
             <Paper sx={{ width: '90%', mb: 2 }}>
@@ -131,12 +134,12 @@ export default function TableDataViewer(props) {
                         />
                         <TableBody >
                             {visibleRows.map((row, index) => (
-                                <TableRow key={row.JudgeId} sx={{ cursor: 'pointer' }}>
-                                    <TableCell align="center">{row.UserUsername}
+                                <TableRow key={row.userId} sx={{ cursor: 'pointer' }}>
+                                    <TableCell align="center">{row.username}
                                     </TableCell>
-                                    <TableCell align="center">{row.UserName}</TableCell>
+                                    <TableCell align="center">{row.user_name}</TableCell>
                                     <TableCell align="center">
-                                    <Button onClick={() => navigate(`/profileviewer/${role}/${row.JudgeId}`)}>Go to ProfileViewer</Button>
+                                        <Button onClick={() => navigate(`/profileviewer/${role}/${row.userId}`)}>Go to ProfileViewer</Button>
 
                                     </TableCell>
                                     {/* <TableCell align="center">

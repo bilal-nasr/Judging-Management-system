@@ -22,7 +22,9 @@ export default function BasicPopover(props) {
 
     const handleSignOut = () => {
         Auth.deAuthenticate()
-        navigate("/login")
+        setTimeout(()=>{
+            navigate("/login")
+        },[1000])
         return;
     }
 

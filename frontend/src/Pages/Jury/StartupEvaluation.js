@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../../api";
 import { Button, Paper, Typography, Radio, RadioGroup, FormControl, FormControlLabel, Container } from "@mui/material";
+import {useNavigate} from 'react-router-dom'
 
 export default function StartupEvaluation() {
   const [criterias, setCriterias] = useState([]);
@@ -19,7 +20,7 @@ export default function StartupEvaluation() {
   useEffect(() => {
     getCriteria();
   }, []);
-
+  const navigate = useNavigate();
   return (
     <Container maxWidth="sm">
       <Typography variant="h4" gutterBottom>
@@ -43,7 +44,7 @@ export default function StartupEvaluation() {
             </FormControl>
           </Paper>
         ))}
-      <Button variant="contained" color="primary">
+      <Button variant="contained" color="primary" onClick={()=>{navigate(-1)}}>
         Submit
       </Button>
     </Container>

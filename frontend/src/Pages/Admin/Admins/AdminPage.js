@@ -1,20 +1,19 @@
 import CircularProgress from '@mui/material/CircularProgress';
 import React, { useEffect, useState } from "react";
 import api from "../../../api";
-import TableDataViewer from "../Tables/JuryTableDataViewer";
-import AddJudge from "./AddJudge";
-//import BackArrow from "../../../Components/BackArrow"
+import TableDataViewer from "../Tables/AdminTableDataviewer";
+import AddAdmin from "./AddAdmin";
 
 
-export default function JuryPage() {
+export default function AdminPage() {
     const [dataGot, setDataGot] = useState(false);
     const [data, setData] = useState([]);
 
-    const getJuries = async () => {
+    const getAllAdmins = async () => {
         try {
-            const juryData = await api.get("/jury/getAllJuries");
+            const AdminData = await api.get("/admin/getAllAdmin");
             setDataGot(true);
-            setData(juryData.data.data);
+            setData(AdminData.data.data);
         } catch (err) {
             // Handle errors
         }
@@ -22,7 +21,7 @@ export default function JuryPage() {
 
     // Use useEffect to call getJuries when the component is first mounted
     useEffect(() => {
-        getJuries();
+        getAllAdmins();
     }, []); // The empty dependency array makes this run once on component mount
 
     useEffect(() => {
@@ -33,7 +32,7 @@ export default function JuryPage() {
 
         <div style={{ marginTop: "20px" }}>
             <div style={{ marginTop: "20px", marginLeft: "20px", }}>
-                <AddJudge onDataRefresh={getJuries} />
+                <AddAdmin onDataRefresh={getAllAdmins} />
             </div>
 
             <br />

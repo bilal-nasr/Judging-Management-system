@@ -1,43 +1,38 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import TablePagination from '@mui/material/TablePagination';
-import Paper from '@mui/material/Paper';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import { IconButton } from '@mui/material';
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import TableSortLabel from "@mui/material/TableSortLabel";
+import * as React from "react";
 
-import { Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 let rows = [];
 
 const headCells = [
     {
-        id: 'Name',
+        id: "Name",
         numeric: false,
-        label: 'Name',
+        label: "Name",
     },
     {
-        id: 'Type',
+        id: "Type",
         numeric: false,
-        label: 'Type',
+        label: "Type",
     },
     {
-        id: 'Year',
-        numeric: true,
-        // year is numeric cant be false
-        label: 'Year',
+        id: "Year",
+        numeric: false,
+        label: "Year",
     },
     {
-        id: "extra"
+        id: "extra",
     },
 ];
 
@@ -50,7 +45,7 @@ function EnhancedTableHead(props) {
 
     return (
         <TableHead >
-            <TableRow key={1} >
+            <TableRow key={0}>
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
@@ -61,6 +56,7 @@ function EnhancedTableHead(props) {
                             active={orderBy === headCell.id}
                             direction={orderBy === headCell.id ? order : 'asc'}
                             onClick={createSortHandler(headCell.id)}
+                            style={{ fontFamily: 'Arial', fontSize: '16px', fontWeight: 'bold' }}
                         >
                             {headCell.label}
                             {orderBy === headCell.id ? (
@@ -85,8 +81,9 @@ export default function TableDataViewer(props) {
     const [orderBy, setOrderBy] = React.useState('name');
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
-    rows = props?.data
+    rows = props.data
     console.log(rows)
+    console.log(rows.length)
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
@@ -121,28 +118,18 @@ export default function TableDataViewer(props) {
         );
     }, [order, orderBy, page, rowsPerPage]);
 
-
-    //----------------Delete and update functions---------------
-
-    const handleDelete = async (id)=>{
-        try {
-        
-        } catch (error) {
-            
-        }
-    }
-
-    const handleUpdate= async (id)=>{
-        try {
-        
-        } catch (error) {
-            
-        }
-    }
     const navigate = useNavigate();
+
     return (
-        <Box sx={{ width: '100%', marginLeft: '10px', marginRight: '20px', display: "table" }} >
-            <Paper sx={{ width: '100%', mb: 2 }}>
+        <Box
+            sx={{
+                width: "100%",
+                marginLeft: "10px",
+                marginRight: "20px",
+                display: "table",
+            }}
+        >
+            <Paper sx={{ width: "100%", mb: 2 }}>
                 <TableContainer>
                     <Table
                         sx={{ minWidth: 750 }}
@@ -153,19 +140,18 @@ export default function TableDataViewer(props) {
                             order={order}
                             orderBy={orderBy}
                             onRequestSort={handleRequestSort}
-
                         />
-                        <TableBody >
+                        <TableBody>
                             {visibleRows.map((row, index) => (
-                                <TableRow key={row.bootcampId} sx={{ cursor: 'pointer' }}>
-                                    <TableCell align="center">{row.name}
-                                    </TableCell>
+                                <TableRow key={row.bootcampId} sx={{ cursor: "pointer" }}>
+                                    <TableCell align="center">{row.name}</TableCell>
                                     <TableCell align="center">{row.type}</TableCell>
                                     <TableCell align="center">{row.year}</TableCell>
 
                                     <TableCell align="center">
-                                    <Button onClick={() => navigate(`/profileviewer/${row.bootcampId}`)}>Go to ProfileViewer</Button>
-
+                                        <Button onClick={() => navigate(`/StartupBootcampViewer/${row.bootcampId}`)}>
+                                            Go to BootcampPage
+                                        </Button>
                                     </TableCell>
 
                                     {/* <TableCell align="center">
@@ -176,7 +162,6 @@ export default function TableDataViewer(props) {
                                             <DeleteIcon />
                                         </IconButton>
                                     </TableCell> */}
-                                    
                                 </TableRow>
                             ))}
                         </TableBody>

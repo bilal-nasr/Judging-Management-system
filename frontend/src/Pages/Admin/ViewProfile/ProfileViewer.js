@@ -9,7 +9,7 @@ import {
     Avatar,
     TextField,
     TextareaAutosize,
-    InputLabel
+    //InputLabel
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -110,9 +110,18 @@ export default function ProfileViewer() {
                 setDescription(startup?.description)
             } else if (role === "T") {
                 response = await api.get(`/trainers/getTrainer/${id}`)
+                const trainer = response.data.data
+                console.log(trainer)
+                setName(trainer?.instructor_name);
+                setDescription(trainer?.instructor_description)
             }
             else if (role === "A") {
                 response = await api.get(`/admin/getAdmin/${id}`)
+                const admin = response.data.data
+                console.log(admin)
+                setUsername(admin?.UserUsername)
+                setName(admin?.UserName)
+                setDescription(admin?.JudgeDescription)
             }
         } catch (error) {
 
@@ -127,18 +136,25 @@ export default function ProfileViewer() {
             if (role === "J") {
                 response = await api.delete(`/jury/deleteJury/${id}`)
                 if (response.data.success) {
-                    console.log("Jury was deleted")
+                    console.log(response.data.message)
                     navigate(-1)
                 }
             }
             else if (role === "S") {
                 response = await api.delete(`/startup/deleteStartup/${id}`)
                 if (response.data.success) {
-                    console.log("Startup was deleted")
+                    console.log(response.data.message)
                     navigate(-1)
+                }
+                else{
+                    console.log(response.data.message)
                 }
             } else if (role === "T") {
                 response = await api.delete(`/trainers/deleteTrainer/${id}`)
+                if (response.data.success) {
+                    console.log(response.data.message)
+                    navigate(-1)
+                }
             }
             else if (role === "A") {
                 response = await api.delete(`/admin/deleteAdmin/${id}`)
@@ -152,15 +168,49 @@ export default function ProfileViewer() {
         let response;
         try {
             if (role === "J") {
-                response = await api.put(`/jury/updateJury/${id}`)
+                response = await api.put(`/jury/updateJury/${id}`,{
+                    username: username,
+                    password: password,
+                    name : name,
+                    description:description
+                })
+                console.log(response.data)
+                if(response.data.success){
+                    console.log(response.data.message)
+                    getData()
+                }
             }
             else if (role === "S") {
-                response = await api.put(`/startup/updateStartup/${id}`)
+                response = await api.put(`/startup/updateStartup/${id}`,{
+                    name : name,
+                    description:description
+                })
+                console.log(response.data)
+                if(response.data.success){
+                    console.log(response.data.message)
+                    getData()
+                }
             } else if (role === "T") {
-                response = await api.put(`/trainers/updateTrainer/${id}`)
+                response = await api.put(`/trainers/updateTrainer/${id}`,{
+                    name : name,
+                    description:description
+                })
+                if(response.data.success){
+                    console.log(response.data.message)
+                    getData()
+                }
             }
             else if (role === "A") {
-                response = await api.put(`/admin/updateAdmin/${id}`)
+                response = await api.put(`/admin/updateAdmin/${id}`,{
+                    username: username,
+                    password: password,
+                    name : name,
+                    description:description
+                })
+                if(response.data.success){
+                    console.log(response.data.message)
+                    getData()
+                }
             }
         } catch (error) {
 
@@ -169,7 +219,7 @@ export default function ProfileViewer() {
 
     useEffect(() => {
         getData()
-    }, [])
+    }, )
 
 
     return (

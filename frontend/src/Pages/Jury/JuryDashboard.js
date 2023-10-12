@@ -9,7 +9,7 @@ import { useLocation } from "react-router-dom";
 import BasicPopover from "../../Components/DasboardComponents/BasicPopover";
 import Cards from "../../Components/JuryDashboardComponent/Cards";
 import Grid from "@mui/material/Unstable_Grid2";
-import api from "../../api"; // hon ma feye a3mel connect lal databse bl frontend
+// import api from "../../api"; // hon ma feye a3mel connect lal databse bl frontend
 
 // function Copyright(props) {
 //   return (
@@ -37,13 +37,13 @@ export default function Dashboard() {
 
   // const [dataGot,setDataGot] = React.useState(false)
   //TODO: get the startups of the bootcamp that the jury is evaluating
-  const getStartups = async () => {
-    try {
-      const { username } = localStorage.getItem(user.username); // hon la2an l usernam msayav bl local storage as an object fa lahek bade 7ot lal get item user.username
-      //hon 3melt import lal api la2an ma b3mel access 3al database
-      const bootcamp = api.getbootstartup();
-    } catch (error) {}
-  };
+//   const getStartups = async () => {
+//     try {
+//       const { username } = localStorage.getItem(user.username); // hon la2an l usernam msayav bl local storage as an object fa lahek bade 7ot lal get item user.username
+//       //hon 3melt import lal api la2an ma b3mel access 3al database
+//       const bootcamp = api.getbootstartup();
+//     } catch (error) {}
+//   };
 
   return (
     <ThemeProvider theme={defaultTheme}>
