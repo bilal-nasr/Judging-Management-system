@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -9,10 +10,6 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import * as React from "react";
-// import DeleteIcon from "@mui/icons-material/Delete";
-// import EditIcon from "@mui/icons-material/Edit";
-// import { IconButton } from "@mui/material";
-import { Button } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 
 let rows = [];
@@ -116,17 +113,6 @@ export default function TableDataViewer(props) {
       .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
   }, [order, orderBy, page, rowsPerPage]);
 
-  //----------------Delete and update functions---------------
-
-  const handleDelete = async (id) => {
-    try {
-    } catch (error) {}
-  };
-
-  const handleUpdate = async (id) => {
-    try {
-    } catch (error) {}
-  };
 
   const navigate = useNavigate();
   const role = "S"

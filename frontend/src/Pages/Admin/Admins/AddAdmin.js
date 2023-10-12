@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import {
-    Select,
-    MenuItem,
-    TextareaAutosize,
     FormControl,
-    InputLabel,
+    TextareaAutosize
 } from "@mui/material/";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import { styled } from "@mui/system";
+import React, { useEffect, useState } from "react";
 import api from "../../../api";
 
 const blue = {
@@ -86,6 +83,7 @@ const AddAdmin = ({ onDataRefresh }) => {
                 description: description,
 
             });
+            console.log(bootcamp)
             if (response.data.success) {
                 console.log("Admin created")
                 onDataRefresh()

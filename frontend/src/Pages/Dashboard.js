@@ -9,11 +9,8 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-//import Badge from '@mui/material/Badge';
-//import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-//import NotificationsIcon from '@mui/icons-material/Notifications';
 import { MainListItems, SecondaryListItems } from '../Components/DasboardComponents/ListItems';
 import BasicPopover from '../Components/DasboardComponents/BasicPopover';
 import { useLocation } from "react-router-dom";
@@ -23,7 +20,6 @@ import TrainersPage from './Admin/Trainers/TrainersPage';
 import BootcampPage from './Admin/Bootcamps/BootcampPage';
 import ProfileViewer from './Admin/ViewProfile/ProfileViewer';
 import JuryDashboard from './Jury/JuryDashboard'
-import StarupEvaluation from './Jury/StartupEvaluation'
 import AdminPage from './Admin/Admins/AdminPage';
 
 // function Copyright(props) {

@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import AddAdmin from "./AddAdmin";
-import TableDataViewer from "../Tables/AdminTableDataviewer";
-import api from "../../../api";
 import CircularProgress from '@mui/material/CircularProgress';
-import { Link } from 'react-router-dom';
-//import BackArrow from "../../../Components/BackArrow"
+import React, { useEffect, useState } from "react";
+import api from "../../../api";
+import TableDataViewer from "../Tables/AdminTableDataviewer";
+import AddAdmin from "./AddAdmin";
 
 
 export default function AdminPage() {
