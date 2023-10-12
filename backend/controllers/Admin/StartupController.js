@@ -52,12 +52,14 @@ exports.updateStartup = async (req, res) => {
 exports.deleteStartup = async (req, res) => {
     const id = req.params.id;
     try {
+        const delete1 = await startupdb("DELETE FROM startup_criteria WHERE startup_id = ?",[parseInt(id)])
         const result = await startupdb("DELETE FROM startups WHERE startupId = ?", [id]);
-        if (result.affectedRows > 0) {
-            res.json({ success: true, message: "Startup deleted successfully" });
-        } else {
-            res.json({ success: false, message: "Startup not found or not deleted" });
-        }
+            if (result.affectedRows > 0) {
+                res.json({ success: true, message: "Startup deleted successfully" });
+            } else {
+                res.json({ success: false, message: "Startup not found or not deleted" });
+            }
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: "Internal server error" });

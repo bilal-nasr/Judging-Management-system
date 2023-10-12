@@ -131,20 +131,23 @@ export default function ProfileViewer() {
             if (role === "J") {
                 response = await api.delete(`/jury/deleteJury/${id}`)
                 if (response.data.success) {
-                    console.log("Jury was deleted")
+                    console.log(response.data.message)
                     navigate(-1)
                 }
             }
             else if (role === "S") {
                 response = await api.delete(`/startup/deleteStartup/${id}`)
                 if (response.data.success) {
-                    console.log("Startup was deleted")
+                    console.log(response.data.message)
                     navigate(-1)
+                }
+                else{
+                    console.log(response.data.message)
                 }
             } else if (role === "T") {
                 response = await api.delete(`/trainers/deleteTrainer/${id}`)
                 if (response.data.success) {
-                    console.log("trainer was deleted")
+                    console.log(response.data.message)
                     navigate(-1)
                 }
             }
