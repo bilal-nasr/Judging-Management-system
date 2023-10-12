@@ -20,12 +20,10 @@ SET time_zone = "+00:00";
 --
 -- Database: `jmstest`
 --
-
 -- --------------------------------------------------------
 --
 -- Table structure for table `admin`
 --
-
 CREATE TABLE `admin` (
     `adminId` int NOT NULL,
     `description` text NOT NULL,
@@ -36,7 +34,6 @@ CREATE TABLE `admin` (
 --
 -- Dumping data for table `admin`
 --
-
 INSERT INTO `admin` (
         `adminId`,
         `description`,
@@ -71,20 +68,19 @@ VALUES (
 -- (See below for the actual view)
 --
 CREATE TABLE `admin_users_view` (
-`userId` int,
-`username` varchar(255),
-`user_name` varchar(255),
-`role` enum('A', 'S', 'J'),
-`adminId` int,
-`admin_description` text,
-`admin_created_at` timestamp,
-`admin_updated_at` timestamp
+    `userId` int,
+    `username` varchar(255),
+    `user_name` varchar(255),
+    `role` enum('A', 'S', 'J'),
+    `adminId` int,
+    `admin_description` text,
+    `admin_created_at` timestamp,
+    `admin_updated_at` timestamp
 );
 -- --------------------------------------------------------
 --
 -- Table structure for table `bootcamps`
 --
-
 CREATE TABLE `bootcamps` (
     `bootcampId` int NOT NULL,
     `name` varchar(45) DEFAULT NULL,
@@ -96,7 +92,6 @@ CREATE TABLE `bootcamps` (
 --
 -- Dumping data for table `bootcamps`
 --
-
 INSERT INTO `bootcamps` (
         `bootcampId`,
         `name`,
@@ -183,21 +178,20 @@ VALUES (
 -- (See below for the actual view)
 --
 CREATE TABLE `bootcamp_startups_view` (
-`bootcampId` int,
-`bootcamp_name` varchar(45),
-`bootcamp_type` varchar(45),
-`bootcamp_year` year,
-`startupId` int,
-`startup_name` varchar(255),
-`startup_description` text,
-`startup_created_at` timestamp,
-`startup_updated_at` timestamp
+    `bootcampId` int,
+    `bootcamp_name` varchar(45),
+    `bootcamp_type` varchar(45),
+    `bootcamp_year` year,
+    `startupId` int,
+    `startup_name` varchar(255),
+    `startup_description` text,
+    `startup_created_at` timestamp,
+    `startup_updated_at` timestamp
 );
 -- --------------------------------------------------------
 --
 -- Table structure for table `criteria`
 --
-
 CREATE TABLE `criteria` (
     `id` int NOT NULL,
     `name` varchar(255) NOT NULL,
@@ -209,7 +203,6 @@ CREATE TABLE `criteria` (
 --
 -- Dumping data for table `criteria`
 --
-
 INSERT INTO `criteria` (
         `id`,
         `name`,
@@ -262,7 +255,6 @@ VALUES (
 --
 -- Table structure for table `instructors`
 --
-
 CREATE TABLE `instructors` (
     `instructorsId` int NOT NULL,
     `name` varchar(255) NOT NULL,
@@ -274,7 +266,6 @@ CREATE TABLE `instructors` (
 --
 -- Dumping data for table `instructors`
 --
-
 INSERT INTO `instructors` (
         `instructorsId`,
         `name`,
@@ -385,13 +376,13 @@ VALUES (
 -- (See below for the actual view)
 --
 CREATE TABLE `instructors_bootcamps_view` (
-`instructorsId` int,
-`instructor_name` varchar(255),
-`instructor_description` text,
-`bootcampId` int,
-`bootcamp_name` varchar(45),
-`bootcamp_type` varchar(45),
-`bootcamp_year` year
+    `instructorsId` int,
+    `instructor_name` varchar(255),
+    `instructor_description` text,
+    `bootcampId` int,
+    `bootcamp_name` varchar(45),
+    `bootcamp_type` varchar(45),
+    `bootcamp_year` year
 );
 -- --------------------------------------------------------
 --
@@ -399,19 +390,18 @@ CREATE TABLE `instructors_bootcamps_view` (
 -- (See below for the actual view)
 --
 CREATE TABLE `JudgeView` (
-`JudgeId` int,
-`JudgeDescription` text,
-`UserId` int,
-`UserName` varchar(255),
-`UserUsername` varchar(255),
-`UserRole` enum('A', 'S', 'J'),
-`UserToken` varchar(255)
+    `JudgeId` int,
+    `JudgeDescription` text,
+    `UserId` int,
+    `UserName` varchar(255),
+    `UserUsername` varchar(255),
+    `UserRole` enum('A', 'S', 'J'),
+    `UserToken` varchar(255)
 );
 -- --------------------------------------------------------
 --
 -- Table structure for table `jury`
 --
-
 CREATE TABLE `jury` (
     `juryId` int NOT NULL,
     `description` text,
@@ -422,7 +412,6 @@ CREATE TABLE `jury` (
 --
 -- Dumping data for table `jury`
 --
-
 INSERT INTO `jury` (
         `juryId`,
         `description`,
@@ -448,7 +437,6 @@ VALUES (
 --
 -- Table structure for table `jury_has_bootcamps`
 --
-
 CREATE TABLE `jury_has_bootcamps` (
     `jury_juryId` int NOT NULL,
     `bootcamps_bootcampId` int NOT NULL
@@ -456,7 +444,6 @@ CREATE TABLE `jury_has_bootcamps` (
 --
 -- Dumping data for table `jury_has_bootcamps`
 --
-
 INSERT INTO `jury_has_bootcamps` (`jury_juryId`, `bootcamps_bootcampId`)
 VALUES (22, 12),
     (23, 13);
@@ -464,7 +451,6 @@ VALUES (22, 12),
 --
 -- Table structure for table `jury_startup_grades`
 --
-
 CREATE TABLE `jury_startup_grades` (
     `jury_id` int NOT NULL,
     `startup_id` int NOT NULL,
@@ -474,7 +460,6 @@ CREATE TABLE `jury_startup_grades` (
 --
 -- Table structure for table `logs`
 --
-
 CREATE TABLE `logs` (
     `logId` int NOT NULL,
     `crudType` varchar(45) NOT NULL,
@@ -486,7 +471,6 @@ CREATE TABLE `logs` (
 --
 -- Dumping data for table `logs`
 --
-
 INSERT INTO `logs` (
         `logId`,
         `crudType`,
@@ -523,7 +507,6 @@ VALUES (
 --
 -- Table structure for table `startups`
 --
-
 CREATE TABLE `startups` (
     `startupId` int NOT NULL,
     `name` varchar(255) DEFAULT NULL,
@@ -535,7 +518,6 @@ CREATE TABLE `startups` (
 --
 -- Dumping data for table `startups`
 --
-
 INSERT INTO `startups` (
         `startupId`,
         `name`,
@@ -588,7 +570,6 @@ VALUES (
 --
 -- Table structure for table `startup_criteria`
 --
-
 CREATE TABLE `startup_criteria` (
     `startup_id` int NOT NULL,
     `criteria_id` int NOT NULL,
@@ -598,7 +579,6 @@ CREATE TABLE `startup_criteria` (
 --
 -- Dumping data for table `startup_criteria`
 --
-
 INSERT INTO `startup_criteria` (
         `startup_id`,
         `criteria_id`,
@@ -617,7 +597,6 @@ VALUES (1, 1, 1, 85),
 --
 -- Table structure for table `users`
 --
-
 CREATE TABLE `users` (
     `userId` int NOT NULL,
     `username` varchar(255) NOT NULL,
@@ -631,7 +610,6 @@ CREATE TABLE `users` (
 --
 -- Dumping data for table `users`
 --
-
 INSERT INTO `users` (
         `userId`,
         `username`,
@@ -711,239 +689,239 @@ CREATE VIEW `admin_users_view` AS
 SELECT `u`.`userId` AS `userId`,
     `u`.`username` AS `username`,
     `u`.`name` AS `user_name`,
-    `u`.`role` AS `role`,
-    `a`.`adminId` AS `adminId`,
-    `a`.`description` AS `admin_description`,
-    `a`.`created_at` AS `admin_created_at`,
-    `a`.`updated_at` AS `admin_updated_at`
+    'u'.`role AS ` role `,
+    ` a `.` adminId ` AS ` adminId `,
+    ` a `.` description ` AS ` admin_description `,
+    ` a `.` created_at ` AS ` admin_created_at `,
+    ` a `.` updated_at ` AS ` admin_updated_at `
+FROM ` users ` AS ` u `
+LEFT JOIN ` admin ` AS ` a ` ON (` u `.` userId ` = ` a `.` user_id `)
+WHERE ` u `.` role ` = 'A';
+
+-- --------------------------------------------------------
+--
+-- Structure for view ` bootcamp_startups_view `
+--
+DROP TABLE IF EXISTS ` bootcamp_startups_view `;
+CREATE VIEW ` bootcamp_startups_view ` AS
+SELECT ` b `.` bootcampId ` AS ` bootcampId `,
+    ` b `.` name ` AS ` bootcamp_name `,
+    ` b `.` type ` AS ` bootcamp_type `,
+    ` b `.` year ` AS ` bootcamp_year `,
+    ` s `.` startupId ` AS ` startupId `,
+    ` s `.` name ` AS ` startup_name `,
+    ` s `.` description ` AS ` startup_description `,
+    ` s `.` created_at ` AS ` startup_created_at `,
+    ` s `.` updated_at ` AS ` startup_updated_at `
 FROM (
-        `users` `u`
-        left join `admin` `a` on((`u`.`userId` = `a`.`user_id`))
+        ` bootcamps ` ` b `
+        left join ` startups ` ` s ` on((` b `.` bootcampId ` = ` s `.` bootcamps_bootcampId `))
     );
 -- --------------------------------------------------------
 --
--- Structure for view `bootcamp_startups_view`
+-- Structure for view ` instructors_bootcamps_view `
 --
-DROP TABLE IF EXISTS `bootcamp_startups_view`;
-CREATE VIEW `bootcamp_startups_view` AS
-SELECT `b`.`bootcampId` AS `bootcampId`,
-    `b`.`name` AS `bootcamp_name`,
-    `b`.`type` AS `bootcamp_type`,
-    `b`.`year` AS `bootcamp_year`,
-    `s`.`startupId` AS `startupId`,
-    `s`.`name` AS `startup_name`,
-    `s`.`description` AS `startup_description`,
-    `s`.`created_at` AS `startup_created_at`,
-    `s`.`updated_at` AS `startup_updated_at`
+DROP TABLE IF EXISTS ` instructors_bootcamps_view `;
+CREATE VIEW ` instructors_bootcamps_view ` AS
+SELECT ` i `.` instructorsId ` AS ` instructorsId `,
+    ` i `.` name ` AS ` instructor_name `,
+    ` i `.` description ` AS ` instructor_description `,
+    ` b `.` bootcampId ` AS ` bootcampId `,
+    ` b `.` name ` AS ` bootcamp_name `,
+    ` b `.` type ` AS ` bootcamp_type `,
+    ` b `.` year ` AS ` bootcamp_year `
 FROM (
-        `bootcamps` `b`
-        left join `startups` `s` on((`b`.`bootcampId` = `s`.`bootcamps_bootcampId`))
+        ` instructors ` ` i `
+        join ` bootcamps ` ` b ` on((` i `.` bootcamps_bootcampId ` = ` b `.` bootcampId `))
     );
 -- --------------------------------------------------------
 --
--- Structure for view `instructors_bootcamps_view`
+-- Structure for view ` JudgeView `
 --
-DROP TABLE IF EXISTS `instructors_bootcamps_view`;
-CREATE VIEW `instructors_bootcamps_view` AS
-SELECT `i`.`instructorsId` AS `instructorsId`,
-    `i`.`name` AS `instructor_name`,
-    `i`.`description` AS `instructor_description`,
-    `b`.`bootcampId` AS `bootcampId`,
-    `b`.`name` AS `bootcamp_name`,
-    `b`.`type` AS `bootcamp_type`,
-    `b`.`year` AS `bootcamp_year`
+DROP TABLE IF EXISTS ` JudgeView `;
+CREATE VIEW ` JudgeView ` AS
+SELECT ` j `.` juryId ` AS ` JudgeId `,
+    ` j `.` description ` AS ` JudgeDescription `,
+    ` u `.` userId ` AS ` UserId `,
+    ` u `.` name ` AS ` UserName `,
+    ` u `.` username ` AS ` UserUsername `,
+    ` u `.` role ` AS ` UserRole `,
+    ` u `.` token ` AS ` UserToken `
 FROM (
-        `instructors` `i`
-        join `bootcamps` `b` on((`i`.`bootcamps_bootcampId` = `b`.`bootcampId`))
-    );
--- --------------------------------------------------------
---
--- Structure for view `JudgeView`
---
-DROP TABLE IF EXISTS `JudgeView`;
-CREATE VIEW `JudgeView` AS
-SELECT `j`.`juryId` AS `JudgeId`,
-    `j`.`description` AS `JudgeDescription`,
-    `u`.`userId` AS `UserId`,
-    `u`.`name` AS `UserName`,
-    `u`.`username` AS `UserUsername`,
-    `u`.`role` AS `UserRole`,
-    `u`.`token` AS `UserToken`
-FROM (
-        `jury` `j`
-        join `users` `u` on((`j`.`users_userId` = `u`.`userId`))
+        ` jury ` ` j `
+        join ` users ` ` u ` on((` j `.` users_userId ` = ` u `.` userId `))
     )
-WHERE (`u`.`role` = 'J');
+WHERE (` u `.` role ` = 'J');
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin`
+-- Indexes for table ` admin `
 --
-ALTER TABLE `admin`
-ADD PRIMARY KEY (`adminId`),
-    ADD KEY `fk_admin_user` (`user_id`);
+ALTER TABLE ` admin `
+ADD PRIMARY KEY (` adminId `),
+    ADD KEY ` fk_admin_user ` (` user_id `);
 --
--- Indexes for table `bootcamps`
+-- Indexes for table ` bootcamps `
 --
-ALTER TABLE `bootcamps`
-ADD PRIMARY KEY (`bootcampId`);
+ALTER TABLE ` bootcamps `
+ADD PRIMARY KEY (` bootcampId `);
 --
--- Indexes for table `criteria`
+-- Indexes for table ` criteria `
 --
-ALTER TABLE `criteria`
-ADD PRIMARY KEY (`id`);
+ALTER TABLE ` criteria `
+ADD PRIMARY KEY (` id `);
 --
--- Indexes for table `instructors`
+-- Indexes for table ` instructors `
 --
-ALTER TABLE `instructors`
-ADD PRIMARY KEY (`instructorsId`),
-    ADD KEY `fk_instructors_bootcamps1_idx` (`bootcamps_bootcampId`);
+ALTER TABLE ` instructors `
+ADD PRIMARY KEY (` instructorsId `),
+    ADD KEY ` fk_instructors_bootcamps1_idx ` (` bootcamps_bootcampId `);
 --
--- Indexes for table `jury`
+-- Indexes for table ` jury `
 --
-ALTER TABLE `jury`
-ADD PRIMARY KEY (`juryId`),
-    ADD KEY `fk_jury_users1_idx` (`users_userId`);
+ALTER TABLE ` jury `
+ADD PRIMARY KEY (` juryId `),
+    ADD KEY ` fk_jury_users1_idx ` (` users_userId `);
 --
--- Indexes for table `jury_has_bootcamps`
+-- Indexes for table ` jury_has_bootcamps `
 --
-ALTER TABLE `jury_has_bootcamps`
-ADD PRIMARY KEY (`jury_juryId`, `bootcamps_bootcampId`),
-    ADD KEY `fk_jury_has_bootcamps_bootcamps1_idx` (`bootcamps_bootcampId`),
-    ADD KEY `fk_jury_has_bootcamps_jury1_idx` (`jury_juryId`);
+ALTER TABLE ` jury_has_bootcamps `
+ADD PRIMARY KEY (` jury_juryId `, ` bootcamps_bootcampId `),
+    ADD KEY ` fk_jury_has_bootcamps_bootcamps1_idx ` (` bootcamps_bootcampId `),
+    ADD KEY ` fk_jury_has_bootcamps_jury1_idx ` (` jury_juryId `);
 --
--- Indexes for table `jury_startup_grades`
+-- Indexes for table ` jury_startup_grades `
 --
-ALTER TABLE `jury_startup_grades`
-ADD PRIMARY KEY (`jury_id`, `startup_id`),
-    ADD KEY `startup_id` (`startup_id`);
+ALTER TABLE ` jury_startup_grades `
+ADD PRIMARY KEY (` jury_id `, ` startup_id `),
+    ADD KEY ` startup_id ` (` startup_id `);
 --
--- Indexes for table `logs`
+-- Indexes for table ` logs `
 --
-ALTER TABLE `logs`
-ADD PRIMARY KEY (`logId`),
-    ADD KEY `fk_logs_users1_idx` (`users_userId`);
+ALTER TABLE ` logs `
+ADD PRIMARY KEY (` logId `),
+    ADD KEY ` fk_logs_users1_idx ` (` users_userId `);
 --
--- Indexes for table `startups`
+-- Indexes for table ` startups `
 --
-ALTER TABLE `startups`
-ADD PRIMARY KEY (`startupId`),
-    ADD KEY `fk_startups_bootcamps1_idx` (`bootcamps_bootcampId`);
+ALTER TABLE ` startups `
+ADD PRIMARY KEY (` startupId `),
+    ADD KEY ` fk_startups_bootcamps1_idx ` (` bootcamps_bootcampId `);
 --
--- Indexes for table `startup_criteria`
+-- Indexes for table ` startup_criteria `
 --
-ALTER TABLE `startup_criteria`
-ADD PRIMARY KEY (`startup_id`, `criteria_id`),
-    ADD KEY `criteria_id` (`criteria_id`),
-    ADD KEY `jury_id` (`jury_id`);
+ALTER TABLE ` startup_criteria `
+ADD PRIMARY KEY (` startup_id `, ` criteria_id `),
+    ADD KEY ` criteria_id ` (` criteria_id `),
+    ADD KEY ` jury_id ` (` jury_id `);
 --
--- Indexes for table `users`
+-- Indexes for table ` users `
 --
-ALTER TABLE `users`
-ADD PRIMARY KEY (`userId`),
-    ADD UNIQUE KEY `username_UNIQUE` (`username`);
+ALTER TABLE ` users `
+ADD PRIMARY KEY (` userId `),
+    ADD UNIQUE KEY ` username_UNIQUE ` (` username `);
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT for table ` admin `
 --
-ALTER TABLE `admin`
-MODIFY `adminId` int NOT NULL AUTO_INCREMENT,
+ALTER TABLE ` admin `
+MODIFY ` adminId ` int NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 8;
 --
--- AUTO_INCREMENT for table `bootcamps`
+-- AUTO_INCREMENT for table ` bootcamps `
 --
-ALTER TABLE `bootcamps`
-MODIFY `bootcampId` int NOT NULL AUTO_INCREMENT,
+ALTER TABLE ` bootcamps `
+MODIFY ` bootcampId ` int NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 17;
 --
--- AUTO_INCREMENT for table `criteria`
+-- AUTO_INCREMENT for table ` criteria `
 --
-ALTER TABLE `criteria`
-MODIFY `id` int NOT NULL AUTO_INCREMENT,
+ALTER TABLE ` criteria `
+MODIFY ` id ` int NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 7;
 --
--- AUTO_INCREMENT for table `instructors`
+-- AUTO_INCREMENT for table ` instructors `
 --
-ALTER TABLE `instructors`
-MODIFY `instructorsId` int NOT NULL AUTO_INCREMENT,
+ALTER TABLE ` instructors `
+MODIFY ` instructorsId ` int NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 28;
 --
--- AUTO_INCREMENT for table `jury`
+-- AUTO_INCREMENT for table ` jury `
 --
-ALTER TABLE `jury`
-MODIFY `juryId` int NOT NULL AUTO_INCREMENT,
+ALTER TABLE ` jury `
+MODIFY ` juryId ` int NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 25;
 --
--- AUTO_INCREMENT for table `logs`
+-- AUTO_INCREMENT for table ` logs `
 --
-ALTER TABLE `logs`
-MODIFY `logId` int NOT NULL AUTO_INCREMENT,
+ALTER TABLE ` logs `
+MODIFY ` logId ` int NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 4;
 --
--- AUTO_INCREMENT for table `startups`
+-- AUTO_INCREMENT for table ` startups `
 --
-ALTER TABLE `startups`
-MODIFY `startupId` int NOT NULL AUTO_INCREMENT,
+ALTER TABLE ` startups `
+MODIFY ` startupId ` int NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 12;
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT for table ` users `
 --
-ALTER TABLE `users`
-MODIFY `userId` int NOT NULL AUTO_INCREMENT,
+ALTER TABLE ` users `
+MODIFY ` userId ` int NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 58;
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `admin`
+-- Constraints for table ` admin `
 --
-ALTER TABLE `admin`
-ADD CONSTRAINT `fk_admin_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`userId`) ON DELETE CASCADE;
+ALTER TABLE ` admin `
+ADD CONSTRAINT ` fk_admin_user ` FOREIGN KEY (` user_id `) REFERENCES ` users ` (` userId `) ON DELETE CASCADE;
 --
--- Constraints for table `instructors`
+-- Constraints for table ` instructors `
 --
-ALTER TABLE `instructors`
-ADD CONSTRAINT `fk_instructors_bootcamps1` FOREIGN KEY (`bootcamps_bootcampId`) REFERENCES `bootcamps` (`bootcampId`);
+ALTER TABLE ` instructors `
+ADD CONSTRAINT ` fk_instructors_bootcamps1 ` FOREIGN KEY (` bootcamps_bootcampId `) REFERENCES ` bootcamps ` (` bootcampId `);
 --
--- Constraints for table `jury`
+-- Constraints for table ` jury `
 --
-ALTER TABLE `jury`
-ADD CONSTRAINT `fk_jury_users1` FOREIGN KEY (`users_userId`) REFERENCES `users` (`userId`);
+ALTER TABLE ` jury `
+ADD CONSTRAINT ` fk_jury_users1 ` FOREIGN KEY (` users_userId `) REFERENCES ` users ` (` userId `);
 --
--- Constraints for table `jury_has_bootcamps`
+-- Constraints for table ` jury_has_bootcamps `
 --
-ALTER TABLE `jury_has_bootcamps`
-ADD CONSTRAINT `fk_jury_has_bootcamps_bootcamps1` FOREIGN KEY (`bootcamps_bootcampId`) REFERENCES `bootcamps` (`bootcampId`),
-    ADD CONSTRAINT `fk_jury_has_bootcamps_jury1` FOREIGN KEY (`jury_juryId`) REFERENCES `jury` (`juryId`);
+ALTER TABLE ` jury_has_bootcamps `
+ADD CONSTRAINT ` fk_jury_has_bootcamps_bootcamps1 ` FOREIGN KEY (` bootcamps_bootcampId `) REFERENCES ` bootcamps ` (` bootcampId `),
+    ADD CONSTRAINT ` fk_jury_has_bootcamps_jury1 ` FOREIGN KEY (` jury_juryId `) REFERENCES ` jury ` (` juryId `);
 --
--- Constraints for table `jury_startup_grades`
+-- Constraints for table ` jury_startup_grades `
 --
-ALTER TABLE `jury_startup_grades`
-ADD CONSTRAINT `jury_startup_grades_ibfk_1` FOREIGN KEY (`jury_id`) REFERENCES `jury` (`juryId`),
-    ADD CONSTRAINT `jury_startup_grades_ibfk_2` FOREIGN KEY (`startup_id`) REFERENCES `startups` (`startupId`);
+ALTER TABLE ` jury_startup_grades `
+ADD CONSTRAINT ` jury_startup_grades_ibfk_1 ` FOREIGN KEY (` jury_id `) REFERENCES ` jury ` (` juryId `),
+    ADD CONSTRAINT ` jury_startup_grades_ibfk_2 ` FOREIGN KEY (` startup_id `) REFERENCES ` startups ` (` startupId `);
 --
--- Constraints for table `logs`
+-- Constraints for table ` logs `
 --
-ALTER TABLE `logs`
-ADD CONSTRAINT `fk_logs_users1` FOREIGN KEY (`users_userId`) REFERENCES `users` (`userId`);
+ALTER TABLE ` logs `
+ADD CONSTRAINT ` fk_logs_users1 ` FOREIGN KEY (` users_userId `) REFERENCES ` users ` (` userId `);
 --
--- Constraints for table `startups`
+-- Constraints for table ` startups `
 --
-ALTER TABLE `startups`
-ADD CONSTRAINT `fk_startups_bootcamps1` FOREIGN KEY (`bootcamps_bootcampId`) REFERENCES `bootcamps` (`bootcampId`);
+ALTER TABLE ` startups `
+ADD CONSTRAINT ` fk_startups_bootcamps1 ` FOREIGN KEY (` bootcamps_bootcampId `) REFERENCES ` bootcamps ` (` bootcampId `);
 --
--- Constraints for table `startup_criteria`
+-- Constraints for table ` startup_criteria `
 --
-ALTER TABLE `startup_criteria`
-ADD CONSTRAINT `startup_criteria_ibfk_1` FOREIGN KEY (`startup_id`) REFERENCES `startups` (`startupId`),
-    ADD CONSTRAINT `startup_criteria_ibfk_2` FOREIGN KEY (`criteria_id`) REFERENCES `criteria` (`id`),
-    ADD CONSTRAINT `startup_criteria_ibfk_3` FOREIGN KEY (`jury_id`) REFERENCES `jury` (`juryId`);
+ALTER TABLE ` startup_criteria `
+ADD CONSTRAINT ` startup_criteria_ibfk_1 ` FOREIGN KEY (` startup_id `) REFERENCES ` startups ` (` startupId `),
+    ADD CONSTRAINT ` startup_criteria_ibfk_2 ` FOREIGN KEY (` criteria_id `) REFERENCES ` criteria ` (` id `),
+    ADD CONSTRAINT ` startup_criteria_ibfk_3 ` FOREIGN KEY (` jury_id `) REFERENCES ` jury ` (` juryId `);
 COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
 ;

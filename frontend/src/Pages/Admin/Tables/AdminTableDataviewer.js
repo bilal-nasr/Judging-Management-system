@@ -134,12 +134,12 @@ export default function TableDataViewer(props) {
                         />
                         <TableBody >
                             {visibleRows.map((row, index) => (
-                                <TableRow key={row.userId} sx={{ cursor: 'pointer' }}>
+                                <TableRow key={row.adminId} sx={{ cursor: 'pointer' }}>
                                     <TableCell align="center">{row.username}
                                     </TableCell>
                                     <TableCell align="center">{row.user_name}</TableCell>
                                     <TableCell align="center">
-                                        <Button onClick={() => navigate(`/profileviewer/${role}/${row.userId}`)}>Go to ProfileViewer</Button>
+                                        <Button onClick={() => navigate(`/profileviewer/${role}/${row.adminId}`)}>Go to ProfileViewer</Button>
 
                                     </TableCell>
                                     {/* <TableCell align="center">

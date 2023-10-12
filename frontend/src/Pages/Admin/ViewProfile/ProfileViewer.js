@@ -119,9 +119,9 @@ export default function ProfileViewer() {
                 response = await api.get(`/admin/getAdmin/${id}`)
                 const admin = response.data.data
                 console.log(admin)
-                setUsername(admin?.UserUsername)
-                setName(admin?.UserName)
-                setDescription(admin?.JudgeDescription)
+                setUsername(admin?.username)
+                setName(admin?.user_name)
+                setDescription(admin?.admin_description)
             }
         } catch (error) {
 
@@ -158,6 +158,10 @@ export default function ProfileViewer() {
             }
             else if (role === "A") {
                 response = await api.delete(`/admin/deleteAdmin/${id}`)
+                if (response.data.success) {
+                    console.log(response.data.message)
+                    navigate(-1)
+                }
             }
         } catch (error) {
 
@@ -219,7 +223,7 @@ export default function ProfileViewer() {
 
     useEffect(() => {
         getData()
-    }, )
+    }, [])
 
 
     return (
