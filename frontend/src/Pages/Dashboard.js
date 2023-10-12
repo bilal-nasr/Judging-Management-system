@@ -197,8 +197,8 @@ export default function Dashboard() {
                                 return <JuryPage />;
                             case 4:
                                 return <ProfileViewer />;
-                            case 5:
-                                return <h1>test</h1>;
+                            // case 5:
+                            //     return <h1>test</h1>;
                             case 6:
                                 return <AdminPage />;
                             default:

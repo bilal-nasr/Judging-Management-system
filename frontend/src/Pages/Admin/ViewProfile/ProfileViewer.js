@@ -117,6 +117,11 @@ export default function ProfileViewer() {
             }
             else if (role === "A") {
                 response = await api.get(`/admin/getAdmin/${id}`)
+                const admin = response.data.data
+                console.log(admin)
+                setUsername(admin?.UserUsername)
+                setName(admin?.UserName)
+                setDescription(admin?.JudgeDescription)
             }
         } catch (error) {
 

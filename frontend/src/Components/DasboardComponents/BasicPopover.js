@@ -24,7 +24,7 @@ export default function BasicPopover(props) {
         Auth.deAuthenticate()
         setTimeout(()=>{
             navigate("/login")
-        },[2000])
+        },[1000])
         return;
     }
 

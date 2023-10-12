@@ -117,7 +117,7 @@ export default function TableDataViewer(props) {
 
 
     const navigate = useNavigate();
-    const role = "J"
+    const role = "A"
     return (
         <Box sx={{ width: '100%', marginLeft: '10px', marginRight: '20px', display: "table" }} >
             <Paper sx={{ width: '90%', mb: 2 }}>
