@@ -57,7 +57,7 @@ function App() {
         <Route path="*" element={<Navigate to="/login" replace />} />
         <Route
           path="/StartupBootcampViewer/:id"
-          element={<PrivateRoute element={<ProfileViewer />} />}
+          element={<PrivateRoute element={<StartupBootcampViewer />} />}
         />
       </Routes>
     </Router>
