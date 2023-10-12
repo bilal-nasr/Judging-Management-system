@@ -8,6 +8,7 @@ async function getDBData(query, params = []) {
     try {
         connection = await pool.getConnection();
         const [rows] = await connection.execute(query, params);
+        // to prevent sql injection fasalna query 3an params
         return rows;
     } catch (error) {
         console.error("Error fetching data:", error);

@@ -124,9 +124,9 @@ const AddAdmin = ({ onDataRefresh }) => {
                     focused
                 />
 
-                <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                <FormControl sx={{ m: 1 }} size="small">
                 </FormControl>
-
+                
                 <StyledTextareaAutosize
                     aria-label="Description"
                     placeholder="Description"
@@ -139,7 +139,7 @@ const AddAdmin = ({ onDataRefresh }) => {
                     onChange={(e) => setDescription(e.target.value)}
                 />
             </div>
-            <div style={{ margin: "8px" }}>
+            <div style={{ margin: "8px"}}>
                 <Button variant="contained" onClick={sendAdmin}>
                     ADD
                 </Button>
