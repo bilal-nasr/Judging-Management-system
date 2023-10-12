@@ -24,6 +24,7 @@ import BootcampPage from './Admin/Bootcamps/BootcampPage';
 import ProfileViewer from './Admin/ViewProfile/ProfileViewer';
 import JuryDashboard from './Jury/JuryDashboard'
 import StarupEvaluation from './Jury/StartupEvaluation'
+import AdminPage from './Admin/Admins/AdminPage';
 
 // function Copyright(props) {
 //   return (
@@ -201,7 +202,9 @@ export default function Dashboard() {
                             case 4:
                                 return <ProfileViewer />;
                             case 5:
-                                return <h1>5</h1>;
+                                return <h1>test</h1>;
+                            case 6:
+                                return <AdminPage />;
                             default:
                                 return null; // Render nothing for other cases
                         }
