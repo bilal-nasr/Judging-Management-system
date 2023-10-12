@@ -34,18 +34,18 @@ export default function StartupBootcampViewer() {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Name(100g serving)</TableCell>
+            <TableCell>Name</TableCell>
             <TableCell align="right">Grades</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             <TableRow
-              key={row.name}
+              key={row.Name}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.Name}
               </TableCell>
               <TableCell align="right">{row.Grades}</TableCell>
             </TableRow>
