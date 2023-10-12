@@ -11,8 +11,8 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Button from '@mui/material/Button';
 
 
-function createData(Name: string, Grades: number) {
-  return { Name, Grades };
+function createData(Name, Grades) {
+  return { Name:Name, Grades:Grades };
 }
 
 const rows = [
