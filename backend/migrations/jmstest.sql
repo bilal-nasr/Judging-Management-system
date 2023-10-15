@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2023 at 11:07 AM
+-- Generation Time: Oct 15, 2023 at 10:48 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.4
 
@@ -351,12 +351,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userId`, `username`, `password`, `name`, `role`, `token`, `created_at`, `updated_at`) VALUES
-(40, 'FinalSuper', '$2a$10$g16KMHUUj3/cd0J98TActu/N3YMyiuT2WpBIX05goz3lzqRuE7m1y', 'SuperAdmin', 'S', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTcxNDUwMTZ9.HgUzjb7jrLLWuCuOXfgs-u9v2qa5C2U8m0qzCg0Moy4', '2023-10-01 19:29:33', '2023-10-12 21:10:16'),
-(41, 'FinalAdmin1', '$2a$10$gWObHDeI2M6QSRs30fqI.OCs30uUXNIQx2brLxCtYeEZXNqjG./ta', 'Admin1', 'A', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTcxNDE3MjR9.14CjzIl_gzdBSF5HZ2k_adBtz93O86oUWWIQSfNuIYQ', '2023-10-01 19:41:44', '2023-10-12 20:15:24'),
+(40, 'FinalSuper', '$2a$10$g16KMHUUj3/cd0J98TActu/N3YMyiuT2WpBIX05goz3lzqRuE7m1y', 'SuperAdmin', 'S', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTcxOTUxNzh9.WvfVYB6tDFPsxgkNmG-8Y1wMXCwgAThQLOrpm5dA1NM', '2023-10-01 19:29:33', '2023-10-13 11:06:18'),
+(41, 'FinalAdmin1', '$2a$10$gWObHDeI2M6QSRs30fqI.OCs30uUXNIQx2brLxCtYeEZXNqjG./ta', 'Admin1', 'A', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTczOTE4NDd9.ci7hTDb9xNIGuPMxPzCtfphFFFIcSQQna3rbQi97vMQ', '2023-10-01 19:41:44', '2023-10-15 17:44:07'),
 (42, 'FinalAdmin2', '$2a$10$UF6Q33Gfh8Rq4Nhqj8KpaOs/EX8CEo9ZieAFhGehIb2rd1Zo7wNBu', 'Admin2', 'A', NULL, '2023-10-01 19:42:30', '2023-10-01 19:42:30'),
 (43, 'FinalAdmin3', '$2a$10$5Ovkk1QaFVSvufjgalBlMufy9PcA4UtLT85N/LwDY.tStdKVaCtA.', 'Admin3', 'A', NULL, '2023-10-01 19:42:41', '2023-10-01 19:42:41'),
 (55, 'FinalJury4', '$2a$10$3zmpzeCoPrVugZMaL.i74OaJFjmuZn6XFnHoRGgqpR6OV8yqNhIq.', 'Jury', 'J', NULL, '2023-10-10 22:08:22', '2023-10-11 14:05:17'),
-(56, 'FinalJury1', '$2a$10$YguISqPzFCt9d1S5XWhteex7Pey/hEOpslST5JrB8xJDsN9tYYoXq', 'Jury1', 'J', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTcxMzUyMjR9.6Ysk37kq7tuvkO2vmSxpT7xMVvL3xtWAAJf-KiiyasQ', '2023-10-10 22:10:22', '2023-10-12 18:27:04'),
+(56, 'FinalJury1', '$2a$10$YguISqPzFCt9d1S5XWhteex7Pey/hEOpslST5JrB8xJDsN9tYYoXq', 'Jury1', 'J', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTcxOTUxMzF9.SK4daaFqjz-bvis8PmW7z02IkCPowvZb3tMyg2FZyjQ', '2023-10-10 22:10:22', '2023-10-13 11:05:31'),
 (58, 'Testing44', '$2a$10$8ChxJ42NGrMnjtuvBLERv.rOs6tyTNVpR8OXOq8Ta5jL25SzfSFi2', 'test2', 'J', NULL, '2023-10-11 20:33:38', '2023-10-11 20:33:56'),
 (59, 'Jury123', '$2a$10$Asv.6IE4whS0NZqK0WuvqeCbm.o8w2glp2dmJVcrzsiGXNdW3GFKq', 'jury', 'J', NULL, '2023-10-12 18:34:10', '2023-10-12 18:34:10'),
 (60, 'Bilal123', '$2a$10$Y/E7JkvmFkoGAHUHXsGbZeslNFk1g/EfC6VpzrTfy33ULhVXcqQcS', '123', 'J', NULL, '2023-10-12 19:14:27', '2023-10-12 19:14:27'),
